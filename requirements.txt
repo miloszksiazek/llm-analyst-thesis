@@ -1,1 +1,2 @@
-requirements to be pinned during build
+anthropic==2.3.0
+python-dotenv==1.2.4
