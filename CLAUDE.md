@@ -31,7 +31,7 @@ Autor: Miłosz. Rozmawiamy po polsku; kod, komentarze, nazwy plików, prompt age
 5. **Pełny zapis każdego uruchomienia:** prompt, wersja modelu, surowa odpowiedź, JSON, raport czytelny, lista wyszukiwań i źródeł, streszczenie rozumowania, zużycie tokenów i koszt.
 6. **Sekrety tylko w zmiennych środowiskowych** (GitHub Secrets / lokalny `.env` w `.gitignore`). Nigdy nie wpisuj kluczy do kodu, logów ani commitów.
 7. **Powtarzalność:** stałe ziarna losowości (losowe portfele, XGBoost), przypięte wersje pakietów w `requirements.txt`.
-8. **Po zamrożeniu (po pilotażu, najpóźniej 29.11.2026)** zmiany w `prompts/` i `config/` tylko za wyraźną zgodą autora i z wpisem w `docs/CHANGELOG.md` (data, co, dlaczego).
+8. **Po zamrożeniu (po pilotażu, najpóźniej 30.11.2026)** zmiany w `prompts/` i `config/` tylko za wyraźną zgodą autora i z wpisem w `docs/CHANGELOG.md` (data, co, dlaczego).
 9. **Koszty:** przed dodaniem czegokolwiek, co zwiększa liczbę tokenów lub wyszukiwań, oszacuj koszt na uruchomienie. Budżet całego badania: ok. 65–70 USD.
 
 ## Struktura repozytorium (docelowa)
