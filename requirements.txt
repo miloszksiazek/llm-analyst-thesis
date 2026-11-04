@@ -1,3 +1,4 @@
 anthropic==2.3.0
 python-dotenv==1.2.4
 alpaca-py==0.44.0
+yfinance==1.8.0

@@ -1,0 +1,143 @@
+# Dow Jones Industrial Average universe – draft
+# STATUS: draft – re-verify on 2026-12-04 before freezing
+# Source: SPDR DIA ETF holdings (State Street Investment Management)
+#         https://www.ssga.com/us/en/individual/etfs/library-content/products/fund-data/etfs/us/holdings-daily-us-en-dia.xlsx
+# Verified: 2026-11-04 against SSGA holdings file dated 2026-11-03
+#
+# Notes:
+#   - GOOGL (Alphabet Class A) replaced VZ (Verizon) on 2026-06-29.
+#   - Honeywell Aerospace was spun off on 2026-06-29; the remaining company
+#     (Honeywell International, automation/industrial focus) retained the HON ticker.
+#     The -6.46% close-to-close return on 2026-06-29 reflects the spin-off distribution;
+#     handle this as a corporate action in XGBoost features (see docs/CHANGELOG.md).
+
+universe:
+  - ticker: AAPL
+    company: Apple Inc
+    sector: Information Technology
+    exchange: NASDAQ
+  - ticker: AMGN
+    company: Amgen Inc
+    sector: Health Care
+    exchange: NASDAQ
+  - ticker: AMZN
+    company: Amazon.com Inc
+    sector: Consumer Discretionary
+    exchange: NASDAQ
+  - ticker: AXP
+    company: American Express Co
+    sector: Financials
+    exchange: NYSE
+  - ticker: BA
+    company: Boeing Co
+    sector: Industrials
+    exchange: NYSE
+  - ticker: CAT
+    company: Caterpillar Inc
+    sector: Industrials
+    exchange: NYSE
+  - ticker: CRM
+    company: Salesforce Inc
+    sector: Information Technology
+    exchange: NYSE
+  - ticker: CSCO
+    company: Cisco Systems Inc
+    sector: Information Technology
+    exchange: NASDAQ
+  - ticker: CVX
+    company: Chevron Corp
+    sector: Energy
+    exchange: NYSE
+  - ticker: DIS
+    company: Walt Disney Co
+    sector: Communication Services
+    exchange: NYSE
+  - ticker: GOOGL
+    company: Alphabet Inc (Class A)
+    sector: Communication Services
+    exchange: NASDAQ
+  - ticker: GS
+    company: Goldman Sachs Group Inc
+    sector: Financials
+    exchange: NYSE
+  - ticker: HD
+    company: Home Depot Inc
+    sector: Consumer Discretionary
+    exchange: NYSE
+  - ticker: HON
+    company: Honeywell International Inc
+    sector: Industrials
+    exchange: NASDAQ
+  - ticker: IBM
+    company: International Business Machines Corp
+    sector: Information Technology
+    exchange: NYSE
+  - ticker: JNJ
+    company: Johnson & Johnson
+    sector: Health Care
+    exchange: NYSE
+  - ticker: JPM
+    company: JPMorgan Chase & Co
+    sector: Financials
+    exchange: NYSE
+  - ticker: KO
+    company: Coca-Cola Co
+    sector: Consumer Staples
+    exchange: NYSE
+  - ticker: MCD
+    company: McDonald's Corp
+    sector: Consumer Discretionary
+    exchange: NYSE
+  - ticker: MMM
+    company: 3M Co
+    sector: Industrials
+    exchange: NYSE
+  - ticker: MRK
+    company: Merck & Co Inc
+    sector: Health Care
+    exchange: NYSE
+  - ticker: MSFT
+    company: Microsoft Corp
+    sector: Information Technology
+    exchange: NASDAQ
+  - ticker: NKE
+    company: Nike Inc (Class B)
+    sector: Consumer Discretionary
+    exchange: NYSE
+  - ticker: NVDA
+    company: NVIDIA Corp
+    sector: Information Technology
+    exchange: NASDAQ
+  - ticker: PG
+    company: Procter & Gamble Co
+    sector: Consumer Staples
+    exchange: NYSE
+  - ticker: SHW
+    company: Sherwin-Williams Co
+    sector: Materials
+    exchange: NYSE
+  - ticker: TRV
+    company: Travelers Companies Inc
+    sector: Financials
+    exchange: NYSE
+  - ticker: UNH
+    company: UnitedHealth Group Inc
+    sector: Health Care
+    exchange: NYSE
+  - ticker: V
+    company: Visa Inc (Class A)
+    sector: Financials
+    exchange: NYSE
+  - ticker: WMT
+    company: Walmart Inc
+    sector: Consumer Staples
+    exchange: NASDAQ
+
+metadata:
+  count: 30
+  status: draft
+  source: SSGA DIA ETF holdings
+  ssga_holdings_date: "2026-11-03"
+  verification_date: "2026-11-04"
+  freeze_date: "2026-12-04"
+  freeze_note: "Re-verify against official DJIA/DIA holdings on 2026-12-04 before freezing"

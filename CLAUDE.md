@@ -13,14 +13,14 @@ Autor: Miłosz. Rozmawiamy po polsku; kod, komentarze, nazwy plików, prompt age
 - **Model:** Claude Opus 5.5 przez API (`claude-opus-5-5`), wersja przypięta, rozumowanie adaptacyjne ze stałym poziomem effort, zapisywane streszczenie rozumowania.
 - **Dwa warianty agenta:** `claude_web` (pakiet danych + narzędzie web search, limit ok. 10 wyszukiwań) i `claude_noweb` (ten sam pakiet, bez wyszukiwarki). Identyczny prompt, identyczny pakiet danych — jedyna różnica to narzędzie wyszukiwania.
 - **Brak pamięci:** agent nie widzi poprzednich raportów, portfela ani decyzji. Każdy tydzień od czystej karty.
-- **Uniwersum:** 30 spółek Dow Jones według składu na dzień startu (6.12.2026), zapisanych w `config/universe.yaml`. Skład zamrożony do końca testu.
+- **Uniwersum:** 30 spółek Dow Jones według składu zamrożonego 4.12.2026, zapisanych w `config/universe.yaml`. Lista zweryfikowana 4.12.2026 względem oficjalnych składników DJIA/DIA; zamrożona do końca testu. Jeśli spółka zostanie wycofana z obrotu w trakcie testu, jej ostatnia cena jest ceną wyjścia, a spółka jest pomijana w kolejnych rankingach; IC liczone na pozostałych spółkach.
 - **Wynik agenta:** ocena każdej spółki –5…+5, pełny ranking 1–30 bez remisów, cztery spółki do kupienia = pozycje 1–4 rankingu, uzasadnienie i lista źródeł. Format JSON według schematu w `prompts/output_schema.json`.
 - **Portfel:** 4 spółki po 25%, zawsze pełne zainwestowanie (bez gotówki), 100 000 USD na portfel, akcje ułamkowe, bez kosztów w głównej analizie.
 - **Zwroty:** od otwarcia sesji w poniedziałek do otwarcia w kolejny poniedziałek. Gdy poniedziałek jest dniem wolnym w USA, używamy otwarcia najbliższej sesji; agenta nie uruchamiamy ponownie.
 - **XGBoost:** dane dzienne Yahoo Finance (zapasowo dane historyczne Alpaca), wyłącznie cechy cenowe i techniczne plus sektor, cechy z piątkowego zamknięcia, cel = zwrot poniedziałek–poniedziałek (otwarcie), ok. 10 lat historii, walidacja walk-forward na małej siatce. Trenowany raz przed startem i zamrożony.
 - **Benchmarki liczone w skrypcie:** DIA (buy & hold), 1/N (po 1/30), 10 000 losowych portfeli 4-spółkowych.
-- **Alpaca:** jedno konto, 3 rachunki paper (`claude_web`, `claude_noweb`, `xgb`), wyłącznie ewidencja wykonania. Źródłem danych do analizy jest zawsze nasz skrypt, nie Alpaca.
-- **Środowisko:** GitHub Actions. Niedziela wieczorem: pakiet danych → oba warianty agenta → XGBoost → zapis i commit. Poniedziałek przed otwarciem w USA (15:30 czasu polskiego): zlecenia w Alpace.
+- **Alpaca:** jedno konto, 3 rachunki paper (`claude_web`, `claude_noweb`, `xgb`), wyłącznie ewidencja wykonania. Zlecenia to zlecenia rynkowe składane chwilę po otwarciu sesji w USA, wyzwalane przez zegar rynkowy Alpaca (nie o stałej godzinie – różnica czasu US/EU zmienia się między 14 a 28.03.2027 z powodu różnicy dat zmiany czasu). Do analizy zawsze używamy oficjalnej ceny otwarcia pobieranej ze skryptu; różnica fill–open jest raportowana osobno. Źródłem danych do analizy jest zawsze nasz skrypt, nie Alpaca.
+- **Środowisko:** GitHub Actions. Niedziela wieczorem: pakiet danych → oba warianty agenta → XGBoost → zapis i commit. Poniedziałek: zlecenia w Alpace po sygnale z zegara rynkowego Alpaca.
 
 ## Zasady, których zawsze pilnujesz
 
