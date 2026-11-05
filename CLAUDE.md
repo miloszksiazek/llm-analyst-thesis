@@ -4,6 +4,8 @@ Ten plik czytasz na starcie każdej sesji. Opisuje, co budujemy, które decyzje 
 
 ## O projekcie
 
+Decyzje podjęte po wersji 5 planu są w `docs/zmiany_do_planu.md` – mają pierwszeństwo przed `plan_pracy_v5.md`.
+
 Praca magisterska (Data Science and Business Analytics, WNE UW), pisana po angielsku. Badamy, czy agent LLM (Claude Opus 5.5), który co tydzień ocenia 30 spółek z Dow Jones, wybiera akcje lepiej z dostępem do wyszukiwarki niż bez niego, i jak wypada na tle XGBoost, portfela 1/N i ETF-u DIA. Metoda: test w przód (forward test), 28 tygodni, od 6.12.2026 do 21.06.2027. Główna miara: tygodniowy rank IC (korelacja Spearmana rankingu z faktycznymi zwrotami w kolejnym tygodniu).
 
 Autor: Miłosz. Rozmawiamy po polsku; kod, komentarze, nazwy plików, prompt agenta i raporty agenta są po angielsku.
@@ -33,6 +35,7 @@ Autor: Miłosz. Rozmawiamy po polsku; kod, komentarze, nazwy plików, prompt age
 7. **Powtarzalność:** stałe ziarna losowości (losowe portfele, XGBoost), przypięte wersje pakietów w `requirements.txt`.
 8. **Po zamrożeniu (po pilotażu, najpóźniej 30.11.2026)** zmiany w `prompts/` i `config/` tylko za wyraźną zgodą autora i z wpisem w `docs/CHANGELOG.md` (data, co, dlaczego).
 9. **Koszty:** przed dodaniem czegokolwiek, co zwiększa liczbę tokenów lub wyszukiwań, oszacuj koszt na uruchomienie. Budżet całego badania: ok. 65–70 USD.
+10. **Korekta o wydzielenia spółek (spin-off):** wszystkie cechy cenowe XGBoost – w treningu i w cotygodniowej prognozie – liczymy wyłącznie z cen skorygowanych funkcją `src/data/adjust_prices.py` na podstawie `config/corporate_actions.yaml`. Nigdy z surowych cen z Yahoo. Nowe wydzielenie w trakcie testu dopisujemy do `corporate_actions.yaml` z wpisem w `docs/CHANGELOG.md`.
 
 ## Struktura repozytorium (docelowa)
 
