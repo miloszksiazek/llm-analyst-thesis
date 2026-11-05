@@ -19,3 +19,4 @@ data/scratch/
 .idea/
 .DS_Store
 Thumbs.db
+.venv/

@@ -1,0 +1,29 @@
+# FRED series used in the agent's weekly data package.
+# transform: latest   → take the most recent observation value as-is
+#            yoy_pct  → (latest / same-month-prior-year - 1) * 100
+
+series:
+  - id: DFEDTARU
+    name: "Fed funds target upper bound"
+    unit: "%"
+    transform: latest
+
+  - id: CPIAUCSL
+    name: "CPI all items (seasonally adjusted)"
+    unit: "index_1982-84=100"
+    transform: yoy_pct
+
+  - id: DGS2
+    name: "2-year Treasury yield (constant maturity)"
+    unit: "%"
+    transform: latest
+
+  - id: DGS10
+    name: "10-year Treasury yield (constant maturity)"
+    unit: "%"
+    transform: latest
+
+  - id: DTWEXBGS
+    name: "USD broad index (goods and services)"
+    unit: "index_jan2006=100"
+    transform: latest
