@@ -76,14 +76,14 @@ events:
     parent: HON
     spunoff_ticker: SOLS
     spunoff_company: "Solstice Advanced Materials Inc."
-    ex_dates: ["2025-10-20", "2025-10-23"]
+    ex_dates: ["2025-10-30"]
     source: >
       SEC press release (Honeywell), ADSH 0000773840-25-000090, EX-99.1:
       "one share of Solstice common stock for every four shares of Honeywell
-      common stock." Record date October 17, 2025. "HON WI" trading period
-      October 20–29, 2025. Transaction closed October 30, 2025.
-      Two ex_dates: official (2025-10-20) and observed price artifact
-      (2025-10-23) – both cleaned.
+      common stock." Record date October 17, 2025. Transaction closed
+      October 30, 2025. Yahoo has already retroactively adjusted HON prices
+      for this event; no visible drop on 2025-10-30 (diff vs DIA = +0.02pp).
+      Date retained for documentation; cleaning is a near-no-op.
     source_url: "https://www.sec.gov/Archives/edgar/data/773840/000077384025000090/exhibit991-pressrelease101.htm"
 
   - id: HON_Aerospace_2026
