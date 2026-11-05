@@ -1,0 +1,100 @@
+# Corporate actions – confirmed pro-rata spin-offs for DJIA components (2016-present).
+#
+# For each (parent, ex_date): the stock's daily return on that date is replaced
+# with DIA's daily return on the same date. All XGBoost price features are built
+# from the resulting cleaned return series. See src/data/adjust_prices.py.
+#
+# ex_dates is a list; HON/Solstice has two entries because the official
+# ex-distribution date (2025-10-20, from the press release) and the date
+# the price-series artifact appears (2025-10-23) differ by one long weekend –
+# both are cleaned to be safe.
+#
+# JNJ/Kenvue (2023) is excluded: it was a voluntary exchange offer, not a
+# pro-rata spin-off, so there is no single ex-distribution date.
+
+events:
+
+  - id: HON_Garrett_2018
+    parent: HON
+    spunoff_ticker: GTX
+    spunoff_company: "Garrett Motion Inc."
+    ex_dates: ["2018-10-01"]
+    source: >
+      SEC 8-K (Honeywell International), ADSH 0001193125-18-288474:
+      "one share of Garrett common stock … for every ten shares of Honeywell
+      common stock." Completed October 1, 2018.
+    source_url: "https://www.sec.gov/Archives/edgar/data/773840/000119312518288474/d584530d8k.htm"
+
+  - id: HON_Resideo_2018
+    parent: HON
+    spunoff_ticker: REZI
+    spunoff_company: "Resideo Technologies Inc."
+    ex_dates: ["2018-10-29"]
+    source: >
+      SEC 8-K (Resideo Technologies), ADSH 0001193125-18-309912:
+      "one share of the Company's common stock … for every six shares of
+      Honeywell common stock." Record date October 16, 2018. Completed
+      October 29, 2018.
+    source_url: "https://www.sec.gov/Archives/edgar/data/1740332/000119312518309912/d629647d8k.htm"
+
+  - id: MRK_Organon_2021
+    parent: MRK
+    spunoff_ticker: OGN
+    spunoff_company: "Organon & Co."
+    ex_dates: ["2021-06-02"]
+    source: >
+      SEC 8-K (Organon & Co.), ADSH 0001193125-21-180652:
+      "one-tenth of a share of the Common Stock for each share of Merck
+      Common Stock." Record date May 17, 2021. Distribution June 2, 2021.
+    source_url: "https://www.sec.gov/Archives/edgar/data/1821825/000119312521180652/d49288d8k.htm"
+
+  - id: IBM_Kyndryl_2021
+    parent: IBM
+    spunoff_ticker: KD
+    spunoff_company: "Kyndryl Holdings Inc."
+    ex_dates: ["2021-11-04"]
+    source: >
+      SEC 8-K (IBM), ADSH 0001558370-21-014643:
+      "one share of Kyndryl common stock for every five shares of IBM
+      common stock." Record date October 25, 2021. Distribution
+      November 4, 2021.
+    source_url: "https://www.sec.gov/Archives/edgar/data/51143/000155837021014643/ibm-20211103x8k.htm"
+
+  - id: MMM_Solventum_2024
+    parent: MMM
+    spunoff_ticker: SOLV
+    spunoff_company: "Solventum Corporation"
+    ex_dates: ["2024-04-01"]
+    source: >
+      SEC 8-K (3M Company), ADSH 0000066740-24-000044:
+      "one share of Solventum common stock for every four shares of 3M
+      common stock." Record date March 18, 2024. Distribution effective
+      April 1, 2024 at 3:30 a.m. ET.
+    source_url: "https://www.sec.gov/Archives/edgar/data/66740/000006674024000044/mmm-20240401.htm"
+
+  - id: HON_Solstice_2025
+    parent: HON
+    spunoff_ticker: SOLS
+    spunoff_company: "Solstice Advanced Materials Inc."
+    ex_dates: ["2025-10-20", "2025-10-23"]
+    source: >
+      SEC press release (Honeywell), ADSH 0000773840-25-000090, EX-99.1:
+      "one share of Solstice common stock for every four shares of Honeywell
+      common stock." Record date October 17, 2025. "HON WI" trading period
+      October 20–29, 2025. Transaction closed October 30, 2025.
+      Two ex_dates: official (2025-10-20) and observed price artifact
+      (2025-10-23) – both cleaned.
+    source_url: "https://www.sec.gov/Archives/edgar/data/773840/000077384025000090/exhibit991-pressrelease101.htm"
+
+  - id: HON_Aerospace_2026
+    parent: HON
+    spunoff_ticker: HONA
+    spunoff_company: "Honeywell Aerospace Technologies Inc."
+    ex_dates: ["2026-06-29"]
+    source: >
+      SEC 8-K (Honeywell Aerospace Inc.), ADSH 0001628280-26-045874:
+      "one share of Company Common Stock for every two shares of Honeywell
+      Common Stock." Record date June 15, 2026. Distribution effective
+      June 29, 2026 at 12:01 a.m. ET. Remaining company operates as
+      "Honeywell Technologies"; retains HON ticker.
+    source_url: "https://www.sec.gov/Archives/edgar/data/2089271/000162828026045874/hona-20260625.htm"

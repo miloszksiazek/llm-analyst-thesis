@@ -11,4 +11,5 @@ Każda linia = jedna zamknięta decyzja. Mają pierwszeństwo przed `docs/plan_p
 - 2026-11-04: spółka wycofana z obrotu – ostatnia cena jako cena sprzedaży, usuwana z kolejnych rankingów, IC na pozostałych spółkach.
 - 2026-11-04: DIA = odniesienie rynkowe; właściwy punkt odniesienia dla zamrożonego składu = portfel 1/N.
 - 2026-11-04: Alpaca – zlecenia rynkowe po otwarciu sesji wg zegara rynku (ułamki akcji nie obsługują zleceń na otwarcie); analiza zawsze na oficjalnej cenie otwarcia; różnica wykonanie vs otwarcie jako osobny wynik.
-- 2026-11-04: korekta cen o wydzielenia spółek (tabela zdarzeń do rozdziału 3); 7 potwierdzonych spin-offów z SEC 8-K (Garrett 2018, Resideo 2018, Organon 2021, Kyndryl 2021, Solventum 2024, Solstice 2025, HON Aerospace 2026); tylko HON Aerospace 2026 wymaga ręcznej korekty (Yahoo jeszcze nie zastosował retroaktywnej korekty); JNJ/Kenvue wykluczone – był to exchange offer, nie pro-rata spin-off.
+- 2026-11-04: korekta cen o wydzielenia spółek (tabela zdarzeń do rozdziału 3); 7 potwierdzonych spin-offów z SEC 8-K (Garrett 2018, Resideo 2018, Organon 2021, Kyndryl 2021, Solventum 2024, Solstice 2025, HON Aerospace 2026); JNJ/Kenvue wykluczone – był to exchange offer, nie pro-rata spin-off.
+- 2026-11-05: dni wydzielenia spółek – zwrot spółki zastąpiony zwrotem DIA; cechy XGBoost liczone z oczyszczonego indeksu cen.

@@ -35,7 +35,7 @@ Autor: Miłosz. Rozmawiamy po polsku; kod, komentarze, nazwy plików, prompt age
 7. **Powtarzalność:** stałe ziarna losowości (losowe portfele, XGBoost), przypięte wersje pakietów w `requirements.txt`.
 8. **Po zamrożeniu (po pilotażu, najpóźniej 30.11.2026)** zmiany w `prompts/` i `config/` tylko za wyraźną zgodą autora i z wpisem w `docs/CHANGELOG.md` (data, co, dlaczego).
 9. **Koszty:** przed dodaniem czegokolwiek, co zwiększa liczbę tokenów lub wyszukiwań, oszacuj koszt na uruchomienie. Budżet całego badania: ok. 65–70 USD.
-10. **Korekta o wydzielenia spółek (spin-off):** wszystkie cechy cenowe XGBoost – w treningu i w cotygodniowej prognozie – liczymy wyłącznie z cen skorygowanych funkcją `src/data/adjust_prices.py` na podstawie `config/corporate_actions.yaml`. Nigdy z surowych cen z Yahoo. Nowe wydzielenie w trakcie testu dopisujemy do `corporate_actions.yaml` z wpisem w `docs/CHANGELOG.md`.
+10. **Korekta o wydzielenia spółek (spin-off):** w dniu wydzielenia zwrot spółki w danych zastępujemy zwrotem DIA na ten sam dzień; z tak oczyszczonego szeregu zwrotów odbudowujemy indeks cen (start = 1,0). Wszystkie cechy cenowe XGBoost – w treningu i cotygodniowej prognozie – liczymy wyłącznie z tego oczyszczonego indeksu (`src/data/adjust_prices.py`, zdarzenia w `config/corporate_actions.yaml`). Nigdy z surowych cen Yahoo. Nowe wydzielenie w trakcie testu → dopisać do `corporate_actions.yaml` z wpisem w `docs/CHANGELOG.md`.
 
 ## Struktura repozytorium (docelowa)
 
