@@ -148,6 +148,23 @@ def validate_response(
             logger.warning(msg)
             # is_valid stays True – this is research data for H4
 
+    # ── Rule 7b: in claude_web, flag sources published after as_of ───────
+    # Non-blocking. Logged for inspection; does not trigger a retry.
+    if variant == "claude_web":
+        future = []
+        for src in sources:
+            pd_ = src.get("published_date")
+            if pd_ and str(pd_) > str(as_of):
+                future.append(f"{src.get('id')} ({pd_})")
+        if future:
+            msg = (
+                f"Rule 7b [content error, not retried]: "
+                f"claude_web sources published after as_of {as_of}: {future}"
+            )
+            errors.append(msg)
+            logger.warning(msg)
+            # is_valid stays True
+
     # ── Rule 8: run_date and as_of match the run parameters ───────────────
     resp_run_date = response.get("run_date", "")
     resp_as_of    = response.get("as_of", "")

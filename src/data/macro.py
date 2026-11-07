@@ -10,7 +10,7 @@ from __future__ import annotations
 import os
 import yaml
 import logging
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -27,20 +27,20 @@ def _load_series_config() -> list[dict]:
         return yaml.safe_load(fh)["series"]
 
 
-def fetch_macro(api_key: str | None = None) -> list[dict]:
+def fetch_macro(as_of: date | str, api_key: str | None = None) -> list[dict]:
     """
-    Fetch the latest observation for each series in macro_series.yaml.
+    Fetch each series' latest observation on or before `as_of`.
 
-    Parameters
-    ----------
-    api_key : str | None
-        FRED API key. Falls back to FRED_API_KEY env variable.
+    No observation with a date > as_of is ever returned. yoy_pct uses the last
+    observation ≤ as_of as the reference point and looks one year back from there.
 
-    Returns
-    -------
-    list of dict, one per series:
-        id, name, unit, transform, value, obs_date, retrieved_at
+    Returns a list of dicts: id, name, unit, transform, value, obs_date.
+    Retrieval timestamps belong in package_meta.json, not here.
     """
+    if isinstance(as_of, str):
+        as_of = date.fromisoformat(as_of)
+    as_of_ts = pd.Timestamp(as_of)
+
     load_dotenv()
     key = api_key or os.getenv("FRED_API_KEY")
     if not key:
@@ -48,7 +48,6 @@ def fetch_macro(api_key: str | None = None) -> list[dict]:
 
     fred = Fred(api_key=key)
     series_cfg = _load_series_config()
-    retrieved_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
     results = []
 
     for cfg in series_cfg:
@@ -56,8 +55,10 @@ def fetch_macro(api_key: str | None = None) -> list[dict]:
         transform = cfg["transform"]
 
         try:
-            raw = fred.get_series(sid)
-            raw = raw.dropna()
+            raw = fred.get_series(sid).dropna()
+            raw = raw[raw.index <= as_of_ts]
+            if raw.empty:
+                raise ValueError(f"No observations for {sid} on or before {as_of}")
 
             if transform == "latest":
                 obs_date = raw.index[-1].date()
@@ -77,28 +78,31 @@ def fetch_macro(api_key: str | None = None) -> list[dict]:
             else:
                 raise ValueError(f"Unknown transform '{transform}' for {sid}")
 
+            if obs_date > as_of:
+                raise RuntimeError(
+                    f"{sid}: obs_date {obs_date} > as_of {as_of} (look-ahead)"
+                )
+
             results.append({
-                "id":           sid,
-                "name":         cfg["name"],
-                "unit":         cfg["unit"] if transform == "latest" else "%",
-                "transform":    transform,
-                "value":        value,
-                "obs_date":     str(obs_date),
-                "retrieved_at": retrieved_at,
+                "id":        sid,
+                "name":      cfg["name"],
+                "unit":      cfg["unit"] if transform == "latest" else "%",
+                "transform": transform,
+                "value":     value,
+                "obs_date":  str(obs_date),
             })
             logger.info("%s: %s  (%s)", sid, value, obs_date)
 
         except Exception as exc:
             logger.error("%s: fetch failed – %s", sid, exc)
             results.append({
-                "id":           sid,
-                "name":         cfg["name"],
-                "unit":         cfg.get("unit", ""),
-                "transform":    transform,
-                "value":        None,
-                "obs_date":     None,
-                "retrieved_at": retrieved_at,
-                "error":        str(exc),
+                "id":        sid,
+                "name":      cfg["name"],
+                "unit":      cfg.get("unit", ""),
+                "transform": transform,
+                "value":     None,
+                "obs_date":  None,
+                "error":     str(exc),
             })
 
     return results
@@ -120,6 +124,6 @@ def macro_table(observations: list[dict]) -> str:
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(message)s")
-    obs = fetch_macro()
+    obs = fetch_macro(as_of=date.today())
     print("\nMacro snapshot\n")
     print(macro_table(obs))

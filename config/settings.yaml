@@ -1,0 +1,24 @@
+# Runtime settings for the weekly agent run.
+# Frozen after the pilot (2026-11-30); later changes go into docs/CHANGELOG.md.
+
+model: claude-opus-5-5         # pinned Opus 5.5
+effort: medium                 # fixed reasoning_effort (output_config.effort)
+thinking_display: summarized   # thinking blocks returned as summaries
+
+max_searches: 10               # web_search tool max_uses for claude_web
+max_retries:  2                # retries on hard-rule validation failure
+max_tokens:   16000            # enough for thinking summaries + JSON answer
+
+# Pricing (USD) used for cost estimates and the cost guard.
+pricing:
+  input_per_mtok:   4.0
+  output_per_mtok:  20.0
+  search_per_1k:    10.0
+
+cost_guard_usd: 3.0            # abort a single run if estimated cost exceeds this
+
+# Fallback used when validation fails on all (1 + max_retries) attempts.
+# "keep_prev_portfolio": this variant keeps last week's portfolio for the
+# coming week; the week is recorded as "no ranking" and excluded from IC.
+# Logged as a pipeline error.
+fallback_rule: keep_prev_portfolio

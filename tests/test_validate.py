@@ -163,6 +163,33 @@ def test_rule7_web_source_ok_in_web_variant():
     assert errs == [], f"claude_web with web sources must yield no errors, got: {errs}"
 
 
+def test_rule7b_future_dated_web_source_in_web_variant():
+    """Rule 7b: web source with published_date > as_of – content error, not retried."""
+    r = _make_valid()
+    r["sources"].append({
+        "id": "W1", "type": "web", "title": "Later news",
+        "published_date": "2026-11-07",   # > as_of 2026-11-06
+    })
+    r["stocks"][0]["source_ids"] = ["PKG", "W1"]
+    ok, errs = validate_response(r, UNIVERSE, RUN_DATE, AS_OF, variant="claude_web")
+    assert ok, "Rule 7b must NOT reject the response"
+    rule7b = [e for e in errs if "Rule 7b" in e]
+    assert len(rule7b) == 1 and "W1" in rule7b[0], f"Expected Rule 7b error: {errs}"
+
+
+def test_rule7b_web_source_on_as_of_is_ok():
+    """Rule 7b: web source with published_date == as_of is fine."""
+    r = _make_valid()
+    r["sources"].append({
+        "id": "W1", "type": "web", "title": "Same-day news",
+        "published_date": AS_OF,
+    })
+    r["stocks"][0]["source_ids"] = ["PKG", "W1"]
+    ok, errs = validate_response(r, UNIVERSE, RUN_DATE, AS_OF, variant="claude_web")
+    assert ok
+    assert errs == []
+
+
 def test_rule8_run_date_mismatch():
     """Rule 8: run_date in response doesn't match expected."""
     r = _make_valid()
