@@ -41,9 +41,11 @@ logger = logging.getLogger(__name__)
 
 _ROOT     = Path(__file__).parents[2]
 _UNIVERSE = _ROOT / "config" / "universe.yaml"
+_ACTIONS  = _ROOT / "config" / "corporate_actions.yaml"
 
-DIVIDEND_YIELD_MAX_PCT = 15.0
-SHARES_DRIFT_TOLERANCE = 0.20
+DIVIDEND_YIELD_MAX_PCT    = 15.0
+SHARES_DRIFT_TOLERANCE    = 0.20
+SPINOFF_LOOKBACK_DAYS     = 365
 
 
 # ── Universe ──────────────────────────────────────────────────────────────────
@@ -127,6 +129,40 @@ def _fetch_fundamentals(tickers: list[str]) -> dict[str, dict]:
                 "shares_outstanding": None, "yahoo_market_cap": None,
             }
     return out
+
+
+# ── Spin-off valuation override ───────────────────────────────────────────────
+
+def _recent_spinoffs(as_of: date) -> dict[str, date]:
+    """
+    Parents with at least one spin-off ex-date in [as_of − 365d, as_of].
+
+    Returns {ticker: most_recent_ex_date_in_window}.
+    Trailing P/E and trailing market cap are not comparable for these names
+    until a full year has passed; package.py sets both to null.
+    """
+    if not _ACTIONS.exists():
+        return {}
+    with open(_ACTIONS) as fh:
+        events = yaml.safe_load(fh).get("events", []) or []
+
+    cutoff = as_of - timedelta(days=SPINOFF_LOOKBACK_DAYS)
+    out: dict[str, date] = {}
+    for ev in events:
+        parent = ev.get("parent")
+        for raw in ev.get("ex_dates") or []:
+            ex = date.fromisoformat(raw) if isinstance(raw, str) else raw
+            if cutoff <= ex <= as_of:
+                if parent not in out or ex > out[parent]:
+                    out[parent] = ex
+    return out
+
+
+def _spinoff_note(ticker: str, ex_date: date) -> str:
+    return (
+        f"{ticker}: P/E and market cap omitted – trailing figures not "
+        f"comparable after the {ex_date.isoformat()} spin-off."
+    )
 
 
 # ── Sanity checks ─────────────────────────────────────────────────────────────
@@ -291,6 +327,21 @@ def build_package(
             "market_cap_source":   "close × sharesOutstanding (Yahoo)",
         })
 
+    # ── Spin-off valuation override ───────────────────────────────────────
+    # Trailing P/E and trailing market cap are not comparable for a stock
+    # whose parent had a spin-off in the past 12 months; null both out and
+    # record a line in data_notes.
+    recent = _recent_spinoffs(as_of)
+    data_notes: list[str] = []
+    if recent:
+        tickers_affected = {s["ticker"] for s in stocks} & recent.keys()
+        for s in stocks:
+            if s["ticker"] in tickers_affected:
+                s["pe_trailing"] = None
+                s["market_cap"]  = None
+        for t in sorted(tickers_affected):
+            data_notes.append(_spinoff_note(t, recent[t]))
+
     # ── Sanity checks (raise) ─────────────────────────────────────────────
     _check_dividend_yield(stocks)
     _check_pe(stocks)
@@ -323,10 +374,11 @@ def build_package(
             "universe_version": universe_meta.get("status", "unknown"),
             "universe_tickers": len(tickers),
         },
-        "market":   market,
-        "stocks":   stocks,
-        "earnings": earnings,
-        "macro":    macro_entries,
+        "market":     market,
+        "stocks":     stocks,
+        "earnings":   earnings,
+        "macro":      macro_entries,
+        "data_notes": data_notes,
     }
 
     # ── Meta (not hashed, not seen by the agent) ──────────────────────────
