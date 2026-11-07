@@ -4,3 +4,4 @@ pyyaml==6.0.3
 alpaca-py==0.44.0
 yfinance==1.8.0
 fredapi==0.5.2
+pytest==9.2.0

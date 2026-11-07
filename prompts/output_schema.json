@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent_output_v0",
+  "title": "Weekly agent assessment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["run_date", "as_of", "macro_view", "stocks", "picks", "picks_rationale", "sources", "data_issues"],
+  "properties": {
+    "run_date": { "type": "string", "format": "date", "description": "Copy from the prompt." },
+    "as_of": { "type": "string", "format": "date", "description": "Copy from the prompt." },
+    "macro_view": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary", "main_themes", "favoured_sectors", "disfavoured_sectors", "source_ids"],
+      "properties": {
+        "summary": { "type": "string", "maxLength": 1200, "description": "At most about 150 words." },
+        "main_themes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "string",
+            "enum": ["fed_and_rates", "inflation", "labour_market", "growth", "earnings_season", "geopolitics", "fiscal_policy", "energy_and_commodities", "currency", "market_sentiment", "other"]
+          }
+        },
+        "favoured_sectors": { "type": "array", "items": { "type": "string" }, "maxItems": 4 },
+        "disfavoured_sectors": { "type": "array", "items": { "type": "string" }, "maxItems": 4 },
+        "source_ids": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "stocks": {
+      "type": "array",
+      "minItems": 30,
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ticker", "score", "rank", "rationale", "key_factors", "source_ids"],
+        "properties": {
+          "ticker": { "type": "string" },
+          "score": { "type": "integer", "minimum": -5, "maximum": 5 },
+          "rank": { "type": "integer", "minimum": 1, "maximum": 30 },
+          "rationale": { "type": "string", "maxLength": 320, "description": "At most 40 words." },
+          "key_factors": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 2,
+            "items": {
+              "type": "string",
+              "enum": ["price_momentum", "valuation", "earnings_upcoming", "earnings_recent", "company_news", "macro_or_sector", "other"]
+            }
+          },
+          "source_ids": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "picks": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "type": "string" },
+      "description": "Tickers ranked 1, 2, 3, 4, in that order."
+    },
+    "picks_rationale": { "type": "string", "maxLength": 800, "description": "At most about 100 words." },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "type", "title"],
+        "properties": {
+          "id": { "type": "string", "description": "PKG for the data package, W1, W2, ... for web sources." },
+          "type": { "type": "string", "enum": ["data_package", "web"] },
+          "title": { "type": "string" },
+          "publisher": { "type": "string" },
+          "url": { "type": "string" },
+          "published_date": { "type": "string" }
+        }
+      }
+    },
+    "data_issues": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Anything in the data package that looked wrong, missing or inconsistent. Empty array if none."
+    }
+  }
+}
