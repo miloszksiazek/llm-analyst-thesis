@@ -141,23 +141,26 @@ def test_rule6_undefined_source_id():
 
 
 def test_rule7_web_source_in_noweb_variant():
-    """Rule 7: web source in claude_noweb – logs error but response is NOT rejected."""
+    """Rule 7: web source in claude_noweb – content error, no retry, answer kept."""
     r = _make_valid()
     r["sources"].append({"id": "W1", "type": "web", "title": "Some article"})
     r["stocks"][0]["source_ids"] = ["PKG", "W1"]
     ok, errs = validate_response(r, UNIVERSE, RUN_DATE, AS_OF, variant="claude_noweb")
-    assert ok, "Rule 7 must NOT reject the response"
-    assert any("Rule 7" in e for e in errs), f"Expected Rule 7 warning in errors: {errs}"
+    assert ok, "Rule 7 must NOT reject the response (no retry)"
+    rule7 = [e for e in errs if "Rule 7" in e]
+    assert len(rule7) == 1, f"Expected exactly one Rule 7 content error, got: {errs}"
+    assert "content error, not retried" in rule7[0]
+    assert "W1" in rule7[0]
 
 
 def test_rule7_web_source_ok_in_web_variant():
-    """Rule 7: web sources are fine in claude_web."""
+    """Rule 7: web sources produce NO error at all in claude_web."""
     r = _make_valid()
     r["sources"].append({"id": "W1", "type": "web", "title": "Article"})
     r["stocks"][0]["source_ids"] = ["PKG", "W1"]
     ok, errs = validate_response(r, UNIVERSE, RUN_DATE, AS_OF, variant="claude_web")
     assert ok
-    assert not any("Rule 7" in e for e in errs)
+    assert errs == [], f"claude_web with web sources must yield no errors, got: {errs}"
 
 
 def test_rule8_run_date_mismatch():
