@@ -2,13 +2,13 @@
 # Frozen after the pilot (2026-11-30); later changes go into docs/CHANGELOG.md.
 
 model: claude-opus-5-5         # pinned Opus 5.5
-effort: medium                 # fixed reasoning_effort (output_config.effort)
+effort: high                   # fixed reasoning_effort (output_config.effort)
 thinking_display: summarized   # thinking blocks returned as summaries
 
 max_searches: 10               # web_search tool max_uses for claude_web
 max_retries:  2                # retries on hard-rule validation failure
 max_tokens:   16000            # enough for thinking summaries + JSON answer
-n_runs:       1                # independent runs per variant per week; >1 → aggregate
+n_runs:       3                # independent runs per variant per week; aggregate = portfolio
 
 # Pricing (USD) used for cost estimates and the cost guard.
 pricing:

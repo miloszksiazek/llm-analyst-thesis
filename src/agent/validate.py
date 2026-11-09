@@ -148,18 +148,21 @@ def validate_response(
             logger.warning(msg)
             # is_valid stays True – this is research data for H4
 
-    # ── Rule 7b: in claude_web, flag sources published after as_of ───────
-    # Non-blocking. Logged for inspection; does not trigger a retry.
+    # ── Rule 7b: in claude_web, flag sources published after run_date ────
+    # Weekend articles between as_of (Fri close) and run_date (Sun) are
+    # legitimate current-events material. Only strictly post-run_date
+    # sources (impossible for a human to have read before the run) are
+    # flagged. Non-blocking; logged for inspection, no retry.
     if variant == "claude_web":
         future = []
         for src in sources:
             pd_ = src.get("published_date")
-            if pd_ and str(pd_) > str(as_of):
+            if pd_ and str(pd_) > str(run_date):
                 future.append(f"{src.get('id')} ({pd_})")
         if future:
             msg = (
                 f"Rule 7b [content error, not retried]: "
-                f"claude_web sources published after as_of {as_of}: {future}"
+                f"claude_web sources published after run_date {run_date}: {future}"
             )
             errors.append(msg)
             logger.warning(msg)

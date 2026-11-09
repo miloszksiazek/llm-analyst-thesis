@@ -18,3 +18,7 @@ Każda linia = jedna zamknięta decyzja. Mają pierwszeństwo przed `docs/plan_p
 - 2026-11-07: pakiet agenta bez dat po as_of i bez znaczników pobrania (osobny `package_meta.json`); kontrole jednostek i wartości (dividend_yield w [0,15] %, P/E > 0 lub null, implikowana liczba akcji w granicach 20 % tygodnia poprzedniego); market_cap liczymy z close × sharesOutstanding (Yahoo marketCap tylko w meta); earnings – tylko spółki z datą w oknie plus `note` o pozostałych; w prompcie zdanie o preferowaniu źródeł pierwotnych; wariantu z siecią nie testujemy na pakietach z przeszłości.
 - 2026-11-07: reguła awaryjna zmieniona – po 2 nieudanych próbach utrzymujemy portfel z poprzedniego tygodnia dla danego wariantu, tydzień zapisujemy jako brak rankingu i wykluczamy go z liczenia IC; zdarzenie logujemy jako błąd pipeline'u.
 - 2026-11-07: spółki z wydzieleniem w ostatnich 12 mies. – P/E i kapitalizacja = null z notatką (trailing P/E nieporównywalne).
+- 2026-11-09: effort=high, 3 uruchomienia na wariant na tydzień, decyzja = uśredniony ranking (średnia ranga); test na żywo 9.11: mean rho między uruchomieniami web -0.10, noweb +0.05; ranking uśredniony web vs noweb rho 0.68.
+- 2026-11-09: propozycja RQ5 – stabilność decyzji między uruchomieniami (korelacja rang w tygodniu), web vs noweb; IC raportowany dla rankingu uśrednionego i średnio dla pojedynczych uruchomień. Do akceptacji promotora.
+- 2026-11-09: szacowany koszt całego badania ok. 105 USD (ok. 390 zł). Do akceptacji promotora.
+- 2026-11-09: reguła 7b – źródła po run_date (nie po as_of).

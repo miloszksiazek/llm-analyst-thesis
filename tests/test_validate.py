@@ -163,12 +163,12 @@ def test_rule7_web_source_ok_in_web_variant():
     assert errs == [], f"claude_web with web sources must yield no errors, got: {errs}"
 
 
-def test_rule7b_future_dated_web_source_in_web_variant():
-    """Rule 7b: web source with published_date > as_of – content error, not retried."""
+def test_rule7b_source_after_run_date_is_flagged():
+    """Rule 7b: web source published strictly after run_date – non-blocking error."""
     r = _make_valid()
     r["sources"].append({
-        "id": "W1", "type": "web", "title": "Later news",
-        "published_date": "2026-11-07",   # > as_of 2026-11-06
+        "id": "W1", "type": "web", "title": "Future news",
+        "published_date": "2026-11-09",   # > run_date 2026-11-08
     })
     r["stocks"][0]["source_ids"] = ["PKG", "W1"]
     ok, errs = validate_response(r, UNIVERSE, RUN_DATE, AS_OF, variant="claude_web")
@@ -177,12 +177,25 @@ def test_rule7b_future_dated_web_source_in_web_variant():
     assert len(rule7b) == 1 and "W1" in rule7b[0], f"Expected Rule 7b error: {errs}"
 
 
-def test_rule7b_web_source_on_as_of_is_ok():
-    """Rule 7b: web source with published_date == as_of is fine."""
+def test_rule7b_weekend_source_between_as_of_and_run_date_is_ok():
+    """Rule 7b: an article published Sat/Sun between as_of and run_date is legitimate."""
     r = _make_valid()
     r["sources"].append({
-        "id": "W1", "type": "web", "title": "Same-day news",
-        "published_date": AS_OF,
+        "id": "W1", "type": "web", "title": "Weekend preview",
+        "published_date": "2026-11-07",   # between as_of (Fri) and run_date (Sun)
+    })
+    r["stocks"][0]["source_ids"] = ["PKG", "W1"]
+    ok, errs = validate_response(r, UNIVERSE, RUN_DATE, AS_OF, variant="claude_web")
+    assert ok
+    assert errs == []
+
+
+def test_rule7b_source_on_run_date_is_ok():
+    """Rule 7b: a source published exactly on run_date is still fine (not strictly after)."""
+    r = _make_valid()
+    r["sources"].append({
+        "id": "W1", "type": "web", "title": "Sunday morning",
+        "published_date": RUN_DATE,
     })
     r["stocks"][0]["source_ids"] = ["PKG", "W1"]
     ok, errs = validate_response(r, UNIVERSE, RUN_DATE, AS_OF, variant="claude_web")
