@@ -8,6 +8,7 @@ thinking_display: summarized   # thinking blocks returned as summaries
 max_searches: 10               # web_search tool max_uses for claude_web
 max_retries:  2                # retries on hard-rule validation failure
 max_tokens:   16000            # enough for thinking summaries + JSON answer
+n_runs:       1                # independent runs per variant per week; >1 → aggregate
 
 # Pricing (USD) used for cost estimates and the cost guard.
 pricing:

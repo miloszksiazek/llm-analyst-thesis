@@ -1,29 +1,40 @@
 """
 Weekly agent run – one variant at a time.
 
-run_variant(variant, package_path, run_date, out_dir) builds the prompt,
-calls claude-opus-5-5 (adaptive thinking with fixed effort and summaries),
-validates the JSON answer, retries up to max_retries times with the same
-input, and writes every artifact of the run to out_dir/<variant>/.
+run_variant(variant, package_path, run_date, out_dir, n_runs=None) builds
+the prompt once, then executes `n_runs` independent calls to the model
+(same input, no shared state) and writes every artifact to disk.
 
-The two variants differ ONLY in the tools attached to the API request:
-    claude_web   → web_search tool with max_uses from settings.yaml
-    claude_noweb → no tools
+Layout under out_dir:
+
+    n_runs == 1 (default)                   n_runs > 1
+    -----------------------------           ----------------------------------
+    <variant>/response.json                 <variant>/run_1/response.json
+    <variant>/report.md                     <variant>/run_1/...
+    <variant>/validation.json               <variant>/run_2/...
+    <variant>/run.json                      <variant>/aggregate.json
+    <variant>/searches.json                 <variant>/report.md    ← aggregate
+    <variant>/thinking_summary.txt
+    <variant>/attempt_01_*
+
+Aggregation (n_runs > 1):
+    - final rank = order by (mean_rank ↑, mean_score ↓, ticker)
+    - final picks = tickers ranked 1..4 in that order
+    - pairwise Spearman between every pair of valid runs
+    - if fewer than 2 runs validated → fallback_applied=True, picks=[].
+      Downstream portfolio code reads this and applies keep_prev_portfolio.
 
 API parameters verified against anthropic==2.3.0 types:
-    - thinking         = {"type": "adaptive", "display": "summarized"}
-    - output_config    = {"effort": <settings.effort>}
-    - tools            = [web_search_20260318] for claude_web, else absent
-    - usage.server_tool_use.web_search_requests → search count
+    - thinking      = {"type": "adaptive", "display": "summarized"}
+    - output_config = {"effort": <settings.effort>}
+    - tools         = [web_search_20260318] for claude_web, else absent
 """
 
 from __future__ import annotations
 
-import hashlib
 import json
 import logging
 import os
-import re
 from dataclasses import dataclass, field
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -90,21 +101,19 @@ def _cost(usage: Any, pricing: dict[str, float]) -> CostBreakdown:
 
 # ── API response extraction ───────────────────────────────────────────────────
 
+import re
 _JSON_OBJECT_RE = re.compile(r"\{.*\}", re.DOTALL)
 
 
 def _extract_final_text(response: Any) -> str:
-    """Concatenate all top-level text blocks from the response."""
     parts = []
     for block in response.content:
-        btype = getattr(block, "type", None)
-        if btype == "text":
+        if getattr(block, "type", None) == "text":
             parts.append(block.text)
     return "\n".join(parts).strip()
 
 
 def _parse_json(text: str) -> dict[str, Any]:
-    """Parse the final text block as JSON; tolerate stray prose by extracting the outer {...}."""
     try:
         return json.loads(text)
     except json.JSONDecodeError:
@@ -115,32 +124,22 @@ def _parse_json(text: str) -> dict[str, Any]:
 
 
 def _collect_thinking(response: Any) -> list[str]:
-    out = []
-    for block in response.content:
-        if getattr(block, "type", None) == "thinking":
-            out.append(getattr(block, "thinking", "") or "")
-    return out
+    return [
+        getattr(b, "thinking", "") or ""
+        for b in response.content
+        if getattr(b, "type", None) == "thinking"
+    ]
 
 
 def _collect_searches(response: Any) -> tuple[list[dict], list[dict]]:
-    """Return (queries, retrieved_sources).  Each query is {query, tool_use_id};
-    each source is {url, title, page_age}."""
     queries, sources = [], []
     for block in response.content:
         btype = getattr(block, "type", None)
-        if btype == "server_tool_use":
-            name = getattr(block, "name", "")
-            if name == "web_search":
-                inp = getattr(block, "input", {}) or {}
-                queries.append({
-                    "tool_use_id": getattr(block, "id", None),
-                    "query":       inp.get("query"),
-                })
+        if btype == "server_tool_use" and getattr(block, "name", "") == "web_search":
+            inp = getattr(block, "input", {}) or {}
+            queries.append({"tool_use_id": getattr(block, "id", None), "query": inp.get("query")})
         elif btype == "web_search_tool_result":
-            content = getattr(block, "content", None)
-            if not content:
-                continue
-            for item in content:
+            for item in getattr(block, "content", None) or []:
                 if getattr(item, "type", None) == "web_search_result":
                     sources.append({
                         "url":      getattr(item, "url", None),
@@ -172,7 +171,6 @@ class Attempt:
 
 
 def _build_request(variant: str, system: str, user: str, settings: dict) -> dict:
-    """Return the kwargs for client.messages.create (minus the client itself)."""
     req: dict[str, Any] = {
         "model":       settings["model"],
         "max_tokens":  settings["max_tokens"],
@@ -191,21 +189,11 @@ def _build_request(variant: str, system: str, user: str, settings: dict) -> dict
 
 
 def _redact_request(req: dict) -> dict:
-    """Return a copy safe to persist (no API key is present in req; this is a hook for future)."""
     return json.loads(json.dumps(req, default=str))
 
 
-def _one_attempt(
-    client: anthropic.Anthropic,
-    req: dict,
-    attempt_idx: int,
-    universe: list[str],
-    run_date: str,
-    as_of: str,
-    variant: str,
-    pricing: dict,
-    cost_guard: float,
-) -> Attempt:
+def _one_attempt(client, req, attempt_idx, universe, run_date, as_of,
+                 variant, pricing, cost_guard) -> Attempt:
     started = datetime.now(timezone.utc).isoformat(timespec="seconds")
     try:
         response = client.messages.create(**req)
@@ -254,6 +242,112 @@ def _one_attempt(
     )
 
 
+# ── One complete run of a variant (writes all artifacts to run_dir) ───────────
+
+def _run_once(
+    variant:      str,
+    run_dir:      Path,
+    req:          dict,
+    settings:     dict,
+    client:       anthropic.Anthropic,
+    universe:     list[str],
+    run_date_str: str,
+    as_of:        str,
+) -> dict[str, Any]:
+    run_dir.mkdir(parents=True, exist_ok=True)
+    (run_dir / "request.json").write_text(
+        json.dumps(_redact_request(req), indent=2, default=str), encoding="utf-8",
+    )
+
+    pricing    = settings["pricing"]
+    cost_guard = float(settings["cost_guard_usd"])
+    max_total  = 1 + int(settings["max_retries"])
+
+    attempts: list[Attempt] = []
+    final: Attempt | None = None
+    for i in range(1, max_total + 1):
+        logger.info("[%s] attempt %d/%d", variant, i, max_total)
+        a = _one_attempt(
+            client, req, i, universe, run_date_str, as_of,
+            variant, pricing, cost_guard,
+        )
+        attempts.append(a)
+        if a.validation_ok:
+            final = a
+            break
+        logger.warning("[%s] attempt %d failed: %s", variant, i, a.validation_errors)
+
+    for a in attempts:
+        (run_dir / f"attempt_{a.attempt:02d}_raw.txt").write_text(a.raw_text or "", encoding="utf-8")
+        if a.parsed is not None:
+            (run_dir / f"attempt_{a.attempt:02d}_parsed.json").write_text(
+                json.dumps(a.parsed, indent=2, ensure_ascii=False), encoding="utf-8",
+            )
+
+    chosen = final if final is not None else attempts[-1]
+
+    (run_dir / "validation.json").write_text(
+        json.dumps({
+            "variant":          variant,
+            "is_valid":         chosen.validation_ok,
+            "errors":           chosen.validation_errors,
+            "attempt_used":     chosen.attempt,
+            "attempts_total":   len(attempts),
+        }, indent=2), encoding="utf-8",
+    )
+
+    if chosen.parsed is not None:
+        (run_dir / "response.json").write_text(
+            json.dumps(chosen.parsed, indent=2, ensure_ascii=False), encoding="utf-8",
+        )
+        (run_dir / "report.md").write_text(
+            _render_report(chosen.parsed, variant, run_date_str, as_of), encoding="utf-8",
+        )
+
+    (run_dir / "searches.json").write_text(
+        json.dumps({"queries": chosen.searches, "retrieved": chosen.retrieved},
+                   indent=2, ensure_ascii=False), encoding="utf-8",
+    )
+    (run_dir / "thinking_summary.txt").write_text(
+        "\n\n---\n\n".join(chosen.thinking), encoding="utf-8",
+    )
+
+    total_cost = sum(a.cost.get("total_usd", 0.0) for a in attempts)
+    (run_dir / "run.json").write_text(
+        json.dumps({
+            "variant":          variant,
+            "run_date":         run_date_str,
+            "as_of":            as_of,
+            "model_id":         chosen.model_id,
+            "attempts": [
+                {"attempt": a.attempt, "started_at": a.started_at,
+                 "finished_at": a.finished_at, "stop_reason": a.stop_reason,
+                 "usage": a.usage, "cost": a.cost,
+                 "validation_ok": a.validation_ok, "errors": a.validation_errors,
+                 "error": a.error}
+                for a in attempts
+            ],
+            "final_attempt":    chosen.attempt,
+            "is_valid":         chosen.validation_ok,
+            "web_search_count": chosen.cost.get("web_searches", 0),
+            "total_cost_usd":   total_cost,
+        }, indent=2, default=str), encoding="utf-8",
+    )
+
+    return {
+        "is_valid":       chosen.validation_ok,
+        "errors":         chosen.validation_errors,
+        "attempts":       len(attempts),
+        "parsed":         chosen.parsed,
+        "web_searches":   chosen.cost.get("web_searches", 0),
+        "input_tokens":   chosen.cost.get("input_tokens", 0),
+        "output_tokens":  chosen.cost.get("output_tokens", 0),
+        "cost_usd":       chosen.cost.get("total_usd", 0.0),
+        "total_cost_usd": total_cost,
+        "model_id":       chosen.model_id,
+    }
+
+
 # ── Report rendering ──────────────────────────────────────────────────────────
 
 def _render_report(parsed: dict, variant: str, run_date: str, as_of: str) -> str:
@@ -284,17 +378,14 @@ def _render_report(parsed: dict, variant: str, run_date: str, as_of: str) -> str
         "|-----:|:-------|------:|:-----------|:----------|",
     ]
     for s in stocks:
-        kf = ", ".join(s["key_factors"])
+        kf  = ", ".join(s["key_factors"])
         rat = s["rationale"].replace("|", "\\|")
         lines.append(f"| {s['rank']} | {s['ticker']} | {s['score']:+d} | {kf} | {rat} |")
 
     lines += ["", "## Sources", ""]
     for src in parsed["sources"]:
-        extra = []
-        if src.get("publisher"):      extra.append(src["publisher"])
-        if src.get("published_date"): extra.append(src["published_date"])
-        if src.get("url"):            extra.append(src["url"])
-        tail = f" — {' · '.join(extra)}" if extra else ""
+        extra = [x for x in (src.get("publisher"), src.get("published_date"), src.get("url")) if x]
+        tail  = f" — {' · '.join(extra)}" if extra else ""
         lines.append(f"- **{src['id']}** ({src['type']}) {src['title']}{tail}")
 
     if parsed.get("data_issues"):
@@ -305,6 +396,132 @@ def _render_report(parsed: dict, variant: str, run_date: str, as_of: str) -> str
     return "\n".join(lines) + "\n"
 
 
+def _render_aggregate_report(agg: dict, variant: str, run_date: str, as_of: str) -> str:
+    lines = [
+        f"# Aggregate assessment — {variant}",
+        "",
+        f"- **Run date:** {run_date}",
+        f"- **As of:** {as_of}",
+        f"- **Valid runs:** {agg['n_valid_runs']} / {agg['n_runs_requested']}",
+    ]
+    if agg["fallback_applied"]:
+        lines += [
+            f"- **Fallback applied:** {agg['fallback_rule']}",
+            "",
+            "Fewer than 2 runs were valid; no aggregate ranking produced.",
+        ]
+        return "\n".join(lines) + "\n"
+
+    lines += [
+        f"- **Picks (final):** {', '.join(agg['picks'])}",
+        "",
+        "## Pairwise Spearman ρ between runs",
+        "",
+        "| Pair | ρ |",
+        "|------|---:|",
+    ]
+    for p in agg["pairwise_spearman"]:
+        lines.append(f"| {p['a']} ↔ {p['b']} | {p['rho']:+.3f} |")
+
+    lines += [
+        "",
+        "## Aggregate ranking",
+        "",
+        "| Final rank | Ticker | Mean rank | Mean score | Min rank | Max rank |",
+        "|-----------:|:-------|----------:|-----------:|---------:|---------:|",
+    ]
+    for s in agg["stocks"]:
+        lines.append(
+            f"| {s['final_rank']} | {s['ticker']} | {s['mean_rank']:.2f} | "
+            f"{s['mean_score']:+.2f} | {s['min_rank']} | {s['max_rank']} |"
+        )
+    return "\n".join(lines) + "\n"
+
+
+# ── Spearman (pure Python, ranks only — no ties by validate.py Rule 2) ────────
+
+def spearman_rank(ra: list[int], rb: list[int]) -> float:
+    """Spearman ρ on integer rank vectors of equal length with no ties (= Pearson)."""
+    n = len(ra)
+    if n != len(rb) or n < 2:
+        raise ValueError("rank vectors must be equal length ≥ 2")
+    ma, mb = sum(ra)/n, sum(rb)/n
+    num = sum((a-ma)*(b-mb) for a, b in zip(ra, rb))
+    da  = sum((a-ma)**2 for a in ra) ** 0.5
+    db  = sum((b-mb)**2 for b in rb) ** 0.5
+    if da == 0 or db == 0:
+        raise ValueError("zero-variance rank vector")
+    return num / (da * db)
+
+
+# ── Aggregation ───────────────────────────────────────────────────────────────
+
+def aggregate_runs(parsed_runs: list[dict], run_ids: list[str] | None = None) -> dict:
+    """
+    Combine >=2 valid per-run responses into a single aggregate ranking.
+
+    Returns a dict with: picks, stocks (per-ticker mean_rank, mean_score,
+    min_rank, max_rank, final_rank) and pairwise_spearman.
+
+    Final ranking order:
+        1. mean_rank       ascending (lower is better)
+        2. mean_score      descending (higher beats lower)
+        3. ticker          alphabetical
+    """
+    if len(parsed_runs) < 2:
+        raise ValueError("aggregate_runs needs at least 2 runs")
+
+    if run_ids is None:
+        run_ids = [f"run_{i+1}" for i in range(len(parsed_runs))]
+    elif len(run_ids) != len(parsed_runs):
+        raise ValueError("run_ids length must match parsed_runs")
+
+    tickers = sorted({s["ticker"] for s in parsed_runs[0]["stocks"]})
+
+    ranks:  dict[str, list[int]] = {t: [] for t in tickers}
+    scores: dict[str, list[int]] = {t: [] for t in tickers}
+    for r in parsed_runs:
+        for s in r["stocks"]:
+            t = s["ticker"]
+            if t in ranks:
+                ranks[t].append(s["rank"])
+                scores[t].append(s["score"])
+
+    stocks = []
+    for t in tickers:
+        rs = ranks[t]
+        ss = scores[t]
+        stocks.append({
+            "ticker":     t,
+            "mean_rank":  round(sum(rs)/len(rs), 4),
+            "mean_score": round(sum(ss)/len(ss), 4),
+            "min_rank":   min(rs),
+            "max_rank":   max(rs),
+        })
+
+    # Final order: mean_rank ↑, mean_score ↓, ticker ↑
+    stocks.sort(key=lambda x: (x["mean_rank"], -x["mean_score"], x["ticker"]))
+    for i, s in enumerate(stocks, 1):
+        s["final_rank"] = i
+
+    picks = [s["ticker"] for s in stocks[:4]]
+
+    # Pairwise Spearman
+    pairwise = []
+    for i, ida in enumerate(run_ids):
+        for j in range(i + 1, len(run_ids)):
+            idb = run_ids[j]
+            ra  = [next(s for s in parsed_runs[i]["stocks"] if s["ticker"] == t)["rank"] for t in tickers]
+            rb  = [next(s for s in parsed_runs[j]["stocks"] if s["ticker"] == t)["rank"] for t in tickers]
+            pairwise.append({"a": ida, "b": idb, "rho": round(spearman_rank(ra, rb), 4)})
+
+    return {
+        "picks":             picks,
+        "stocks":            stocks,
+        "pairwise_spearman": pairwise,
+    }
+
+
 # ── Public entry point ────────────────────────────────────────────────────────
 
 def run_variant(
@@ -312,10 +529,17 @@ def run_variant(
     package_path: Path | str,
     run_date:     date | str,
     out_dir:      Path | str,
+    n_runs:       int | None = None,
 ) -> dict[str, Any]:
     """
-    Run one variant end-to-end. Returns a summary dict; writes all artifacts under
-    out_dir/<variant>/.
+    Run `variant` n_runs times on `package_path`. n_runs defaults to
+    settings["n_runs"] (= 1 unless overridden).
+
+    Layout:
+        n_runs == 1: artifacts land directly in out_dir/<variant>/.
+        n_runs  > 1: each independent run is in out_dir/<variant>/run_i/;
+                     the aggregate is written to out_dir/<variant>/aggregate.json
+                     and report.md.
     """
     if variant not in VARIANTS:
         raise ValueError(f"variant must be one of {VARIANTS}, got {variant!r}")
@@ -328,27 +552,18 @@ def run_variant(
 
     settings = _load_settings()
     universe = _load_universe_tickers()
+    if n_runs is None:
+        n_runs = int(settings.get("n_runs", 1))
+    if n_runs < 1:
+        raise ValueError(f"n_runs must be >= 1, got {n_runs}")
 
-    # Derive as_of from the package.
-    pkg_json = json.loads(package_path.read_text(encoding="utf-8"))
-    as_of    = pkg_json["meta"]["as_of"]
-
-    # Package SHA-256 (from sibling file so we don't recompute).
+    pkg_json   = json.loads(package_path.read_text(encoding="utf-8"))
+    as_of      = pkg_json["meta"]["as_of"]
     sha_file   = package_path.parent / "package.sha256"
     pkg_sha256 = sha_file.read_text(encoding="utf-8").strip()
 
-    # Build the (variant-agnostic) prompt text.
-    system, user = render_prompt(
-        package_path, run_date_str, as_of, settings["max_searches"]
-    )
-
-    # Build the (variant-specific) request.
+    system, user = render_prompt(package_path, run_date_str, as_of, settings["max_searches"])
     req = _build_request(variant, system, user, settings)
-
-    # Persist the request (minus future-proofed secrets).
-    (variant_dir / "request.json").write_text(
-        json.dumps(_redact_request(req), indent=2, default=str), encoding="utf-8",
-    )
 
     load_dotenv(_ROOT / ".env")
     api_key = os.environ.get("ANTHROPIC_API_KEY")
@@ -356,112 +571,99 @@ def run_variant(
         raise EnvironmentError("ANTHROPIC_API_KEY is not set")
     client = anthropic.Anthropic(api_key=api_key)
 
-    pricing   = settings["pricing"]
-    cost_guard = float(settings["cost_guard_usd"])
-    max_total  = 1 + int(settings["max_retries"])
+    # ── Single run path – keep existing layout and return shape ───────────
+    if n_runs == 1:
+        r = _run_once(variant, variant_dir, req, settings, client,
+                      universe, run_date_str, as_of)
+        return {
+            "variant":        variant,
+            "n_runs":         1,
+            "package_sha256": pkg_sha256,
+            **r,
+        }
 
-    attempts: list[Attempt] = []
-    final: Attempt | None = None
-    for i in range(1, max_total + 1):
-        logger.info("[%s] attempt %d/%d", variant, i, max_total)
-        a = _one_attempt(
-            client, req, i, universe, run_date_str, as_of,
-            variant, pricing, cost_guard,
-        )
-        attempts.append(a)
-        if a.validation_ok:
-            final = a
-            break
-        logger.warning("[%s] attempt %d failed validation: %s", variant, i, a.validation_errors)
+    # ── Multi-run path ────────────────────────────────────────────────────
+    per_run = []
+    valid_parsed:  list[dict] = []
+    valid_run_ids: list[str]  = []
+    total_cost = 0.0
+    for i in range(1, n_runs + 1):
+        run_id  = f"run_{i}"
+        run_dir = variant_dir / run_id
+        r = _run_once(variant, run_dir, req, settings, client,
+                      universe, run_date_str, as_of)
+        total_cost += r["total_cost_usd"]
+        per_run.append({
+            "run_id":   run_id,
+            "is_valid": r["is_valid"],
+            "picks":    r["parsed"]["picks"] if r["parsed"] else None,
+            "errors":   r["errors"],
+            "cost_usd": r["total_cost_usd"],
+            "input_tokens":  r["input_tokens"],
+            "output_tokens": r["output_tokens"],
+        })
+        if r["is_valid"] and r["parsed"] is not None:
+            valid_parsed.append(r["parsed"])
+            valid_run_ids.append(run_id)
 
-    # Dump every attempt's raw response and parsed JSON.
-    for a in attempts:
-        (variant_dir / f"attempt_{a.attempt:02d}_raw.txt").write_text(a.raw_text or "", encoding="utf-8")
-        if a.parsed is not None:
-            (variant_dir / f"attempt_{a.attempt:02d}_parsed.json").write_text(
-                json.dumps(a.parsed, indent=2, ensure_ascii=False), encoding="utf-8",
-            )
+    n_valid = len(valid_parsed)
 
-    chosen = final if final is not None else attempts[-1]
-
-    # Validation summary (final attempt or best effort).
-    (variant_dir / "validation.json").write_text(
-        json.dumps({
-            "variant":           variant,
-            "is_valid":          chosen.validation_ok,
-            "errors":            chosen.validation_errors,
-            "attempt_used":      chosen.attempt,
-            "attempts_total":    len(attempts),
-            "fallback_applied":  (not chosen.validation_ok),
-            "fallback_rule":     settings["fallback_rule"],
-        }, indent=2), encoding="utf-8",
-    )
-
-    # Final parsed JSON (if any).
-    if chosen.parsed is not None:
-        (variant_dir / "response.json").write_text(
-            json.dumps(chosen.parsed, indent=2, ensure_ascii=False), encoding="utf-8",
-        )
-        (variant_dir / "report.md").write_text(
-            _render_report(chosen.parsed, variant, run_date_str, as_of), encoding="utf-8",
-        )
-
-    # Searches / sources / thinking.
-    (variant_dir / "searches.json").write_text(
-        json.dumps({
-            "queries":  chosen.searches,
-            "retrieved": chosen.retrieved,
-        }, indent=2, ensure_ascii=False), encoding="utf-8",
-    )
-    (variant_dir / "thinking_summary.txt").write_text(
-        "\n\n---\n\n".join(chosen.thinking), encoding="utf-8",
-    )
-
-    # Usage, cost, model id, times, package hash.
-    total_cost = sum(a.cost.get("total_usd", 0.0) for a in attempts)
-    (variant_dir / "run.json").write_text(
-        json.dumps({
+    if n_valid >= 2:
+        agg = aggregate_runs(valid_parsed, valid_run_ids)
+        aggregate = {
             "variant":          variant,
             "run_date":         run_date_str,
             "as_of":            as_of,
-            "package_path":     str(package_path),
             "package_sha256":   pkg_sha256,
-            "model_id":         chosen.model_id,
-            "settings":         settings,
-            "attempts": [
-                {
-                    "attempt":       a.attempt,
-                    "started_at":    a.started_at,
-                    "finished_at":   a.finished_at,
-                    "stop_reason":   a.stop_reason,
-                    "usage":         a.usage,
-                    "cost":          a.cost,
-                    "validation_ok": a.validation_ok,
-                    "errors":        a.validation_errors,
-                    "error":         a.error,
-                } for a in attempts
-            ],
-            "final_attempt":    chosen.attempt,
-            "is_valid":         chosen.validation_ok,
-            "web_search_count": chosen.cost.get("web_searches", 0),
+            "n_runs_requested": n_runs,
+            "n_valid_runs":     n_valid,
+            "fallback_applied": False,
+            "fallback_rule":    settings["fallback_rule"],
+            "picks":            agg["picks"],
+            "stocks":           agg["stocks"],
+            "pairwise_spearman": agg["pairwise_spearman"],
+            "runs":             per_run,
             "total_cost_usd":   total_cost,
-        }, indent=2, default=str), encoding="utf-8",
+        }
+    else:
+        aggregate = {
+            "variant":          variant,
+            "run_date":         run_date_str,
+            "as_of":            as_of,
+            "package_sha256":   pkg_sha256,
+            "n_runs_requested": n_runs,
+            "n_valid_runs":     n_valid,
+            "fallback_applied": True,
+            "fallback_rule":    settings["fallback_rule"],
+            "picks":            [],
+            "stocks":           [],
+            "pairwise_spearman": [],
+            "runs":             per_run,
+            "total_cost_usd":   total_cost,
+        }
+        logger.warning(
+            "[%s] only %d/%d runs valid → fallback %s",
+            variant, n_valid, n_runs, settings["fallback_rule"],
+        )
+
+    (variant_dir / "aggregate.json").write_text(
+        json.dumps(aggregate, indent=2, ensure_ascii=False), encoding="utf-8",
+    )
+    (variant_dir / "report.md").write_text(
+        _render_aggregate_report(aggregate, variant, run_date_str, as_of),
+        encoding="utf-8",
     )
 
     return {
-        "variant":          variant,
-        "is_valid":         chosen.validation_ok,
-        "errors":           chosen.validation_errors,
-        "attempts":         len(attempts),
-        "final_attempt":    chosen.attempt,
-        "parsed":           chosen.parsed,
-        "web_searches":     chosen.cost.get("web_searches", 0),
-        "input_tokens":     chosen.cost.get("input_tokens", 0),
-        "output_tokens":    chosen.cost.get("output_tokens", 0),
-        "cost_usd":         chosen.cost.get("total_usd", 0.0),
-        "total_cost_usd":   total_cost,
-        "model_id":         chosen.model_id,
-        "package_sha256":   pkg_sha256,
+        "variant":         variant,
+        "n_runs":          n_runs,
+        "n_valid_runs":    n_valid,
+        "fallback_applied": aggregate["fallback_applied"],
+        "picks":           aggregate["picks"],
+        "total_cost_usd":  total_cost,
+        "package_sha256":  pkg_sha256,
+        "aggregate":       aggregate,
+        "runs":            per_run,
     }
 
 
@@ -475,9 +677,11 @@ def _main() -> None:
     p.add_argument("--package", type=Path, required=True)
     p.add_argument("--run-date", required=True)
     p.add_argument("--out-dir",  type=Path, required=True)
+    p.add_argument("--n-runs",   type=int, default=None)
     args = p.parse_args()
-    s = run_variant(args.variant, args.package, args.run_date, args.out_dir)
-    print(json.dumps({k: v for k, v in s.items() if k != "parsed"}, indent=2, default=str))
+    s = run_variant(args.variant, args.package, args.run_date, args.out_dir, n_runs=args.n_runs)
+    print(json.dumps({k: v for k, v in s.items() if k not in ("parsed", "aggregate")},
+                     indent=2, default=str))
 
 
 if __name__ == "__main__":
