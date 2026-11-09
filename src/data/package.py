@@ -14,12 +14,13 @@ Rounding convention:
     prices          → 2 dp  (last_close, DIA close)
     percentages     → 3 dp  (change_1w_pct etc.)
     ratios          → 2 dp  (pe_trailing, dividend_yield — stored as PERCENT, e.g. 0.50 = 0.50%)
-    market_cap      → int   (computed from close × sharesOutstanding)
+    market_cap      → int   (Yahoo's marketCap field; covers all share classes,
+                             which close × sharesOutstanding misses for GOOGL/NKE)
 
 Sanity checks that RAISE (unless noted):
     - dividend_yield  outside [0, 15]        → RuntimeError
     - pe_trailing     <= 0                   → RuntimeError (null is fine)
-    - market_cap / close (= implied shares)  more than 20 % off vs previous
+    - implied shares (= market_cap / close)  more than 20 % off vs previous
       week's package → RuntimeError. Skipped if no previous package exists.
 """
 
@@ -100,13 +101,11 @@ def _pct(clean_idx: pd.DataFrame, ticker: str, pos: int, n: int) -> float | None
 
 def _fetch_fundamentals(tickers: list[str]) -> dict[str, dict]:
     """
-    Pull Yahoo's fundamentals and compute our own market cap from close × shares.
+    Pull Yahoo's fundamentals.
 
-    Returns, per ticker:
-        pe_trailing       – float or None
-        dividend_yield    – percent (e.g. 0.50 means 0.50 %), or None
-        shares_outstanding – int or None
-        yahoo_market_cap  – int or None (raw Yahoo field, for the meta file)
+    market_cap uses Yahoo's `marketCap` field (covers all share classes;
+    close × sharesOutstanding understates GOOGL and NKE, which have several
+    classes). sharesOutstanding is still logged into package_meta.json.
     """
     out: dict[str, dict] = {}
     for tkr in tickers:
@@ -115,18 +114,18 @@ def _fetch_fundamentals(tickers: list[str]) -> dict[str, dict]:
             pe   = info.get("trailingPE")
             dy   = info.get("dividendYield")   # yfinance 1.8 returns this as percent already
             so   = info.get("sharesOutstanding")
-            ymc  = info.get("marketCap")
+            mc   = info.get("marketCap")
             out[tkr] = {
                 "pe_trailing":        round(float(pe), 2)  if pe is not None else None,
                 "dividend_yield":     round(float(dy), 3)  if dy is not None else None,
                 "shares_outstanding": int(so)              if so is not None else None,
-                "yahoo_market_cap":   int(ymc)             if ymc is not None else None,
+                "market_cap":         int(mc)              if mc is not None else None,
             }
         except Exception as exc:
             logger.warning("%s: fundamentals failed – %s", tkr, exc)
             out[tkr] = {
                 "pe_trailing": None, "dividend_yield": None,
-                "shares_outstanding": None, "yahoo_market_cap": None,
+                "shares_outstanding": None, "market_cap": None,
             }
     return out
 
@@ -300,12 +299,6 @@ def build_package(
         raw_close  = row.get(tkr)
         last_close = round(float(raw_close), 2) if (raw_close is not None and pd.notna(raw_close)) else None
         f  = fundamentals.get(tkr, {})
-        so = f.get("shares_outstanding")
-        # Compute market cap ourselves so it matches today's close × today's shares.
-        if last_close is not None and so is not None:
-            market_cap = int(round(last_close * so))
-        else:
-            market_cap = None
 
         stocks.append({
             "ticker":         tkr,
@@ -317,14 +310,13 @@ def build_package(
             "change_1q_pct":  _pct(clean_idx, tkr, as_of_pos, 63),
             "pe_trailing":    f.get("pe_trailing"),
             "dividend_yield": f.get("dividend_yield"),
-            "market_cap":     market_cap,
+            "market_cap":     f.get("market_cap"),
         })
         meta_stocks.append({
-            "ticker":              tkr,
-            "shares_outstanding":  so,
-            "yahoo_market_cap":    f.get("yahoo_market_cap"),
-            "computed_market_cap": market_cap,
-            "market_cap_source":   "close × sharesOutstanding (Yahoo)",
+            "ticker":             tkr,
+            "shares_outstanding": f.get("shares_outstanding"),
+            "yahoo_market_cap":   f.get("market_cap"),
+            "market_cap_source":  "Yahoo marketCap field (covers all share classes)",
         })
 
     # ── Spin-off valuation override ───────────────────────────────────────
@@ -333,6 +325,11 @@ def build_package(
     # record a line in data_notes.
     recent = _recent_spinoffs(as_of)
     data_notes: list[str] = []
+    verification_date = universe_meta.get("verification_date", "unknown")
+    data_notes.append(
+        f"Universe: Dow Jones Industrial Average constituents as of "
+        f"{verification_date}. Alphabet (GOOGL) replaced Verizon (VZ) on 2026-06-29."
+    )
     if recent:
         tickers_affected = {s["ticker"] for s in stocks} & recent.keys()
         for s in stocks:

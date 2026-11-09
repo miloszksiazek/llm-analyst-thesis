@@ -88,8 +88,12 @@ def render_prompt(
     clean = _strip_html_comment(raw)
     system_tpl, user_tpl = _split_parts(clean)
 
+    run_date_obj = date.fromisoformat(str(run_date))
+    run_weekday  = run_date_obj.strftime("%A")
+
     mapping = {
         "run_date":          str(run_date),
+        "run_weekday":       run_weekday,
         "as_of":             str(as_of),
         "max_searches":      str(max_searches),
         "package_json":      package_json,

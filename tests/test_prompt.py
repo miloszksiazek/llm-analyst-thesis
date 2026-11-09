@@ -42,6 +42,17 @@ def test_render_prompt_byte_identical_for_variants(tmp_path):
     assert _sha(web) == _sha(noweb), "SHA-256 of rendered prompt must match across variants"
 
 
+def test_render_prompt_fills_run_weekday(tmp_path):
+    """{run_weekday} is derived from run_date and must appear in the system prompt."""
+    pkg = _make_package(tmp_path)
+    # 2026-11-01 is a Sunday; 2026-11-02 is a Monday.
+    sys_sun, _ = render_prompt(pkg, "2026-11-01", "2026-10-30", max_searches=10)
+    sys_mon, _ = render_prompt(pkg, "2026-11-02", "2026-10-30", max_searches=10)
+    assert "2026-11-01 (Sunday)" in sys_sun
+    assert "2026-11-02 (Monday)" in sys_mon
+    assert "{run_weekday}" not in sys_sun, "placeholder must be substituted"
+
+
 def test_render_prompt_has_no_variant_parameter():
     """render_prompt() must not accept a `variant` kwarg – variants share one prompt."""
     import inspect
