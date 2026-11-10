@@ -7,14 +7,17 @@ same weeks:
     - rank-by-4w-momentum  (deterministic)
     - random ranking       (seeded, mean of 50 draws per week)
 
+Features: the 10 numeric columns in `FEATURE_COLS`. The sector column was
+dropped on 2026-11-10 (docs/zmiany_do_planu.md) because, in an ex-post
+single-stock sector (Materials: SHW; Communication Services after the GOOGL
+addition), it acts as a company identifier for a survivor-only universe and
+inflates IC without a clean causal reading. See docs/xgb_training_report.md
+§7.1 for the survivorship note and §7.2 (historical) for the with-sector
+comparison numbers kept for reference.
+
 Metric: mean weekly rank IC (Spearman correlation between the predicted
 ranking and the realized next-week return across the ~30 tickers in that
 week). Reported as a per-fold mean and an overall mean of fold means.
-
-Entrypoint `cross_validate(panel)` returns:
-    per_fold_df   (fold-level mean IC per config)
-    best_config   (dict)
-    summary       (dict with baselines + best XGB + top features)
 """
 
 from __future__ import annotations
@@ -28,7 +31,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
 
-from xgb.features import FEATURE_COLS, CATEGORICAL_COL
+from xgb.features import FEATURE_COLS
 
 logger = logging.getLogger(__name__)
 
@@ -41,16 +44,8 @@ GRID = {
 FOLD_YEARS = [2022, 2023, 2024, 2025, 2026]
 
 
-def _one_hot(df: pd.DataFrame, categories: list[str]) -> pd.DataFrame:
-    """Deterministic one-hot for `sector`. Categories supplied so train/test share schema."""
-    out = pd.DataFrame(index=df.index)
-    for c in categories:
-        out[f"sector_{c}"] = (df[CATEGORICAL_COL] == c).astype(np.int8)
-    return out
-
-
-def _build_X(df: pd.DataFrame, sectors: list[str]) -> pd.DataFrame:
-    return pd.concat([df[FEATURE_COLS], _one_hot(df, sectors)], axis=1)
+def _build_X(df: pd.DataFrame) -> pd.DataFrame:
+    return df[FEATURE_COLS]
 
 
 def _weekly_rank_ic(df: pd.DataFrame, pred_col: str, y_col: str = "target") -> float:
@@ -89,13 +84,12 @@ class FoldResult:
     results: dict[tuple, float] = field(default_factory=dict)  # (params) -> mean IC
     baseline_mom4w: float = float("nan")
     baseline_random: float = float("nan")
-    feature_importance: dict[str, float] = field(default_factory=dict)
 
 
-def _fit_xgb(train: pd.DataFrame, params: dict, sectors: list[str]):
+def _fit_xgb(train: pd.DataFrame, params: dict):
     import xgboost as xgb
 
-    X = _build_X(train, sectors)
+    X = _build_X(train)
     y = train["target"].to_numpy()
     model = xgb.XGBRegressor(
         objective="reg:squarederror",
@@ -105,16 +99,14 @@ def _fit_xgb(train: pd.DataFrame, params: dict, sectors: list[str]):
         **params,
     )
     model.fit(X, y)
-    return model, X.columns.tolist()
+    return model
 
 
-def _predict_xgb(model, feature_cols: list[str], df: pd.DataFrame, sectors: list[str]) -> np.ndarray:
-    X = _build_X(df, sectors).reindex(columns=feature_cols, fill_value=0)
-    return model.predict(X)
+def _predict_xgb(model, df: pd.DataFrame) -> np.ndarray:
+    return model.predict(_build_X(df))
 
 
 def cross_validate(panel: pd.DataFrame) -> dict:
-    sectors = sorted(panel[CATEGORICAL_COL].dropna().unique().tolist())
     panel = panel.dropna(subset=FEATURE_COLS + ["target"]).copy()
 
     param_combos = [
@@ -135,16 +127,14 @@ def cross_validate(panel: pd.DataFrame) -> dict:
             train_weeks=train["as_of"].nunique(),
             test_weeks=test["as_of"].nunique(),
         )
-        # Baselines
         tmp = test.copy()
         tmp["mom4w_pred"] = tmp["mom_4w"]
         fr.baseline_mom4w  = _weekly_rank_ic(tmp, "mom4w_pred")
         fr.baseline_random = _random_rank_ic(tmp, seed=SEED + year)
 
-        # XGB grid
         for params in param_combos:
-            model, cols = _fit_xgb(train, params, sectors)
-            pred = _predict_xgb(model, cols, test, sectors)
+            model = _fit_xgb(train, params)
+            pred  = _predict_xgb(model, test)
             tmp2 = test.copy()
             tmp2["pred"] = pred
             ic = _weekly_rank_ic(tmp2, "pred")
@@ -155,7 +145,6 @@ def cross_validate(panel: pd.DataFrame) -> dict:
             )
         folds.append(fr)
 
-    # Mean IC per config across folds
     mean_ic = {}
     for key in folds[0].results:
         mean_ic[key] = float(np.mean([f.results[key] for f in folds]))
@@ -163,25 +152,16 @@ def cross_validate(panel: pd.DataFrame) -> dict:
     best_params = dict(best_key)
     best_mean  = mean_ic[best_key]
 
-    # Fit best on ALL training folds combined (same as the final fold's training window)
-    # to produce feature importance for the report.
+    # Fit best on the pre-2026 training window to produce feature importance.
     full_train = panel[panel["as_of"].dt.year <  FOLD_YEARS[-1]]
-    model, cols = _fit_xgb(full_train, best_params, sectors)
-    fi_raw = dict(zip(cols, model.feature_importances_.tolist()))
-    # Aggregate sector_* into a single "sector" entry
-    fi: dict[str, float] = {}
-    sector_total = 0.0
-    for k, v in fi_raw.items():
-        if k.startswith("sector_"):
-            sector_total += v
-        else:
-            fi[k] = v
-    fi["sector"] = sector_total
-    top10 = dict(sorted(fi.items(), key=lambda kv: kv[1], reverse=True)[:10])
+    model = _fit_xgb(full_train, best_params)
+    fi = dict(zip(FEATURE_COLS, model.feature_importances_.tolist()))
+    top = dict(sorted(fi.items(), key=lambda kv: kv[1], reverse=True))
 
     out = {
         "best_params":    best_params,
         "best_mean_ic":   best_mean,
+        "median_mean_ic": float(np.median(list(mean_ic.values()))),
         "grid_mean_ic":   {str(dict(k)): v for k, v in mean_ic.items()},
         "folds":          [
             {
@@ -196,9 +176,8 @@ def cross_validate(panel: pd.DataFrame) -> dict:
         ],
         "baseline_mom4w_mean":  float(np.mean([f.baseline_mom4w  for f in folds])),
         "baseline_random_mean": float(np.mean([f.baseline_random for f in folds])),
-        "feature_importance_top10": top10,
-        "sectors":        sectors,
-        "feature_cols":   cols,
+        "feature_importance":   top,
+        "feature_cols":         FEATURE_COLS,
     }
     return out
 

@@ -22,3 +22,4 @@ Każda linia = jedna zamknięta decyzja. Mają pierwszeństwo przed `docs/plan_p
 - 2026-11-09: propozycja RQ5 – stabilność decyzji między uruchomieniami (korelacja rang w tygodniu), web vs noweb; IC raportowany dla rankingu uśrednionego i średnio dla pojedynczych uruchomień. Do akceptacji promotora.
 - 2026-11-09: szacowany koszt całego badania ok. 105 USD (ok. 390 zł). Do akceptacji promotora.
 - 2026-11-09: reguła 7b – źródła po run_date (nie po as_of).
+- 2026-11-10: XGBoost bez cechy sektora (w sektorach jednospółkowych działała jak identyfikator spółki przy uniwersum wybranym ex post); wybrana konfiguracja max_depth=4, lr=0.03, n=200; IC walidacji traktowany jako górna granica (survivorship bias).

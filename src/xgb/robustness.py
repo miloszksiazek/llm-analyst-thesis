@@ -1,18 +1,20 @@
 """
 Robustness checks for the XGBoost walk-forward benchmark (no new data).
 
-1. Survivorship / stable subset: the 30-ticker universe is the 2026-11-04
-   DJIA snapshot; 7 of those joined after 2015-07-01 (see STABLE_SUBSET
-   below, verified against the Wikipedia "Historical components" article).
-   Re-evaluate the best XGB config and the mom4w baseline on the 23 names
-   that were in the index for the whole 2015-07..2026-10 period.
-2. Without sector: rerun the walk-forward grid search dropping the sector
-   feature. Report the best config and its per-fold IC.
-3. Selection bias: report the median mean-IC across the 12 grid configs
-   next to the best, and the best config's IC on each fold.
+1. Survivorship (descriptive only): the 30-ticker universe is the 2026-11-04
+   DJIA snapshot. All 30 are ex-post survivors; names dropped from the index
+   since 2015 are missing from the data entirely. We report scoring on the
+   subset of current tickers that were in the index for the whole validation
+   window (STABLE_SUBSET) as a descriptive check — this does NOT remove
+   survivorship bias.
+2. With-sector comparison: rerun the same walk-forward grid using the sector
+   one-hot columns in addition to FEATURE_COLS. The chosen configuration is
+   no-sector (docs/zmiany_do_planu.md 2026-11-10); the with-sector numbers
+   are kept here for reference.
+3. Selection bias: median mean-IC across the 12 grid configs next to the
+   best, and the best config's IC on each fold.
 
-Output: data/raw/xgb_robustness.json; printed summary suitable for pasting
-into docs/xgb_training_report.md.
+Output: data/raw/xgb_robustness.json.
 """
 
 from __future__ import annotations
@@ -27,45 +29,47 @@ import pandas as pd
 
 from xgb.features import CATEGORICAL_COL, FEATURE_COLS
 from xgb.train import (
-    FOLD_YEARS, GRID, SEED, _fit_xgb, _predict_xgb,
-    _random_rank_ic, _weekly_rank_ic,
+    FOLD_YEARS, GRID, SEED, _fit_xgb, _predict_xgb, _weekly_rank_ic,
 )
 
 logger = logging.getLogger(__name__)
 _ROOT = Path(__file__).parents[2]
 
-# Verified against the Wikipedia article
-# "Historical components of the Dow Jones Industrial Average"
-# (fetched 2026-11-10). Tickers in the current universe that joined the
-# DJIA after 2015-07-01 (i.e. absent for part of the 2015-07..2026-10
-# validation window):
-#   AMGN  (2020-08-31), CRM (2020-08-31), HON   (2020-08-31, re-added),
-#   AMZN  (2024-02-26), NVDA (2024-11-08), SHW  (2024-11-08),
-#   GOOGL (2026-06-29).
+# Current universe tickers that joined DJIA after 2015-07-01, verified against
+# the Wikipedia article "Historical components of the Dow Jones Industrial
+# Average" (fetched 2026-11-10).
 NEW_ENTRANTS = ["AMGN", "CRM", "HON", "AMZN", "NVDA", "SHW", "GOOGL"]
 
+# Stocks REMOVED from DJIA since 2015-07-01 (and therefore absent from our
+# universe – they are the other side of the ex-post selection).
+REMOVED_SINCE_2015 = [
+    ("DD",   "2017-09-01", "DuPont (merged into DowDuPont)"),
+    ("GE",   "2018-06-26", "General Electric"),
+    ("DWDP", "2019-04-02", "DowDuPont (replaced by Dow Inc.)"),
+    ("UTX",  "2020-04-06", "United Technologies (merged into RTX)"),
+    ("RTX",  "2020-08-31", "Raytheon Technologies"),
+    ("XOM",  "2020-08-31", "ExxonMobil"),
+    ("PFE",  "2020-08-31", "Pfizer"),
+    ("WBA",  "2024-02-26", "Walgreens Boots Alliance"),
+    ("INTC", "2024-11-08", "Intel"),
+    ("DOW",  "2024-11-08", "Dow Inc."),
+    ("VZ",   "2026-06-29", "Verizon Communications"),
+]
 
-def _per_fold_ic_for_params(panel: pd.DataFrame, params: dict, sectors: list[str]) -> dict:
-    """Train the config on each expanding window and score on the test fold."""
-    out = {}
-    for year in FOLD_YEARS:
-        train = panel[panel["as_of"].dt.year <  year]
-        test  = panel[panel["as_of"].dt.year == year]
-        if len(train) == 0 or len(test) == 0:
-            continue
-        model, cols = _fit_xgb(train, params, sectors)
-        pred = _predict_xgb(model, cols, test, sectors)
-        tmp = test.copy()
-        tmp["pred"] = pred
-        out[year] = _weekly_rank_ic(tmp, "pred")
+
+# ── With-sector helpers (kept for the comparison section only) ─────────────
+
+def _one_hot(df: pd.DataFrame, categories: list[str]) -> pd.DataFrame:
+    out = pd.DataFrame(index=df.index)
+    for c in categories:
+        out[f"sector_{c}"] = (df[CATEGORICAL_COL] == c).astype(np.int8)
     return out
 
 
-def _fit_xgb_nosector(train: pd.DataFrame, params: dict):
-    """Fit using only the 10 numeric FEATURE_COLS (no sector one-hots)."""
+def _fit_xgb_with_sector(train: pd.DataFrame, params: dict, sectors: list[str]):
     import xgboost as xgb
 
-    X = train[FEATURE_COLS]
+    X = pd.concat([train[FEATURE_COLS], _one_hot(train, sectors)], axis=1)
     y = train["target"].to_numpy()
     model = xgb.XGBRegressor(
         objective="reg:squarederror",
@@ -75,23 +79,26 @@ def _fit_xgb_nosector(train: pd.DataFrame, params: dict):
         **params,
     )
     model.fit(X, y)
-    return model
+    return model, X.columns.tolist()
 
 
-def _per_fold_nosector(panel: pd.DataFrame, params: dict) -> dict:
+def _per_fold_with_sector(panel: pd.DataFrame, params: dict, sectors: list[str]) -> dict:
     out = {}
     for year in FOLD_YEARS:
         train = panel[panel["as_of"].dt.year <  year]
         test  = panel[panel["as_of"].dt.year == year]
         if len(train) == 0 or len(test) == 0:
             continue
-        model = _fit_xgb_nosector(train, params)
-        pred  = model.predict(test[FEATURE_COLS])
+        model, cols = _fit_xgb_with_sector(train, params, sectors)
+        X_test = pd.concat([test[FEATURE_COLS], _one_hot(test, sectors)], axis=1)
+        X_test = X_test.reindex(columns=cols, fill_value=0)
         tmp = test.copy()
-        tmp["pred"] = pred
+        tmp["pred"] = model.predict(X_test)
         out[year] = _weekly_rank_ic(tmp, "pred")
     return out
 
+
+# ── Main ────────────────────────────────────────────────────────────────────
 
 def run(panel_path: Path | str, cv_path: Path | str) -> dict:
     panel = pd.read_parquet(panel_path)
@@ -99,9 +106,8 @@ def run(panel_path: Path | str, cv_path: Path | str) -> dict:
     panel = panel.dropna(subset=FEATURE_COLS + ["target"]).copy()
     cv = json.loads(Path(cv_path).read_text())
     best = cv["best_params"]
-    sectors = cv["sectors"]
 
-    # ── 1. Survivorship (stable subset) ──────────────────────────────────
+    # ── 1. Survivorship (descriptive stable-subset) ─────────────────────
     stable_tickers = sorted(set(panel["ticker"]) - set(NEW_ENTRANTS))
     stable_panel   = panel[panel["ticker"].isin(stable_tickers)].copy()
     logger.info("Stable subset: %d tickers, %d rows",
@@ -110,26 +116,25 @@ def run(panel_path: Path | str, cv_path: Path | str) -> dict:
     stable_xgb: dict[int, float] = {}
     stable_mom: dict[int, float] = {}
     for year in FOLD_YEARS:
-        # Train on the full universe (as in the headline run), score only on
-        # stable-subset rows in the test fold. This isolates the survivorship
-        # effect on the metric, not on the training signal.
         train = panel[panel["as_of"].dt.year <  year]
         test  = stable_panel[stable_panel["as_of"].dt.year == year]
         if len(train) == 0 or len(test) == 0:
             continue
-        model, cols = _fit_xgb(train, best, sectors)
-        pred = _predict_xgb(model, cols, test, sectors)
+        model = _fit_xgb(train, best)
         tmp = test.copy()
-        tmp["pred"] = pred
+        tmp["pred"] = _predict_xgb(model, test)
         stable_xgb[year] = _weekly_rank_ic(tmp, "pred")
-
         tmp2 = test.copy()
         tmp2["mom4w_pred"] = tmp2["mom_4w"]
-        stable_mom[year] = _weekly_rank_ic(tmp2, "mom4w_pred")
+        stable_mom[year]  = _weekly_rank_ic(tmp2, "mom4w_pred")
 
     survivorship = {
         "stable_tickers":    stable_tickers,
         "new_entrants":      NEW_ENTRANTS,
+        "removed_since_2015": [
+            {"ticker": t, "removal_date": d, "name": n}
+            for t, d, n in REMOVED_SINCE_2015
+        ],
         "rows_stable":       int(len(stable_panel)),
         "rows_full":         int(len(panel)),
         "folds": [
@@ -140,28 +145,29 @@ def run(panel_path: Path | str, cv_path: Path | str) -> dict:
         "mean_ic_mom4w":     float(np.mean(list(stable_mom.values()))),
     }
 
-    # ── 2. Without sector ───────────────────────────────────────────────
+    # ── 2. With-sector comparison ────────────────────────────────────────
+    sectors = sorted(panel[CATEGORICAL_COL].dropna().unique().tolist())
     param_combos = [
         dict(zip(GRID.keys(), vals)) for vals in product(*GRID.values())
     ]
-    nosector_fold_ic: dict[str, dict] = {}
-    nosector_mean_ic: dict[str, float] = {}
+    ws_fold_ic: dict[str, dict] = {}
+    ws_mean_ic: dict[str, float] = {}
     for params in param_combos:
-        folds = _per_fold_nosector(panel, params)
-        nosector_fold_ic[json.dumps(params, sort_keys=True)] = folds
-        nosector_mean_ic[json.dumps(params, sort_keys=True)] = float(np.mean(list(folds.values())))
-        logger.info("no-sector %s mean IC %.4f", params, nosector_mean_ic[json.dumps(params, sort_keys=True)])
+        key = json.dumps(params, sort_keys=True)
+        folds = _per_fold_with_sector(panel, params, sectors)
+        ws_fold_ic[key] = folds
+        ws_mean_ic[key] = float(np.mean(list(folds.values())))
+        logger.info("with-sector %s mean IC %.4f", params, ws_mean_ic[key])
 
-    best_ns_key = max(nosector_mean_ic, key=nosector_mean_ic.get)
-    nosector = {
-        "best_params":   json.loads(best_ns_key),
-        "best_mean_ic":  nosector_mean_ic[best_ns_key],
-        "best_folds":    nosector_fold_ic[best_ns_key],
-        "all_mean_ic":   {k: v for k, v in sorted(nosector_mean_ic.items(),
-                                                   key=lambda kv: -kv[1])},
+    best_ws_key = max(ws_mean_ic, key=ws_mean_ic.get)
+    with_sector = {
+        "best_params":   json.loads(best_ws_key),
+        "best_mean_ic":  ws_mean_ic[best_ws_key],
+        "best_folds":    ws_fold_ic[best_ws_key],
+        "all_mean_ic":   dict(sorted(ws_mean_ic.items(), key=lambda kv: -kv[1])),
     }
 
-    # ── 3. Selection-bias summary ───────────────────────────────────────
+    # ── 3. Selection-bias summary (on the chosen no-sector grid) ─────────
     grid_ics = list(cv["grid_mean_ic"].values())
     best_fold_ic = {f["year"]: f["ic_best_xgb"] for f in cv["folds"]}
     selection = {
@@ -176,7 +182,7 @@ def run(panel_path: Path | str, cv_path: Path | str) -> dict:
 
     return {
         "survivorship": survivorship,
-        "nosector":     nosector,
+        "with_sector":  with_sector,
         "selection":    selection,
     }
 

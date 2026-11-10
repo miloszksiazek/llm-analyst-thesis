@@ -1,10 +1,9 @@
 """
 Weekly XGBoost ranking: load a saved model and produce a 1–30 ranking at `as_of`.
 
-The model must have been trained with `train_final` in this module (which
-stores the `feature_cols` and `sectors` alongside the model). For CV/validation
-use `train.py`; this module is for the live weekly run and the final frozen
-model.
+The model is trained with `train_final` on the 10 numeric features in
+`FEATURE_COLS` (no sector; see docs/zmiany_do_planu.md 2026-11-10). Metadata
+is stored next to the model binary as `<name>.meta.json`.
 
 CLI:
     python src/xgb/predict.py --as-of 2026-11-06 [--model-path ... | --train-first]
@@ -19,23 +18,15 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from xgb.features import CATEGORICAL_COL, FEATURE_COLS, build_asof, load_bundle
+from xgb.features import FEATURE_COLS, build_asof, load_bundle
 
 logger = logging.getLogger(__name__)
 
 _ROOT = Path(__file__).parents[2]
 
 
-def _one_hot(df: pd.DataFrame, sectors: list[str]) -> pd.DataFrame:
-    out = pd.DataFrame(index=df.index)
-    for c in sectors:
-        out[f"sector_{c}"] = (df[CATEGORICAL_COL] == c).astype("int8")
-    return out
-
-
-def _build_X(df: pd.DataFrame, sectors: list[str], feature_cols: list[str]) -> pd.DataFrame:
-    X = pd.concat([df[FEATURE_COLS], _one_hot(df, sectors)], axis=1)
-    return X.reindex(columns=feature_cols, fill_value=0)
+def _meta_path(model_path: Path) -> Path:
+    return model_path.with_name(model_path.stem + ".meta.json")
 
 
 def train_final(
@@ -45,17 +36,13 @@ def train_final(
 ) -> dict:
     """
     Train on the full panel with `params` and save model + metadata.
-
-    Returns the metadata dict. The saved model lives at `model_path`, the
-    metadata at `model_path.with_suffix('.json')`.
     """
     import xgboost as xgb
     from xgb.train import SEED
 
     panel = panel.dropna(subset=FEATURE_COLS + ["target"]).copy()
-    sectors = sorted(panel[CATEGORICAL_COL].dropna().unique().tolist())
-    X_df = pd.concat([panel[FEATURE_COLS], _one_hot(panel, sectors)], axis=1)
-    feature_cols = X_df.columns.tolist()
+    X = panel[FEATURE_COLS]
+    y = panel["target"].to_numpy()
 
     model = xgb.XGBRegressor(
         objective="reg:squarederror",
@@ -64,26 +51,21 @@ def train_final(
         n_jobs=1,
         **params,
     )
-    model.fit(X_df, panel["target"].to_numpy())
+    model.fit(X, y)
 
     model_path = Path(model_path)
     model_path.parent.mkdir(parents=True, exist_ok=True)
     model.save_model(str(model_path))
 
     meta = {
-        "params":       params,
-        "sectors":      sectors,
-        "feature_cols": feature_cols,
-        "train_rows":   int(len(panel)),
-        "train_weeks":  int(panel["as_of"].nunique()),
+        "params":          params,
+        "feature_cols":    FEATURE_COLS,
+        "train_rows":      int(len(panel)),
+        "train_weeks":     int(panel["as_of"].nunique()),
         "trained_through": str(panel["as_of"].max().date()),
     }
     _meta_path(model_path).write_text(json.dumps(meta, indent=2))
     return meta
-
-
-def _meta_path(model_path: Path) -> Path:
-    return model_path.with_name(model_path.stem + ".meta.json")
 
 
 def load_model(model_path: Path | str):
@@ -103,7 +85,7 @@ def rank(as_of: pd.Timestamp, model, meta: dict, bundle=None) -> pd.DataFrame:
     as_of = pd.Timestamp(as_of)
     feats = build_asof(bundle, as_of)
     feats = feats.dropna(subset=FEATURE_COLS)
-    X = _build_X(feats, meta["sectors"], meta["feature_cols"])
+    X = feats[meta["feature_cols"]]
     pred = model.predict(X)
     out = (
         pd.DataFrame({"ticker": feats.index, "score": pred})
@@ -117,7 +99,6 @@ def rank(as_of: pd.Timestamp, model, meta: dict, bundle=None) -> pd.DataFrame:
 
 if __name__ == "__main__":
     import argparse
-    from datetime import date
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     ap = argparse.ArgumentParser()

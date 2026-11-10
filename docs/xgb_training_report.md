@@ -4,6 +4,10 @@
 all data available at the freeze date (2026-11-30) using the hyperparameters
 selected here.
 
+**Headline configuration:** 10 numeric features, **no sector column**
+(decision 2026-11-10, `docs/zmiany_do_planu.md`). The with-sector variant is
+kept as a comparison in §7.2.
+
 ## 1. Dataset
 
 - **Universe:** the 30 DJIA constituents frozen in `config/universe.yaml` plus DIA.
@@ -31,6 +35,8 @@ selected here.
 
 All features use data only up to the as-of date (Friday close). Price-based
 features use the cleaned index; volume and daily-range use raw Yahoo series.
+The sector column defined in `features.py::CATEGORICAL_COL` is **not** passed
+to the model (see §7.2 for the with-sector comparison and the reasoning).
 
 | name            | definition                                                         |
 |-----------------|--------------------------------------------------------------------|
@@ -44,7 +50,6 @@ features use the cleaned index; volume and daily-range use raw Yahoo series.
 | dist_ma50       | clean_idx / mean(clean_idx, 50) − 1                                |
 | dist_ma200      | clean_idx / mean(clean_idx, 200) − 1                               |
 | ret_vs_dia_4w   | mom_4w(stock) − mom_4w(DIA)                                        |
-| sector          | GICS sector (one-hot; 9 sectors in the universe)                   |
 
 Leakage check (`src/xgb/dataset.py::leakage_check`, exercised by
 `tests/test_xgb_leakage.py`): every row satisfies
@@ -66,24 +71,24 @@ Grid searched:
 
 Best configuration (highest mean of fold-level ICs across the 5 folds):
 
-> **max_depth = 4, learning_rate = 0.10, n_estimators = 200** — mean IC **+0.0454**
+> **max_depth = 4, learning_rate = 0.03, n_estimators = 200** — mean IC **+0.0356**
 
-Full grid (sorted by mean IC):
+Median of the 12 grid-config mean ICs: **+0.0286**. Full grid (sorted):
 
 | mean IC | params                                              |
 |---------|-----------------------------------------------------|
-| +0.0454 | max_depth=4, lr=0.10, n_estimators=200              |
-| +0.0370 | max_depth=4, lr=0.03, n_estimators=500              |
-| +0.0349 | max_depth=3, lr=0.03, n_estimators=500              |
-| +0.0304 | max_depth=4, lr=0.03, n_estimators=200              |
-| +0.0286 | max_depth=3, lr=0.10, n_estimators=200              |
-| +0.0285 | max_depth=4, lr=0.10, n_estimators=500              |
-| +0.0283 | max_depth=2, lr=0.03, n_estimators=200              |
-| +0.0241 | max_depth=2, lr=0.10, n_estimators=200              |
-| +0.0239 | max_depth=2, lr=0.03, n_estimators=500              |
-| +0.0229 | max_depth=3, lr=0.03, n_estimators=200              |
-| +0.0223 | max_depth=3, lr=0.10, n_estimators=500              |
-| +0.0221 | max_depth=2, lr=0.10, n_estimators=500              |
+| +0.0356 | max_depth=4, lr=0.03, n_estimators=200              |
+| +0.0350 | max_depth=4, lr=0.03, n_estimators=500              |
+| +0.0344 | max_depth=3, lr=0.03, n_estimators=500              |
+| +0.0297 | max_depth=2, lr=0.10, n_estimators=500              |
+| +0.0293 | max_depth=2, lr=0.03, n_estimators=200              |
+| +0.0287 | max_depth=3, lr=0.10, n_estimators=200              |
+| +0.0285 | max_depth=4, lr=0.10, n_estimators=200              |
+| +0.0283 | max_depth=3, lr=0.10, n_estimators=500              |
+| +0.0259 | max_depth=2, lr=0.10, n_estimators=200              |
+| +0.0245 | max_depth=4, lr=0.10, n_estimators=500              |
+| +0.0229 | max_depth=2, lr=0.03, n_estimators=500              |
+| +0.0223 | max_depth=3, lr=0.03, n_estimators=200              |
 
 ## 4. Per-fold IC — best XGB vs baselines
 
@@ -94,36 +99,35 @@ Baselines evaluated on the same folds:
 
 | fold | train weeks | test weeks | IC best XGB | IC mom4w | IC random |
 |------|-------------|------------|-------------|----------|-----------|
-| 2022 | 320         | 52         | +0.1000     | −0.0288  | +0.0039   |
-| 2023 | 372         | 52         | +0.0444     | −0.0171  | −0.0015   |
-| 2024 | 424         | 51         | +0.0231     | +0.0276  | +0.0032   |
-| 2025 | 475         | 51         | +0.0139     | +0.0022  | −0.0021   |
-| 2026 | 526         | 42         | +0.0455     | +0.0102  | −0.0004   |
-| **mean** | —       | —          | **+0.0454** | **−0.0012** | **+0.0006** |
+| 2022 | 320         | 52         | +0.0628     | −0.0288  | +0.0039   |
+| 2023 | 372         | 52         | +0.0214     | −0.0171  | −0.0015   |
+| 2024 | 424         | 51         | +0.0156     | +0.0276  | +0.0032   |
+| 2025 | 475         | 51         | +0.0203     | +0.0022  | −0.0021   |
+| 2026 | 526         | 42         | +0.0580     | +0.0102  | −0.0004   |
+| **mean** | —       | —          | **+0.0356** | **−0.0012** | **+0.0006** |
 
-The 2022 fold IC is 0.0999144, below the 0.10 leakage-flag threshold stated
-in the brief. No fold or mean IC exceeds 0.10; proceeding.
+No fold or mean IC exceeds the 0.10 leakage-flag threshold; proceeding.
 
-## 5. Feature importance (top 10, gain-based)
+## 5. Feature importance (gain-based)
 
 Model refit on all data through 2025 (the expanding-window training set used
-for the 2026 fold) with the best hyperparameters.
+for the 2026 fold) with the chosen hyperparameters.
 
 | rank | feature          | importance |
 |------|------------------|------------|
-| 1    | sector           | 0.404      |
-| 2    | range_20d        | 0.085      |
-| 3    | mom_1w           | 0.074      |
-| 4    | mom_12w          | 0.065      |
-| 5    | dist_ma50        | 0.064      |
-| 6    | rel_volume_5_60  | 0.062      |
-| 7    | ret_vs_dia_4w    | 0.060      |
-| 8    | vol_20d          | 0.053      |
-| 9    | mom_4w           | 0.046      |
-| 10   | mom_26w          | 0.045      |
+| 1    | range_20d        | 0.140      |
+| 2    | mom_1w           | 0.132      |
+| 3    | mom_12w          | 0.126      |
+| 4    | dist_ma50        | 0.105      |
+| 5    | ret_vs_dia_4w    | 0.101      |
+| 6    | rel_volume_5_60  | 0.094      |
+| 7    | vol_20d          | 0.086      |
+| 8    | mom_4w           | 0.077      |
+| 9    | mom_26w          | 0.075      |
+| 10   | dist_ma200       | 0.065      |
 
-`dist_ma200` is the least important feature (≈0.044, just outside the top
-10). `sector` is the sum of all 9 one-hot columns.
+Without sector, importance spreads more evenly across the 10 features;
+short-horizon volatility-style signals (`range_20d`, `mom_1w`) sit on top.
 
 ## 6. Repro
 
@@ -146,94 +150,108 @@ CV artifacts live at `data/raw/xgb_cv_results.json` and
 Three checks on the headline numbers; the chosen configuration is kept
 unchanged.
 
-### 7.1 Survivorship (stable subset)
+### 7.1 Universe is ex post — survivorship bias is unavoidable here
 
-The 30-ticker universe is the DJIA snapshot at 2026-11-04. Membership
-history verified against the Wikipedia article *"Historical components of
-the Dow Jones Industrial Average"* (fetched 2026-11-10): seven current
-constituents joined the DJIA after 2015-07-01 and are therefore absent from
-the index for part of the validation window —
+The 30-ticker universe is the DJIA snapshot at 2026-11-04. **All 30 tickers
+are ex-post survivors**: they passed the index committee's selection at
+some point and remained listed. Stocks removed from the DJIA since 2015 are
+absent from our data entirely — the committee replaced them when they
+underperformed or were restructured. From the Wikipedia article
+*"Historical components of the Dow Jones Industrial Average"* (fetched
+2026-11-10), the 11 names dropped from the index during the validation
+window are:
 
-| ticker | DJIA join date |
-|--------|----------------|
-| AMGN   | 2020-08-31     |
-| CRM    | 2020-08-31     |
-| HON    | 2020-08-31 (re-added) |
-| AMZN   | 2024-02-26     |
-| NVDA   | 2024-11-08     |
-| SHW    | 2024-11-08     |
-| GOOGL  | 2026-06-29     |
+| removal date | ticker | company                                   |
+|--------------|--------|-------------------------------------------|
+| 2017-09-01   | DD     | DuPont (rolled into DowDuPont)            |
+| 2018-06-26   | GE     | General Electric                          |
+| 2019-04-02   | DWDP   | DowDuPont (replaced by Dow Inc.)          |
+| 2020-04-06   | UTX    | United Technologies (merged into RTX)     |
+| 2020-08-31   | RTX    | Raytheon Technologies                     |
+| 2020-08-31   | XOM    | ExxonMobil                                |
+| 2020-08-31   | PFE    | Pfizer                                    |
+| 2024-02-26   | WBA    | Walgreens Boots Alliance                  |
+| 2024-11-08   | INTC   | Intel                                     |
+| 2024-11-08   | DOW    | Dow Inc.                                  |
+| 2026-06-29   | VZ     | Verizon Communications                    |
 
-Including them in training over the full 2015-07..2026-10 period is a
-survivorship choice: the index committee only picked them after they had
-performed. The **stable subset** is the remaining 23 tickers, present in
-the DJIA for the whole period. We retrain the walk-forward on the full
-universe (so the training signal is unchanged) but **score only the stable
-23 tickers in each test fold**.
+Seven current constituents also joined only after 2015-07-01 (AMGN, CRM,
+HON, AMZN, NVDA, SHW, GOOGL — see `src/xgb/robustness.py::NEW_ENTRANTS`);
+including them in training over the full window is itself a look-ahead
+selection by the index committee.
+
+**Implication for the IC reported in §4:** the validation IC is computed on
+an ex-post universe (survivors only, after-the-fact additions included) and
+should be read as an **optimistic upper bound**. The clean evaluation is
+the 28-week forward test, where the universe is frozen ex ante on
+2026-12-04 and no committee change can rewrite history.
+
+As a descriptive check we also score the model (trained on the full
+universe) only on the 23 current tickers that were in the index for the
+whole validation window. **This does not remove survivorship bias — the 23
+are still ex-post survivors** — it merely shows that the bulk of the IC
+does not come from the seven late-joiners alone.
 
 | fold | IC best XGB (stable 23) | IC mom4w (stable 23) |
 |------|-------------------------|----------------------|
-| 2022 | +0.1255                 | −0.0321              |
-| 2023 | +0.0480                 | +0.0119              |
-| 2024 | +0.0229                 | +0.0034              |
-| 2025 | +0.0186                 | +0.0077              |
-| 2026 | +0.0578                 | +0.0300              |
-| **mean** | **+0.0545**         | **+0.0041**          |
+| 2022 | +0.0834                 | −0.0321              |
+| 2023 | +0.0301                 | +0.0119              |
+| 2024 | −0.0024                 | +0.0034              |
+| 2025 | +0.0412                 | +0.0077              |
+| 2026 | +0.0634                 | +0.0300              |
+| **mean** | **+0.0431**         | **+0.0041**          |
 
-Mean IC on the stable subset is **+0.0545 vs +0.0454** on the full
-universe; mom4w rises from −0.0012 to +0.0041. The ranking of XGB over
-baselines is preserved, but the absolute numbers tilt upwards once
-late-joiners are removed from scoring. Reading: survivorship bias makes
-both the headline IC and the baseline look slightly *weaker* than on a
-stable, ex-ante universe, so it does not inflate the XGB advantage. This
-is a known limitation — constituents are chosen ex post by the index
-committee — and will be stated in the methodology chapter.
+### 7.2 With-sector comparison
 
-### 7.2 Without sector
+Rerunning the same grid with the 9 sector one-hots added to the feature
+matrix (`src/xgb/robustness.py`, `_fit_xgb_with_sector`):
 
-Same grid, same folds, but the 9 sector one-hots are dropped from the
-feature matrix (`src/xgb/robustness.py::_fit_xgb_nosector`). Best
-no-sector configuration: **max_depth = 4, learning_rate = 0.03,
-n_estimators = 200**; mean IC **+0.0356** (vs +0.0454 with sector).
+- **Best with-sector:** max_depth=4, lr=0.10, n_estimators=200;
+  mean IC **+0.0454** (vs +0.0356 no-sector).
 
-| fold | IC best XGB (no sector) |
-|------|-------------------------|
-| 2022 | +0.0628                 |
-| 2023 | +0.0214                 |
-| 2024 | +0.0156                 |
-| 2025 | +0.0203                 |
-| 2026 | +0.0580                 |
-| **mean** | **+0.0356**         |
+| fold | IC best XGB (with sector) |
+|------|---------------------------|
+| 2022 | +0.1000                   |
+| 2023 | +0.0444                   |
+| 2024 | +0.0231                   |
+| 2025 | +0.0139                   |
+| 2026 | +0.0455                   |
+| **mean** | **+0.0454**           |
 
-Sector contributes roughly 1 IC-point. The ordering of configs changes —
-the no-sector winner is a shallower-learning-rate variant — which is
-consistent with the sector feature carrying a large chunk of the gain-based
-importance (0.40 in §5).
+Including the sector column lifts the headline IC by roughly one
+IC-point, but on an ex-post universe that improvement is not a clean
+causal gain: the Materials sector is represented by a single ticker (SHW),
+and other sectors have only two or three constituents — a tree node
+splitting on `sector == Materials` then functions as a near-identity for
+SHW. Combined with the survivorship issue in §7.1, we keep the model
+sector-free so that no feature can act as a company ID on an ex-post
+universe.
 
 ### 7.3 Selection bias (12 configs on the same folds)
 
-The headline +0.0454 is the best of 12 grid configs evaluated on the same
-walk-forward folds. The full distribution of mean ICs:
+The headline +0.0356 is the best of 12 grid configs evaluated on the same
+walk-forward folds.
 
 | statistic | value   |
 |-----------|---------|
-| best      | +0.0454 |
-| median    | +0.0284 |
-| min       | +0.0221 |
-| max       | +0.0454 |
+| best      | +0.0356 |
+| median    | +0.0286 |
+| min       | +0.0223 |
+| max       | +0.0356 |
 | n configs | 12      |
 
-The gap between best and median (≈0.017 IC) is a reasonable upper bound on
-the selection-bias premium in the headline figure. All 12 configs beat the
-baselines; the choice between them is tighter than the XGB-vs-baseline gap.
+The gap between best and median (≈0.007 IC) is an upper bound on the
+selection-bias premium baked into the headline. All 12 no-sector configs
+still beat both baselines (mom4w −0.0012, random +0.0006); the choice
+between them is tighter than the XGB-vs-baseline gap.
 
-Per-fold IC of the chosen configuration (repeated here for cross-reference
+Per-fold IC of the chosen configuration (repeated for cross-reference
 with §4):
 
 | fold | IC best XGB |
 |------|-------------|
-| 2022 | +0.1000     |
-| 2023 | +0.0444     |
-| 2024 | +0.0231     |
-| 2025 | +0.0139     |
-| 2026 | +0.0455     |
+| 2022 | +0.0628     |
+| 2023 | +0.0214     |
+| 2024 | +0.0156     |
+| 2025 | +0.0203     |
+| 2026 | +0.0580     |
