@@ -14,6 +14,9 @@ venv/
 # scratch / one-off outputs
 data/scratch/
 
+# raw data caches and trained models (regenerated locally; not versioned)
+data/raw/
+
 # editors / OS
 .vscode/
 .idea/
