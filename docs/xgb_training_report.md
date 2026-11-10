@@ -131,10 +131,109 @@ for the 2026 fold) with the best hyperparameters.
 PYTHONPATH=src python3 src/xgb/fetch_history.py          # cache Yahoo OHLCV
 PYTHONPATH=src python3 src/xgb/dataset.py                # build panel
 PYTHONPATH=src python3 src/xgb/train.py                  # walk-forward CV
+PYTHONPATH=src python3 src/xgb/robustness.py             # section-7 checks
 PYTHONPATH=src python3 src/xgb/predict.py --as-of 2026-11-06 --train-first
 pytest tests/test_xgb_leakage.py
 ```
 
-CV artifacts live at `data/raw/xgb_cv_results.json`; trained model binaries
-are not committed (data is refreshed on every run; the frozen model will be
-produced on 2026-11-30).
+CV artifacts live at `data/raw/xgb_cv_results.json` and
+`data/raw/xgb_robustness.json`; trained model binaries are not committed
+(data is refreshed on every run; the frozen model will be produced on
+2026-11-30).
+
+## 7. Robustness
+
+Three checks on the headline numbers; the chosen configuration is kept
+unchanged.
+
+### 7.1 Survivorship (stable subset)
+
+The 30-ticker universe is the DJIA snapshot at 2026-11-04. Membership
+history verified against the Wikipedia article *"Historical components of
+the Dow Jones Industrial Average"* (fetched 2026-11-10): seven current
+constituents joined the DJIA after 2015-07-01 and are therefore absent from
+the index for part of the validation window —
+
+| ticker | DJIA join date |
+|--------|----------------|
+| AMGN   | 2020-08-31     |
+| CRM    | 2020-08-31     |
+| HON    | 2020-08-31 (re-added) |
+| AMZN   | 2024-02-26     |
+| NVDA   | 2024-11-08     |
+| SHW    | 2024-11-08     |
+| GOOGL  | 2026-06-29     |
+
+Including them in training over the full 2015-07..2026-10 period is a
+survivorship choice: the index committee only picked them after they had
+performed. The **stable subset** is the remaining 23 tickers, present in
+the DJIA for the whole period. We retrain the walk-forward on the full
+universe (so the training signal is unchanged) but **score only the stable
+23 tickers in each test fold**.
+
+| fold | IC best XGB (stable 23) | IC mom4w (stable 23) |
+|------|-------------------------|----------------------|
+| 2022 | +0.1255                 | −0.0321              |
+| 2023 | +0.0480                 | +0.0119              |
+| 2024 | +0.0229                 | +0.0034              |
+| 2025 | +0.0186                 | +0.0077              |
+| 2026 | +0.0578                 | +0.0300              |
+| **mean** | **+0.0545**         | **+0.0041**          |
+
+Mean IC on the stable subset is **+0.0545 vs +0.0454** on the full
+universe; mom4w rises from −0.0012 to +0.0041. The ranking of XGB over
+baselines is preserved, but the absolute numbers tilt upwards once
+late-joiners are removed from scoring. Reading: survivorship bias makes
+both the headline IC and the baseline look slightly *weaker* than on a
+stable, ex-ante universe, so it does not inflate the XGB advantage. This
+is a known limitation — constituents are chosen ex post by the index
+committee — and will be stated in the methodology chapter.
+
+### 7.2 Without sector
+
+Same grid, same folds, but the 9 sector one-hots are dropped from the
+feature matrix (`src/xgb/robustness.py::_fit_xgb_nosector`). Best
+no-sector configuration: **max_depth = 4, learning_rate = 0.03,
+n_estimators = 200**; mean IC **+0.0356** (vs +0.0454 with sector).
+
+| fold | IC best XGB (no sector) |
+|------|-------------------------|
+| 2022 | +0.0628                 |
+| 2023 | +0.0214                 |
+| 2024 | +0.0156                 |
+| 2025 | +0.0203                 |
+| 2026 | +0.0580                 |
+| **mean** | **+0.0356**         |
+
+Sector contributes roughly 1 IC-point. The ordering of configs changes —
+the no-sector winner is a shallower-learning-rate variant — which is
+consistent with the sector feature carrying a large chunk of the gain-based
+importance (0.40 in §5).
+
+### 7.3 Selection bias (12 configs on the same folds)
+
+The headline +0.0454 is the best of 12 grid configs evaluated on the same
+walk-forward folds. The full distribution of mean ICs:
+
+| statistic | value   |
+|-----------|---------|
+| best      | +0.0454 |
+| median    | +0.0284 |
+| min       | +0.0221 |
+| max       | +0.0454 |
+| n configs | 12      |
+
+The gap between best and median (≈0.017 IC) is a reasonable upper bound on
+the selection-bias premium in the headline figure. All 12 configs beat the
+baselines; the choice between them is tighter than the XGB-vs-baseline gap.
+
+Per-fold IC of the chosen configuration (repeated here for cross-reference
+with §4):
+
+| fold | IC best XGB |
+|------|-------------|
+| 2022 | +0.1000     |
+| 2023 | +0.0444     |
+| 2024 | +0.0231     |
+| 2025 | +0.0139     |
+| 2026 | +0.0455     |
