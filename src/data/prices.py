@@ -48,11 +48,13 @@ def _alpaca_close(tickers: list[str], start: date, end: date) -> pd.DataFrame:
     from alpaca.data.timeframe  import TimeFrame
 
     load_dotenv(_ROOT / ".env")
-    key    = os.getenv("ALPACA_KEY")    or os.getenv("ALPACA_KEY_DATA")
-    secret = os.getenv("ALPACA_SECRET") or os.getenv("ALPACA_SECRET_DATA")
-    if not (key and secret):
+    key    = os.getenv("ALPACA_KEY")    or os.getenv("ALPACA_KEY_XGB")
+    secret = os.getenv("ALPACA_SECRET") or os.getenv("ALPACA_SECRET_XGB")
+    if not key or not secret:
         raise RuntimeError(
-            "Alpaca price fallback needs ALPACA_KEY and ALPACA_SECRET in env"
+            "Alpaca price fallback requires ALPACA_KEY and ALPACA_SECRET "
+            "(or ALPACA_KEY_XGB / ALPACA_SECRET_XGB) in the environment; "
+            "neither is set."
         )
 
     client = StockHistoricalDataClient(api_key=key, secret_key=secret)

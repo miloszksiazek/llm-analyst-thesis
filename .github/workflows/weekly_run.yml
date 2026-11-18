@@ -39,10 +39,11 @@ jobs:
     env:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       FRED_API_KEY:      ${{ secrets.FRED_API_KEY }}
-      # Data-only Alpaca credentials (read-only); used only as a fallback
-      # when Yahoo Finance is unreachable from the runner.
-      ALPACA_KEY:        ${{ secrets.ALPACA_KEY_DATA }}
-      ALPACA_SECRET:     ${{ secrets.ALPACA_SECRET_DATA }}
+      # Alpaca credentials for the price-data fallback only (read-only
+      # historical bars). We reuse the XGB paper-account keys – one account,
+      # three sub-accounts for execution in monday_orders.yml.
+      ALPACA_KEY:        ${{ secrets.ALPACA_KEY_XGB }}
+      ALPACA_SECRET:     ${{ secrets.ALPACA_SECRET_XGB }}
       PYTHONPATH:        src
       PYTHONUNBUFFERED:  "1"
 
@@ -91,7 +92,13 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/weekly data/failed data/test_runs 2>/dev/null || true
+          for d in data/weekly data/failed data/test_runs; do
+            if [ -d "$d" ]; then
+              git add "$d"
+            else
+              echo "Skipping missing directory: $d"
+            fi
+          done
           if git diff --cached --quiet; then
             echo "Nothing to commit"
             exit 0
