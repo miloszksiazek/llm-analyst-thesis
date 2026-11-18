@@ -73,6 +73,14 @@ Best configuration (highest mean of fold-level ICs across the 5 folds):
 
 > **max_depth = 4, learning_rate = 0.03, n_estimators = 200** — mean IC **+0.0356**
 
+> **Update 2026-11-10** (`docs/zmiany_do_planu.md`): training target switched
+> from price-only (Open→Open) to TOTAL return (Open→Open + cash dividends
+> with ex-date in (entry, exit]), matching the portfolio ledger. Walk-forward
+> was rerun; the frozen configuration (max_depth=4, lr=0.03, n_estimators=200)
+> now yields **mean IC +0.0326** across the same 5 folds — a small decrease
+> consistent with dividends adding uncorrelated signal to the target. The
+> per-fold ordering is preserved and the frozen configuration is retained.
+
 Median of the 12 grid-config mean ICs: **+0.0286**. Full grid (sorted):
 
 | mean IC | params                                              |

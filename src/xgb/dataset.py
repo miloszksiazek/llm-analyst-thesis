@@ -5,7 +5,14 @@ For each Monday M in the training window:
     as_of       = last trading session with date <  M      (typically Friday)
     entry_date  = first trading session with date >= M     (typically Monday)
     exit_date   = first trading session with date >= M + 7d (typically next Monday)
-    target      = Open[exit_date] / Open[entry_date] - 1   (raw opens)
+    target      = Open[exit_date] / Open[entry_date] - 1
+                  + sum(cash_dividend[t, d] for d in (entry_date, exit_date])
+                    / Open[entry_date]                      (total return; raw opens)
+
+The target definition was unified with the portfolio ledger on 2026-11-10
+(`docs/zmiany_do_planu.md`): every strategy — agent, XGBoost, 1/N, DIA, random
+— is evaluated on the Monday-open-to-next-Monday-open TOTAL return including
+cash dividends with ex-date in (entry, exit]. See `src/portfolio/returns.py`.
 
 Rows whose [entry_date, exit_date) window crosses a spin-off ex-date are
 dropped (spin-off cleaning adjusts close-based returns, not opens).
@@ -24,6 +31,7 @@ from pathlib import Path
 import pandas as pd
 import yaml
 
+from data.dividends import load as load_dividends
 from xgb.features import HistoryBundle, build_asof, load_bundle
 
 logger = logging.getLogger(__name__)
@@ -87,6 +95,10 @@ def build_panel(
 
     idx = bundle.clean_idx.index
     ex_dates = _spinoff_dates()
+    dividends = load_dividends()
+    if dividends.empty:
+        logger.warning("Dividend cache empty; targets will omit dividends. "
+                       "Run `python src/data/dividends.py` to populate it.")
     rows: list[dict] = []
 
     for m in _mondays(start, end):
@@ -116,7 +128,12 @@ def build_panel(
             x = opens_exit.get(ticker)
             if pd.isna(e) or pd.isna(x) or e == 0:
                 continue
-            target = float(x / e - 1)
+            div_sum = 0.0
+            if not dividends.empty and ticker in dividends.columns:
+                mask = (dividends.index > entry) & (dividends.index <= exit_)
+                if mask.any():
+                    div_sum = float(dividends.loc[mask, ticker].sum())
+            target = float(x / e - 1) + div_sum / float(e)
             row = {
                 "ticker":     ticker,
                 "as_of":      as_of,
