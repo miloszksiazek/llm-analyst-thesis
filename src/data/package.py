@@ -63,76 +63,32 @@ def _load_universe() -> tuple[list[str], dict, dict]:
 
 # ── Trading calendar ──────────────────────────────────────────────────────────
 
-def _last_session_from_prices(prices: pd.DataFrame, before: date) -> date:
-    """Last trading date in the downloaded price series strictly before `before`.
+def _expected_as_of(before: date, prices: pd.DataFrame) -> date:
+    """Return the NYSE last-session-before `before` and require it is in prices.
 
-    Uses the already-downloaded price index as the trading calendar: no
-    external calendar dependency (no Alpaca keys needed in the Sunday
-    pipeline). Expects a non-empty DatetimeIndex sorted ascending.
+    Strict: raises MissingAsOfError if the expected session's close is not in
+    `prices`. We never fall back to an earlier date — the pipeline must
+    either succeed on the correct session or stop so the week is recorded as
+    failed rather than silently shifted.
     """
-    if prices.empty:
-        raise RuntimeError(f"No price data available before {before}")
-    before_ts = pd.Timestamp(before)
-    mask = prices.index < before_ts
-    if not mask.any():
-        raise RuntimeError(f"No trading sessions in price data before {before}")
-    return prices.index[mask][-1].date()
+    from data.calendar import last_session_before
+
+    expected = last_session_before(before)
+    if pd.Timestamp(expected) not in prices.index:
+        raise MissingAsOfError(
+            f"Expected as_of {expected} ({pd.Timestamp(expected).day_name()}) "
+            f"not in price data (last available: "
+            f"{prices.index[-1].date() if len(prices) else 'none'})"
+        )
+    return expected
 
 
-def _download_prices_yahoo(tickers: list[str], start: date, end: date) -> pd.DataFrame:
-    df = yf.download(
-        tickers, start=str(start), end=str(end),
-        auto_adjust=False, progress=False,
-    )
-    if df.empty or "Close" not in df.columns.get_level_values(0):
-        raise RuntimeError("Yahoo returned empty price frame")
-    close = df["Close"].copy()
-    close.index = pd.to_datetime(close.index)
-    close = close.dropna(how="all")
-    if close.empty:
-        raise RuntimeError("Yahoo price frame has no non-null rows")
-    return close
+class MissingAsOfError(RuntimeError):
+    """Raised when the official NYSE last session before run_date is missing from prices."""
 
 
-def _download_prices_alpaca(tickers: list[str], start: date, end: date) -> pd.DataFrame:
-    """Daily close fallback from Alpaca historical bars. Requires ALPACA_KEY
-    and ALPACA_SECRET in the environment; raises otherwise."""
-    from alpaca.data.historical import StockHistoricalDataClient
-    from alpaca.data.requests   import StockBarsRequest
-    from alpaca.data.timeframe  import TimeFrame
-
-    load_dotenv()
-    key    = os.getenv("ALPACA_KEY")    or os.getenv("ALPACA_KEY_XGB")
-    secret = os.getenv("ALPACA_SECRET") or os.getenv("ALPACA_SECRET_XGB")
-    if not (key and secret):
-        raise RuntimeError("Alpaca fallback requires ALPACA_KEY and ALPACA_SECRET")
-
-    client = StockHistoricalDataClient(api_key=key, secret_key=secret)
-    req = StockBarsRequest(
-        symbol_or_symbols=tickers, timeframe=TimeFrame.Day,
-        start=datetime.combine(start, datetime.min.time()),
-        end=datetime.combine(end,   datetime.min.time()),
-        feed="iex",
-    )
-    bars = client.get_stock_bars(req).df
-    if bars.empty:
-        raise RuntimeError("Alpaca returned empty bars")
-    close = (
-        bars.reset_index()
-            .pivot(index="timestamp", columns="symbol", values="close")
-    )
-    close.index = pd.to_datetime(close.index).tz_localize(None).normalize()
-    close = close.dropna(how="all")
-    return close
-
-
-def _download_prices(tickers: list[str], start: date, end: date) -> tuple[pd.DataFrame, str]:
-    """Try Yahoo first, fall back to Alpaca. Returns (frame, source_name)."""
-    try:
-        return _download_prices_yahoo(tickers, start, end), "yahoo"
-    except Exception as exc:
-        logger.warning("Yahoo download failed (%s) – falling back to Alpaca", exc)
-        return _download_prices_alpaca(tickers, start, end), "alpaca"
+# Price download uses the shared Yahoo→Alpaca fallback in data/prices.py
+# so the XGB history cache can reuse the exact same fallback logic.
 
 
 # ── Price helpers ─────────────────────────────────────────────────────────────
@@ -214,40 +170,48 @@ def _spinoff_note(ticker: str, ex_date: date) -> str:
 
 # ── Sanity checks ─────────────────────────────────────────────────────────────
 
-def _check_dividend_yield(stocks: list[dict]) -> None:
+def _check_dividend_yield(stocks: list[dict]) -> list[str]:
+    """Null + warn (no raise). Returns a list of data_note strings."""
+    notes: list[str] = []
     for s in stocks:
         dy = s.get("dividend_yield")
         if dy is None:
             continue
         if not (0.0 <= dy <= DIVIDEND_YIELD_MAX_PCT):
-            raise RuntimeError(
+            notes.append(
                 f"{s['ticker']}: dividend_yield {dy} outside [0, {DIVIDEND_YIELD_MAX_PCT}] % – "
-                f"unit error?"
+                f"value nulled (possible unit error)."
             )
+            s["dividend_yield"] = None
+    return notes
 
 
-def _check_pe(stocks: list[dict]) -> None:
+def _check_pe(stocks: list[dict]) -> list[str]:
+    notes: list[str] = []
     for s in stocks:
         pe = s.get("pe_trailing")
         if pe is None:
             continue
         if pe <= 0:
-            raise RuntimeError(f"{s['ticker']}: pe_trailing {pe} ≤ 0")
+            notes.append(f"{s['ticker']}: pe_trailing {pe} ≤ 0 – value nulled.")
+            s["pe_trailing"] = None
+    return notes
 
 
-def _check_implied_shares_drift(stocks: list[dict], prev_pkg: Path | None) -> None:
+def _check_implied_shares_drift(stocks: list[dict], prev_pkg: Path | None) -> list[str]:
     """
     For each ticker, implied_shares = market_cap / last_close.
-    Compare with the previous package's implied shares; raise if any drift > 20 %.
+    Compare with the previous package's implied shares; null and note if drift > 20 %.
+    Returns a list of data_note strings; no raises.
     Skip gracefully when no previous package exists.
     """
+    notes: list[str] = []
     if prev_pkg is None or not prev_pkg.exists():
         logger.info("No previous package → skipping implied-shares drift check")
-        return
+        return notes
     prev = json.loads(prev_pkg.read_text(encoding="utf-8"))
     prev_map = {s["ticker"]: s for s in prev.get("stocks", [])}
 
-    violations = []
     for s in stocks:
         mc, px = s.get("market_cap"), s.get("last_close")
         if mc is None or not px:
@@ -261,14 +225,12 @@ def _check_implied_shares_drift(stocks: list[dict], prev_pkg: Path | None) -> No
             continue
         drift = abs(new_sh / old_sh - 1)
         if drift > SHARES_DRIFT_TOLERANCE:
-            violations.append(
+            notes.append(
                 f"{s['ticker']}: implied shares drift {drift:.1%} "
-                f"(old {old_sh:,.0f} → new {new_sh:,.0f})"
+                f"(old {old_sh:,.0f} → new {new_sh:,.0f}) – market_cap nulled."
             )
-    if violations:
-        raise RuntimeError(
-            "Implied-shares drift exceeds tolerance:\n  " + "\n  ".join(violations)
-        )
+            s["market_cap"] = None
+    return notes
 
 
 # ── Serialization ─────────────────────────────────────────────────────────────
@@ -305,10 +267,11 @@ def build_package(
 
     start = run_date - timedelta(days=140)
     logger.info("Downloading prices %s … %s (exclusive)", start, run_date)
-    prices, price_source = _download_prices(all_tickers, start, run_date)
+    from data.prices import download_close
+    prices, price_source = download_close(all_tickers, start, run_date)
     logger.info("Price source: %s", price_source)
 
-    as_of = _last_session_from_prices(prices, run_date)
+    as_of = _expected_as_of(run_date, prices)
     logger.info("run_date=%s  as_of=%s (%s)", run_date, as_of, as_of.strftime("%A"))
 
     as_of_ts = pd.Timestamp(as_of)
@@ -380,10 +343,12 @@ def build_package(
         for t in sorted(tickers_affected):
             data_notes.append(_spinoff_note(t, recent[t]))
 
-    # ── Sanity checks (raise) ─────────────────────────────────────────────
-    _check_dividend_yield(stocks)
-    _check_pe(stocks)
-    _check_implied_shares_drift(stocks, prev_package)
+    # ── Sanity checks (non-blocking: null + note + warning) ──────────────
+    sanity_warnings: list[str] = []
+    sanity_warnings.extend(_check_dividend_yield(stocks))
+    sanity_warnings.extend(_check_pe(stocks))
+    sanity_warnings.extend(_check_implied_shares_drift(stocks, prev_package))
+    data_notes.extend(sanity_warnings)
 
     # ── Earnings: only in-window entries, plus a note ─────────────────────
     all_entries = fetch_earnings(run_date=run_date)
@@ -421,16 +386,17 @@ def build_package(
 
     # ── Meta (not hashed, not seen by the agent) ──────────────────────────
     meta_file = {
-        "run_date":     str(run_date),
-        "as_of":        str(as_of),
-        "retrieved_at": retrieved_at,
-        "price_source": price_source,
-        "sources":      [
+        "run_date":        str(run_date),
+        "as_of":           str(as_of),
+        "retrieved_at":    retrieved_at,
+        "price_source":    price_source,
+        "sanity_warnings": sanity_warnings,
+        "sources":         [
             f"{price_source} (prices)",
             "Yahoo Finance (fundamentals, earnings)",
             "FRED (macro)",
         ],
-        "stocks":       meta_stocks,
+        "stocks":          meta_stocks,
     }
 
     # ── Write ─────────────────────────────────────────────────────────────

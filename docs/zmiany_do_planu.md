@@ -23,3 +23,4 @@ Każda linia = jedna zamknięta decyzja. Mają pierwszeństwo przed `docs/plan_p
 - 2026-11-09: szacowany koszt całego badania ok. 105 USD (ok. 390 zł). Do akceptacji promotora.
 - 2026-11-09: reguła 7b – źródła po run_date (nie po as_of).
 - 2026-11-10: XGBoost bez cechy sektora (w sektorach jednospółkowych działała jak identyfikator spółki przy uniwersum wybranym ex post); wybrana konfiguracja max_depth=4, lr=0.03, n=200; IC walidacji traktowany jako górna granica (survivorship bias).
+- 2026-11-18: ponowienie nieudanego tygodnia możliwe tylko przed otwarciem sesji w poniedziałek; strażnik w poniedziałek rano; podejrzane wartości w pakiecie -> null + notatka (nie blokują tygodnia).

@@ -29,23 +29,29 @@ def test_dividend_yield_null_ok():
     _check_dividend_yield([{"ticker": "BRK", "dividend_yield": None}])
 
 
-def test_dividend_yield_too_high_raises():
-    with pytest.raises(RuntimeError, match="dividend_yield"):
-        _check_dividend_yield([{"ticker": "CVX", "dividend_yield": 334.0}])
+def test_dividend_yield_too_high_nulled_and_noted():
+    stocks = [{"ticker": "CVX", "dividend_yield": 334.0}]
+    notes = _check_dividend_yield(stocks)
+    assert stocks[0]["dividend_yield"] is None
+    assert notes and "CVX" in notes[0]
 
 
 def test_pe_null_ok():
     _check_pe([{"ticker": "X", "pe_trailing": None}])
 
 
-def test_pe_zero_raises():
-    with pytest.raises(RuntimeError, match="pe_trailing"):
-        _check_pe([{"ticker": "X", "pe_trailing": 0.0}])
+def test_pe_zero_nulled_and_noted():
+    stocks = [{"ticker": "X", "pe_trailing": 0.0}]
+    notes = _check_pe(stocks)
+    assert stocks[0]["pe_trailing"] is None
+    assert notes and "pe_trailing" in notes[0]
 
 
-def test_pe_negative_raises():
-    with pytest.raises(RuntimeError, match="pe_trailing"):
-        _check_pe([{"ticker": "X", "pe_trailing": -3.1}])
+def test_pe_negative_nulled_and_noted():
+    stocks = [{"ticker": "X", "pe_trailing": -3.1}]
+    notes = _check_pe(stocks)
+    assert stocks[0]["pe_trailing"] is None
+    assert notes and "X" in notes[0]
 
 
 def test_implied_shares_drift_skipped_without_prev(tmp_path):
@@ -101,15 +107,12 @@ def test_spinoff_override_nulls_valuation_fields():
     assert len(notes) == 1 and "HON" in notes[0] and "2026-06-29" in notes[0]
 
 
-def test_implied_shares_drift_raises(tmp_path):
+def test_implied_shares_drift_nulls_and_notes(tmp_path):
     prev = tmp_path / "prev.json"
-    # prev: 10 000 shares.
     prev.write_text(json.dumps({
         "stocks": [{"ticker": "X", "last_close": 100.0, "market_cap": 1_000_000}],
     }))
-    # new: 5 000 shares → 50 % drift.
-    with pytest.raises(RuntimeError, match="drift"):
-        _check_implied_shares_drift(
-            [{"ticker": "X", "last_close": 100.0, "market_cap": 500_000}],
-            prev_pkg=prev,
-        )
+    stocks = [{"ticker": "X", "last_close": 100.0, "market_cap": 500_000}]
+    notes = _check_implied_shares_drift(stocks, prev_pkg=prev)
+    assert stocks[0]["market_cap"] is None
+    assert notes and "drift" in notes[0]

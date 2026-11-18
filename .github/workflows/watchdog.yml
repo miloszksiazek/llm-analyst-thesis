@@ -1,0 +1,47 @@
+name: watchdog
+
+# Monday 07:00 UTC: verify the previous Sunday's run landed in data/weekly/
+# with every strategy in status "ok". If not, this job fails so GitHub emails
+# the repository owner before NYSE opens (US winter: 14:30 UTC; summer 13:30 UTC).
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+    inputs:
+      run_date:
+        description: "Sunday run_date to check (YYYY-MM-DD). Defaults to the previous Sunday."
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: Resolve run date
+        id: resolve
+        run: |
+          RD="${{ inputs.run_date }}"
+          if [ -z "$RD" ]; then
+            # Previous Sunday (UTC). Python's weekday(): Mon=0 .. Sun=6.
+            RD=$(python -c "import datetime as d; t=d.date.today(); print(t - d.timedelta(days=(t.weekday()+1)%7))")
+          fi
+          echo "run_date=$RD" >> "$GITHUB_OUTPUT"
+          echo "Watching $RD"
+
+      - name: Verify weekly summary
+        run: |
+          python scripts/check_summary.py "data/weekly/${{ steps.resolve.outputs.run_date }}/summary.json"

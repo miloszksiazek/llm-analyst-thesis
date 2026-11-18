@@ -10,6 +10,19 @@ on:
         description: "Run date (YYYY-MM-DD). Defaults to today (UTC)."
         required: false
         type: string
+      mode:
+        description: "production -> data/weekly/; test -> data/test_runs/ (never touches data/weekly/)."
+        required: false
+        type: choice
+        default: production
+        options:
+          - production
+          - test
+      allow_late:
+        description: "Allow running after the first NYSE open on-or-after run_date."
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -24,17 +37,20 @@ jobs:
     timeout-minutes: 45
 
     env:
-      # Secrets – never echoed. Only Anthropic and FRED are required for the
-      # Sunday pipeline; Alpaca keys are not used here (the Monday order
-      # workflow has its own secrets).
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       FRED_API_KEY:      ${{ secrets.FRED_API_KEY }}
+      # Data-only Alpaca credentials (read-only); used only as a fallback
+      # when Yahoo Finance is unreachable from the runner.
+      ALPACA_KEY:        ${{ secrets.ALPACA_KEY_DATA }}
+      ALPACA_SECRET:     ${{ secrets.ALPACA_SECRET_DATA }}
       PYTHONPATH:        src
       PYTHONUNBUFFERED:  "1"
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -48,49 +64,51 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Resolve run date
+      - name: Resolve inputs
         id: resolve
         run: |
-          if [ -n "${{ inputs.run_date }}" ]; then
-            RD="${{ inputs.run_date }}"
-          else
-            RD="$(date -u +%Y-%m-%d)"
-          fi
-          echo "run_date=$RD" >> "$GITHUB_OUTPUT"
-          echo "Run date: $RD"
+          RD="${{ inputs.run_date }}"
+          [ -z "$RD" ] && RD="$(date -u +%Y-%m-%d)"
+          MODE="${{ inputs.mode }}"
+          [ -z "$MODE" ] && MODE="production"
+          LATE="${{ inputs.allow_late }}"
+          [ "$LATE" = "true" ] && LATE_FLAG="--allow-late" || LATE_FLAG=""
+          echo "run_date=$RD"   >> "$GITHUB_OUTPUT"
+          echo "mode=$MODE"     >> "$GITHUB_OUTPUT"
+          echo "late=$LATE_FLAG" >> "$GITHUB_OUTPUT"
 
       - name: Run weekly pipeline
         id: pipeline
+        continue-on-error: true
         run: |
-          python -m pipeline.weekly --run-date "${{ steps.resolve.outputs.run_date }}"
+          python -m pipeline.weekly \
+            --run-date "${{ steps.resolve.outputs.run_date }}" \
+            --mode     "${{ steps.resolve.outputs.mode }}" \
+            ${{ steps.resolve.outputs.late }}
 
-      - name: Validate outputs
+      - name: Commit and push outputs
         if: always()
         run: |
-          RD="${{ steps.resolve.outputs.run_date }}"
-          DIR="data/weekly/$RD"
-          echo "Checking artifacts in $DIR"
-          test -f "$DIR/summary.json"                     || { echo "missing summary.json"; exit 1; }
-          test -f "$DIR/claude_web/aggregate.json"        || { echo "missing claude_web/aggregate.json"; exit 1; }
-          test -f "$DIR/claude_noweb/aggregate.json"      || { echo "missing claude_noweb/aggregate.json"; exit 1; }
-          test -f "$DIR/xgb/prediction.json"              || { echo "missing xgb/prediction.json"; exit 1; }
-          echo "All required artifacts present."
-
-      - name: Commit and push weekly outputs
-        if: always()
-        run: |
-          RD="${{ steps.resolve.outputs.run_date }}"
-          DIR="data/weekly/$RD"
-          if [ ! -d "$DIR" ]; then
-            echo "No output directory to commit"
-            exit 0
-          fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$DIR"
+          git add data/weekly data/failed data/test_runs 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "Nothing to commit"
-          else
-            git commit -m "Weekly run $RD"
-            git push
+            exit 0
           fi
+          RD="${{ steps.resolve.outputs.run_date }}"
+          git commit -m "Weekly run $RD"
+          git pull --rebase origin main
+          git push
+
+      - name: Alert on any non-ok strategy
+        if: always()
+        env:
+          RD:   ${{ steps.resolve.outputs.run_date }}
+          MODE: ${{ steps.resolve.outputs.mode }}
+        run: |
+          if [ "$MODE" = "test" ]; then
+            echo "Test mode – skipping strategy check."
+            exit 0
+          fi
+          python scripts/check_summary.py "data/weekly/$RD/summary.json"
