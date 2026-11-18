@@ -63,28 +63,76 @@ def _load_universe() -> tuple[list[str], dict, dict]:
 
 # ── Trading calendar ──────────────────────────────────────────────────────────
 
-def _alpaca_last_session(before: date) -> date:
-    from alpaca.trading.client import TradingClient
-    from alpaca.trading.requests import GetCalendarRequest
+def _last_session_from_prices(prices: pd.DataFrame, before: date) -> date:
+    """Last trading date in the downloaded price series strictly before `before`.
+
+    Uses the already-downloaded price index as the trading calendar: no
+    external calendar dependency (no Alpaca keys needed in the Sunday
+    pipeline). Expects a non-empty DatetimeIndex sorted ascending.
+    """
+    if prices.empty:
+        raise RuntimeError(f"No price data available before {before}")
+    before_ts = pd.Timestamp(before)
+    mask = prices.index < before_ts
+    if not mask.any():
+        raise RuntimeError(f"No trading sessions in price data before {before}")
+    return prices.index[mask][-1].date()
+
+
+def _download_prices_yahoo(tickers: list[str], start: date, end: date) -> pd.DataFrame:
+    df = yf.download(
+        tickers, start=str(start), end=str(end),
+        auto_adjust=False, progress=False,
+    )
+    if df.empty or "Close" not in df.columns.get_level_values(0):
+        raise RuntimeError("Yahoo returned empty price frame")
+    close = df["Close"].copy()
+    close.index = pd.to_datetime(close.index)
+    close = close.dropna(how="all")
+    if close.empty:
+        raise RuntimeError("Yahoo price frame has no non-null rows")
+    return close
+
+
+def _download_prices_alpaca(tickers: list[str], start: date, end: date) -> pd.DataFrame:
+    """Daily close fallback from Alpaca historical bars. Requires ALPACA_KEY
+    and ALPACA_SECRET in the environment; raises otherwise."""
+    from alpaca.data.historical import StockHistoricalDataClient
+    from alpaca.data.requests   import StockBarsRequest
+    from alpaca.data.timeframe  import TimeFrame
 
     load_dotenv()
-    client = TradingClient(
-        api_key=os.getenv("ALPACA_KEY_XGB"),
-        secret_key=os.getenv("ALPACA_SECRET_XGB"),
-        paper=True,
+    key    = os.getenv("ALPACA_KEY")    or os.getenv("ALPACA_KEY_XGB")
+    secret = os.getenv("ALPACA_SECRET") or os.getenv("ALPACA_SECRET_XGB")
+    if not (key and secret):
+        raise RuntimeError("Alpaca fallback requires ALPACA_KEY and ALPACA_SECRET")
+
+    client = StockHistoricalDataClient(api_key=key, secret_key=secret)
+    req = StockBarsRequest(
+        symbol_or_symbols=tickers, timeframe=TimeFrame.Day,
+        start=datetime.combine(start, datetime.min.time()),
+        end=datetime.combine(end,   datetime.min.time()),
+        feed="iex",
     )
-    start = before - timedelta(days=10)
-    end   = before - timedelta(days=1)
-    cal   = client.get_calendar(GetCalendarRequest(start=start, end=end))
-    dates = []
-    for c in cal:
-        d = c.date
-        if hasattr(d, "date"):
-            d = d.date()
-        dates.append(d)
-    if not dates:
-        raise RuntimeError(f"No Alpaca trading sessions found before {before}")
-    return max(dates)
+    bars = client.get_stock_bars(req).df
+    if bars.empty:
+        raise RuntimeError("Alpaca returned empty bars")
+    close = (
+        bars.reset_index()
+            .pivot(index="timestamp", columns="symbol", values="close")
+    )
+    close.index = pd.to_datetime(close.index).tz_localize(None).normalize()
+    close = close.dropna(how="all")
+    return close
+
+
+def _download_prices(tickers: list[str], start: date, end: date) -> tuple[pd.DataFrame, str]:
+    """Try Yahoo first, fall back to Alpaca. Returns (frame, source_name)."""
+    try:
+        return _download_prices_yahoo(tickers, start, end), "yahoo"
+    except Exception as exc:
+        logger.warning("Yahoo download failed (%s) – falling back to Alpaca", exc)
+        return _download_prices_alpaca(tickers, start, end), "alpaca"
 
 
 # ── Price helpers ─────────────────────────────────────────────────────────────
@@ -255,20 +303,13 @@ def build_package(
     tickers, universe_meta, info_map = _load_universe()
     all_tickers = tickers + ["DIA"]
 
-    as_of = _alpaca_last_session(run_date)
-    logger.info("run_date=%s  as_of=%s (%s)", run_date, as_of, as_of.strftime("%A"))
-
     start = run_date - timedelta(days=140)
     logger.info("Downloading prices %s … %s (exclusive)", start, run_date)
-    prices = yf.download(
-        all_tickers,
-        start=str(start),
-        end=str(run_date),
-        auto_adjust=False,
-        progress=False,
-    )["Close"]
-    prices.index = pd.to_datetime(prices.index)
-    prices = prices.dropna(how="all")
+    prices, price_source = _download_prices(all_tickers, start, run_date)
+    logger.info("Price source: %s", price_source)
+
+    as_of = _last_session_from_prices(prices, run_date)
+    logger.info("run_date=%s  as_of=%s (%s)", run_date, as_of, as_of.strftime("%A"))
 
     as_of_ts = pd.Timestamp(as_of)
     if as_of_ts not in prices.index:
@@ -383,8 +424,10 @@ def build_package(
         "run_date":     str(run_date),
         "as_of":        str(as_of),
         "retrieved_at": retrieved_at,
+        "price_source": price_source,
         "sources":      [
-            "Yahoo Finance (prices, fundamentals, earnings)",
+            f"{price_source} (prices)",
+            "Yahoo Finance (fundamentals, earnings)",
             "FRED (macro)",
         ],
         "stocks":       meta_stocks,

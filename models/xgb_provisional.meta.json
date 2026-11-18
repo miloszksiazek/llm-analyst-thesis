@@ -1,0 +1,27 @@
+{
+  "params": {
+    "learning_rate": 0.03,
+    "max_depth": 4,
+    "n_estimators": 200
+  },
+  "feature_cols": [
+    "mom_1w",
+    "mom_4w",
+    "mom_12w",
+    "mom_26w",
+    "vol_20d",
+    "rel_volume_5_60",
+    "range_20d",
+    "dist_ma50",
+    "dist_ma200",
+    "ret_vs_dia_4w"
+  ],
+  "train_rows": 17100,
+  "train_weeks": 570,
+  "trained_through": "2026-11-06",
+  "status": "provisional",
+  "note": "Trained on all data available on 2026-11-18 for the 2026-11-22 pilot; will be replaced by the frozen model on 2026-11-30.",
+  "git_commit": "9f314e9fa4e75c083fa34174efc20006dba90e6e",
+  "saved_at": "2026-11-18",
+  "seed": 20261110
+}
