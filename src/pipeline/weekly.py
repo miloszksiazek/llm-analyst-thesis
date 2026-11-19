@@ -107,6 +107,19 @@ def _move_atomic(src: Path, dst: Path) -> None:
     shutil.move(str(src), str(dst))
 
 
+def _ensure_runtime_dirs(root: Path) -> None:
+    """Create the gitignored runtime caches that the pipeline writes into.
+
+    `data/scratch/` holds the tempdir `tempfile.mkdtemp` writes into; `mkdtemp`
+    does NOT create parents, so on a clean checkout it would raise
+    FileNotFoundError before any logging. `data/raw/` holds the Yahoo/Alpaca
+    history parquet downloaded by xgb.fetch_history (which also mkdirs, but
+    centralising the guarantee makes the clean-clone case explicit).
+    """
+    for sub in ("data/scratch", "data/raw"):
+        (root / sub).mkdir(parents=True, exist_ok=True)
+
+
 # ── Already-done shortcut ────────────────────────────────────────────────────
 
 def _already_complete(run_date: date, root: Path) -> bool:
@@ -205,6 +218,7 @@ def run_week(
         return 2
 
     # Build into a temp directory first.
+    _ensure_runtime_dirs(root)
     tmp_root  = Path(tempfile.mkdtemp(prefix=f"weekly_{run_date}_", dir=str(root / "data" / "scratch")))
     out_dir   = tmp_root / str(run_date)
     out_dir.mkdir(parents=True, exist_ok=True)

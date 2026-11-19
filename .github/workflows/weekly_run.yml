@@ -108,6 +108,23 @@ jobs:
           git pull --rebase origin main
           git push
 
+      # Pipeline step runs with continue-on-error so the commit step above
+      # still captures whatever landed in data/failed/ or data/test_runs/.
+      # Once those artefacts are safely pushed, surface the failure to the
+      # job status (both production and test mode). Without this, a crash
+      # like the 2026-11-18 FileNotFoundError on a clean runner leaves the
+      # job green and no one notices.
+      - name: Fail job if pipeline step did not succeed
+        if: always()
+        env:
+          PIPELINE_OUTCOME: ${{ steps.pipeline.outcome }}
+        run: |
+          if [ "$PIPELINE_OUTCOME" != "success" ]; then
+            echo "Pipeline step outcome was '$PIPELINE_OUTCOME' – failing the job."
+            exit 1
+          fi
+          echo "Pipeline step succeeded."
+
       - name: Alert on any non-ok strategy
         if: always()
         env:
