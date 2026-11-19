@@ -1,0 +1,511 @@
+{
+  "queries": [
+    {
+      "tool_use_id": "srvtoolu_01G1ByX4yhPuqTYBGk48dHn1",
+      "query": "stock market news November 18 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01VJvGmQeRuQ3oVcejb4RBDJ",
+      "query": "Federal Reserve November 2026 rates inflation"
+    },
+    {
+      "tool_use_id": "srvtoolu_01DYwEtaP4iXSzpLv3KgvHE7",
+      "query": "UnitedHealth stock November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_019LyuyTPhh8ztXoW4B2hdTW",
+      "query": "Walmart earnings November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01JefJETssqxFsJhbvTEKjHk",
+      "query": "Nvidia stock November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01VUgaroM2VcR6gxKr4J2pbL",
+      "query": "Caterpillar stock November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_019SgUgJLGLJwZP68CzcEJj1",
+      "query": "Alphabet Google stock decline November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01NjrGNEM6mH4VRAng6dcwkW",
+      "query": "oil prices Chevron November 18 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01WDLmoAnfBRTP7atfFicdCT",
+      "query": "Walmart third quarter results stock November 19 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_017TzvAZp3tEmj11r41xorCM",
+      "query": "Salesforce stock falls November 2026"
+    }
+  ],
+  "retrieved": [
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nov-18-221135469.html",
+      "title": "Stock Market Today, Nov. 18: Nvidia Slips on Strong Results as Succession and China Business Risks Weigh",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.cnbc.com/2026/11/18/stock-market-today-live-updates.html",
+      "title": "Stock market today: Live updates",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-18-2026",
+      "title": "Stock Market Today, November 18, 2026: The Dow Closes Lower",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.everhint.com/stock-market-news-november-18-2026-morning-update-last-12-hours-pacific-time/",
+      "title": "Stock Market News — November 18, 2026 — Morning Update — Last 12 Hours (Pacific Time)",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://everhint.com/stock-market-news-november-18-2026-evening-update-last-12-hours-pacific-time",
+      "title": "Stock Market News — November 18, 2026 — Evening Update — Last 12 Hours (Pacific Time)",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://eurasiabusinessnews.com/2026/11/18/stock-market-today-november-18-2026-nvidia-earnings-fail-to-calm-investors-as-gold-and-oil-fall/",
+      "title": "Stock Market Today, November 18, 2026: Nvidia Earnings Fail to Calm Investors as Gold and Oil Fall",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://armstrongeconomics.com/market-talk/market-talk-november-18-2026",
+      "title": "Market Talk - November 18, 2026",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://seekingalpha.com/news/3430413-arconic-not-currently-involved-in-any-sales-talks-wsj",
+      "title": "Top Stocks for 2026",
+      "page_age": null
+    },
+    {
+      "url": "https://seekingalpha.com/news/3182664-reply-s-p-a-reports-q1-results",
+      "title": "Top Stocks for 2026",
+      "page_age": null
+    },
+    {
+      "url": "https://github.com/corbett-hobbs/insidegov/issues/628",
+      "title": "Social draft: The federal funds rate and the U.S. inflation rate, 2016 to 2026 [news:fed_rates:2026-11-18] · Issue #628 · corbett-hobbs/insidegov · GitHub",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.cnbc.com/2026/01/22/pce-inflation-november-2026.html",
+      "title": "PCE inflation November 2026:",
+      "page_age": "300 days ago"
+    },
+    {
+      "url": "https://www.federalreserve.gov/releases/h15/",
+      "title": "Federal Reserve Board - H.15 - Selected Interest Rates (Daily) - November 17, 2026",
+      "page_age": "19 days ago"
+    },
+    {
+      "url": "https://www.fool.com/investing/2026/11/05/federal-reserve-initial-november-inflation-forecast-has-arrived-things-get-ugly-for-wall-street/",
+      "title": "The Federal Reserve's Initial November Inflation Forecast Has Arrived, and Things Are Getting Downright Ugly for Wall Street",
+      "page_age": "14 days ago"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2021%E2%80%932023_inflation_surge",
+      "title": "2021%E2%80%932023 inflation surge",
+      "page_age": null
+    },
+    {
+      "url": "https://www.usnews.com/news/economy/articles/2026-11-18/fed-poised-to-raise-rates-further-to-stem-inflation",
+      "title": "Fed Poised to Raise Rates Further to Stem Inflation",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.clevelandfed.org/indicators-and-data/inflation-nowcasting",
+      "title": "Inflation Nowcasting",
+      "page_age": "6 days ago"
+    },
+    {
+      "url": "https://streetstats.finance/rates/fedfunds",
+      "title": "Fed Funds Rate Forecast 2026-2031",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.cnbc.com/2026/11/18/federal-reserve-governor-christopher-waller.html",
+      "title": "Fed’s Waller says central bank may need to ‘shock people’ with half-point rate hike",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.forbes.com/sites/simonmoore/2026/11/13/waller-floats-prospect-of-larger-december-interest-rate-hike/",
+      "title": "Could The Fed Raise Interest Rates By 50 Basis Points In December?",
+      "page_age": "5 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000266/unh-20260930.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 10-Q - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.gurufocus.com/news/9208180/unitedhealth-group-unh-shares-drop-over-8-amid-regulatory-concerns-on-november-18-2026",
+      "title": "UnitedHealth Group (UNH) Shares Drop Over 8% Amid Regulatory Concerns on November 18, 2026",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000255/earningsrelease3q26unh.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000197/unh-20260630.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 10-Q - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000127/unh-20260331.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 10-Q - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000121/uhgearningsreleaseq12026.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://finance.yahoo.com/healthcare/articles/why-unitedhealth-stock-falling-122809670.html",
+      "title": "Why Is UnitedHealth Stock Falling?",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000191/earningsrelease2q26_7152.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000121/earningsrelease1q26press.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000168/earningspresentationfy27.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000145/earningsreleasefy27q2.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000145/earningspresentationfy27.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000136/wmt-20260716.htm",
+      "title": "Walmart Inc. - Form 11-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000095/earningsreleasefy27q1.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000032/earningsreleasefy26q4.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.fool.com/investing/2026/11/17/walmart-reports-earnings-on-nov-19-2026-heres-what-investors-should-be-watching/",
+      "title": "Walmart Reports Earnings on Nov. 19 2026. Here's What Investors Should Be Watching.",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000091/wmtfy26annualreport-final.pdf",
+      "title": "Walmart Inc. - Form ARS - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000095/earningspresentationfy27.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.kiplinger.com/news/live/nvidia-earnings-live-updates-and-commentary-november-2026&gsessionid=3Rpd2p0P0wJwms2rcTlHqQTjtiGkY8n3NBtO7SxI9uiQ-3Zqy6LVrQ",
+      "title": "Nvidia Earnings: Updates and Commentary November 2026",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://stockanalysis.com/stocks/nvda/",
+      "title": "NVIDIA (NVDA) Stock Price & Overview",
+      "page_age": "4 days ago"
+    },
+    {
+      "url": "https://stockanalysis.com/stocks/nvda/history/",
+      "title": "NVIDIA (NVDA) Stock Price History 1999-2026",
+      "page_age": "10 days ago"
+    },
+    {
+      "url": "https://investor.nvidia.com/stock-info/stock-quote-and-chart/default.aspx",
+      "title": "NVIDIA Corporation - Stock Quote & Chart",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/nvda/articles/624393/what-just-happened-to-nvidia-stock/2026-11-11",
+      "title": "What Just Happened To Nvidia Stock?",
+      "page_age": "8 days ago"
+    },
+    {
+      "url": "https://www.macrotrends.net/stocks/charts/NVDA/nvidia/stock-price-history",
+      "title": "NVIDIA - 15 Year Stock Price History",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/nvda/articles/623367/whats-going-to-happen-with-nvidia-stock-soon/2026-11-06",
+      "title": "What’s Going To Happen With NVIDIA Stock Soon?",
+      "page_age": "12 days ago"
+    },
+    {
+      "url": "https://www.vantagemarkets.com/en/market-analysis/nvda-stock-monthly-outlook-analysis-nvidia/",
+      "title": "Nvidia Stock Analysis November 2026: NVDA Falls 15% From Its Record as Earnings Near",
+      "page_age": "15 days ago"
+    },
+    {
+      "url": "https://www.marketbeat.com/stocks/NASDAQ/NVDA/chart/",
+      "title": "NVIDIA (NVDA) Stock Chart and Price History 2026 - MarketBeat",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://robinhood.com/us/en/stocks/CAT/",
+      "title": "Caterpillar: CAT Stock Price Quote & News",
+      "page_age": "17 days ago"
+    },
+    {
+      "url": "https://stockanalysis.com/stocks/cat/history/",
+      "title": "Caterpillar (CAT) Stock Price History 1968-2026",
+      "page_age": "99 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/cat/articles/624242/can-caterpillar-stock-hit-820/2026-11-11",
+      "title": "Can Caterpillar Stock Hit $820?",
+      "page_age": "7 days ago"
+    },
+    {
+      "url": "https://www.macrotrends.net/stocks/charts/CAT/caterpillar/stock-price-history",
+      "title": "Caterpillar - 15 Year Stock Price History",
+      "page_age": null
+    },
+    {
+      "url": "https://www.trefis.com/stock/cat/articles/626733/is-caterpillar-stock-priced-right-against-its-rivals/2026-11-19",
+      "title": "Is Caterpillar Stock Priced Right Against Its Rivals?",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://journalarta.com/en/2026/11/12/caterpillar-cat-stock-climbs-2-91-november-11-2026-down-19-7-in-a-month/",
+      "title": "Caterpillar (CAT) Stock: $601.61, Up 2.91% Nov 11 — JournalArta Global",
+      "page_age": "7 days ago"
+    },
+    {
+      "url": "https://www.marketbeat.com/instant-alerts/price-caterpillar-nyse-cat-stock-jumps-29-heres-what-happened-2026-11-11/",
+      "title": "Caterpillar (NYSE:CAT) Stock Jumps 2.9% - Here's What Happened",
+      "page_age": "7 days ago"
+    },
+    {
+      "url": "https://stockinvest.us/stock/CAT",
+      "title": "Caterpillar Stock Price Forecast. Should You Buy CAT?",
+      "page_age": "5 days ago"
+    },
+    {
+      "url": "https://tickeron.com/ticker/CAT/",
+      "title": "Why Caterpillar (CAT) Stock Is Down -21.7% in the Last 30 Days",
+      "page_age": "6 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-stock-down-nearly-17-141342798.html",
+      "title": "Alphabet Stock Down Nearly 17%: What Decides It Now?",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.fool.com/investing/2026/11/03/why-shares-of-alphabet-stock-sank-175-last-month/",
+      "title": "Why Shares of Alphabet Stock Sank 17.5% Last Month",
+      "page_age": "15 days ago"
+    },
+    {
+      "url": "https://www.fxleaders.com/news/2026/11/16/alphabet-goog-stock-extends-decline-as-200b-spending-and-google-anthropic-investment-raise-concerns/",
+      "title": "Alphabet GOOG Stock Extends Decline as $200B Spending and Google Anthropic Investment Raise Concerns - Forex News by FX Leaders",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.fxleaders.com/news/2026/11/16/alphabet-stock-extends-decline-as-200b-spending-and-google-anthropic-investment-raise-concerns/",
+      "title": "Alphabet Stock Extends Decline as $200B Spending and Google Anthropic Investment Raise Concerns - Forex News by FX Leaders",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/googl/articles/624528/how-low-can-alphabet-stock-go/2026-11-12",
+      "title": "How Low Can Alphabet Stock Go?",
+      "page_age": "6 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/googl/articles/625697/alphabet-stock-down-nearly-17-what-decides-it-now/2026-11-17",
+      "title": "Alphabet Stock Down Nearly 17%: What Decides It Now?",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.fool.com/investing/2026/11/17/is-alphabet-stock-a-buy-after-the-dip/",
+      "title": "Is Alphabet Stock a Buy After the Dip?",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/googl/articles/622432/alphabet-and-dell-stock-fell-should-you-worry/2026-11-05",
+      "title": "Alphabet And Dell Stock Fell. Should You Worry?",
+      "page_age": "14 days ago"
+    },
+    {
+      "url": "https://tradersunion.com/news/stocks/show/4293742-alphabet-declines-as-asian-bond/",
+      "title": "Alphabet falls with debut of Asian bond sales to support AI investments amid market turbulence",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.thestockobserver.com/2026/11/17/alphabet-nasdaqgoog-shares-down-1-3-whats-next.html",
+      "title": "Alphabet (NASDAQ:GOOG) Shares Down 1.3%",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/energy/articles/current-price-oil-november-18-114521941.html",
+      "title": "Current price of oil as of November 18, 2026",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/energy/articles/chevron-cvx-positioned-benefit-sustained-154956699.html",
+      "title": "Chevron (CVX) Positioned to Benefit From Sustained Higher Oil Prices",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/quote/CVX/",
+      "title": "Chevron Corporation (CVX) Stock Price, News, Quote & History - Yahoo Finance",
+      "page_age": "4 days ago"
+    },
+    {
+      "url": "https://gulfnews.com/business/energy/oil-slips-in-asia-led-by-murban-brent-wti-what-to-know-on-nov-18-2026-1.500751476",
+      "title": "Oil Prices Drop as Crude Benchmarks Slide on November 18, 2026",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://tradingeconomics.com/commodity/crude-oil",
+      "title": "Crude Oil - Price - Chart - Historical Data - News",
+      "page_age": "827 days ago"
+    },
+    {
+      "url": "https://www.macrotrends.net/1369/crude-oil-price-history-chart",
+      "title": "Crude Oil Prices (1946-2026)",
+      "page_age": "18 days ago"
+    },
+    {
+      "url": "https://www.google.com/finance/quote/CVX:NYSE",
+      "title": "Chevron Corporation (CVX) Stock Price & News - Google Finance",
+      "page_age": "35 days ago"
+    },
+    {
+      "url": "https://energynow.com/2026/11/oil-prices-fall-sharply-as-u-s-crude-inventories-rise-overshadowing-middle-east-supply-risks/",
+      "title": "Oil Prices Fall Sharply as U.S. Crude Inventories Rise, Overshadowing Middle East Supply Risks - Energy News, Top Headlines, Commentaries, Features & Events - EnergyNow.com",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.forbes.com/advisor/investing/oil-prices-today/",
+      "title": "Crude Oil Price Today: November 18, 2026",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.ad-hoc-news.de/boerse/news/vorboerse/chevron-stock-slips-to-eur-187-50-down-0-73-prozent-premarket/70534455",
+      "title": "Chevron stock slips to EUR 187.50, down 0.73% premarket",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000168/earningsreleasefy27q3.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000145/earningspresentationfy27.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000145/earningsreleasefy27q2.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000168/wmt-20261119.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://corporate.walmart.com/news/2026/11/Walmart-To-Host-Q3-Earnings-Call-Nov-19-2026",
+      "title": "Walmart To Host Third Quarter Earnings Conference Call November 19, 2026",
+      "page_age": "7 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/dear-walmart-stock-fans-mark-143003826.html",
+      "title": "Dear Walmart Stock Fans, Mark Your Calendars for November 19",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/walmart-fell-10-last-report-012836957.html",
+      "title": "Walmart Fell 10% After Its Last Report. Is It Time to Sell Before November 19, or Load Up?",
+      "page_age": "6 days ago"
+    },
+    {
+      "url": "https://www.marketscreener.com/news/walmart-earnings-release-earnings-release-q3-2027-ce785ed2d88fff20",
+      "title": "Walmart : Earnings Release (Earnings Release Q3 2027)",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.businesswire.com/news/home/20261118447417/en/Walmart-reports-revenue-growth-of-5.2-up-4.5-in-constant-currency-cc",
+      "title": "Walmart reports revenue growth of 5.2%, up 4.5% in constant currency (cc)",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.gurufocus.com/news/9205668/salesforce-crm-shares-drop-nearly-10-amid-sector-weakness-on-november-17-2026",
+      "title": "Salesforce (CRM) Shares Drop Nearly 10% Amid Sector Weakness on November 17, 2026",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.gurufocus.com/news/9205947/salesforce-crm-shares-fall-94-amid-tech-sector-selloff-ahead-of-anthropic-ipo",
+      "title": "Salesforce (CRM) Shares Fall 9.4% Amid Tech Sector Selloff Ahead of Anthropic IPO",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/crm/articles/626280/what-moved-salesforce-stock/2026-11-18",
+      "title": "What Moved Salesforce Stock?",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/crm/articles/624231/can-salesforce-stock-fall-30/2026-11-11",
+      "title": "Can Salesforce Stock Fall 30%?",
+      "page_age": "8 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/crm/articles/624931/has-buying-the-dip-in-salesforce-stock-paid-off/2026-11-13",
+      "title": "Has Buying The Dip In Salesforce Stock Paid Off?",
+      "page_age": "6 days ago"
+    },
+    {
+      "url": "https://www.globalbankingandfinance.com/salesforce-crm-falls-2026-11-18/",
+      "title": "Salesforce falls 2.17% in Wednesday's session",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://mlq.ai/news/salesforce-and-servicenow-fall-as-software-stocks-slide-again-a-day-before-anthropic-prices-its-ipo/",
+      "title": "Salesforce and ServiceNow fall as software stocks slide again a day before Anthropic prices its IPO",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://journalarta.com/en/2026/11/18/salesforce-job-cuts-shares-fall/",
+      "title": "Salesforce Starts Cutting Jobs as Shares Fall 9.5% — JournalArta Global",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262310309-salesforce-worst-day-since-2024-ai-fears-software-selloff-189-50-support-november-18-2026-tradingkey",
+      "title": "Salesforce Suffers Its Worst Day Since 2024 as AI Fears Hit Software, With $189.50 Next",
+      "page_age": "1 days ago"
+    }
+  ]
+}

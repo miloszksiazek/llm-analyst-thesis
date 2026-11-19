@@ -1,0 +1,501 @@
+{
+  "queries": [
+    {
+      "tool_use_id": "srvtoolu_01VfeDar5uFYSRWRBVrUq9h8",
+      "query": "Salesforce stock plunge November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01PchwBWbYgMJCPgRCekNVMt",
+      "query": "Walmart earnings November 19 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01RzKEs7MK12V1JpCqMQYCW5",
+      "query": "Nvidia stock November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01NH1haKDKhy9xeb2BY579yv",
+      "query": "UnitedHealth stock drop November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01KGpAo1vg49XtXf67Ws6jMv",
+      "query": "Fed December 2026 rate outlook inflation"
+    },
+    {
+      "tool_use_id": "srvtoolu_01V89kR6KgHToK7UQRqZutDJ",
+      "query": "stock market today November 18 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01U6j9CjFXL6PfHbmpVz41Pp",
+      "query": "Walmart shares third quarter results raises outlook"
+    },
+    {
+      "tool_use_id": "srvtoolu_01KNo2JS6WmK8fQ5rhVyvykx",
+      "query": "Caterpillar stock falls November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_0156k6a3VEhbcBJXJkCRDNjM",
+      "query": "Alphabet stock decline November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_017VXKRtrp4Hj3AG2acqRWHh",
+      "query": "Cisco stock November 18 2026"
+    }
+  ],
+  "retrieved": [
+    {
+      "url": "https://www.gurufocus.com/news/9205668/salesforce-crm-shares-drop-nearly-10-amid-sector-weakness-on-november-17-2026",
+      "title": "Salesforce (CRM) Shares Drop Nearly 10% Amid Sector Weakness on November 17, 2026",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.gurufocus.com/news/9205947/salesforce-crm-shares-fall-94-amid-tech-sector-selloff-ahead-of-anthropic-ipo",
+      "title": "Salesforce (CRM) Shares Fall 9.4% Amid Tech Sector Selloff Ahead of Anthropic IPO",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/moved-salesforce-stock-140544525.html",
+      "title": "What Moved Salesforce Stock?",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://americanbazaaronline.com/2026/11/18/salesforce-cuts-jobs-as-shares-plunge-ai-spending-limits-and-5-6-billion-braze-deal-raise-questions-492577/",
+      "title": "Salesforce cuts jobs as shares plunge; AI spending limits and $5.6 billion Braze deal raise questions",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/crm/articles/624931/has-buying-the-dip-in-salesforce-stock-paid-off/2026-11-13",
+      "title": "Has Buying The Dip In Salesforce Stock Paid Off?",
+      "page_age": "6 days ago"
+    },
+    {
+      "url": "https://247wallst.com/investing/2026/11/18/salesforce-shed-20-over-the-last-30-days-it-will-double-from-here-according-to-this-notable-wall-street-team/",
+      "title": "Salesforce Shed 20% Over The Last 30 Days: It Will Double From Here According to This Notable Wall Street Team - 24/7 Wall St.",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://swikblog.com/salesforce-crm-stock-ai-selloff-2026/",
+      "title": "Salesforce (CRM) Stock Plunges 9% as AI Agent Fears Spark Software Sell-Off",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://mlq.ai/news/salesforce-and-servicenow-fall-as-software-stocks-slide-again-a-day-before-anthropic-prices-its-ipo/",
+      "title": "Salesforce and ServiceNow fall as software stocks slide again a day before Anthropic prices its IPO",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262310309-salesforce-worst-day-since-2024-ai-fears-software-selloff-189-50-support-november-18-2026-tradingkey",
+      "title": "Salesforce Suffers Its Worst Day Since 2024 as AI Fears Hit Software, With $189.50 Next",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000145/earningsreleasefy27q2.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000032/earningsreleasefy26q4.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000095/earningsreleasefy27q1.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000168/earningspresentationfy27.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.fool.com/investing/2026/11/17/walmart-reports-earnings-on-nov-19-2026-heres-what-investors-should-be-watching/",
+      "title": "Walmart Reports Earnings on Nov. 19 2026. Here's What Investors Should Be Watching.",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://corporate.walmart.com/news/2026/11/Walmart-To-Host-Q3-Earnings-Call-Nov-19-2026",
+      "title": "Walmart To Host Third Quarter Earnings Conference Call November 19, 2026",
+      "page_age": "7 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000145/earningspresentationfy27.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000168/wmt-20261119.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000091/wmtfy26annualreport-final.pdf",
+      "title": "Walmart Inc. - Form ARS - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://explore.nemo.money/en/stocks/NVDA",
+      "title": "Nvidia (NVDA) Stock Forecast 2026: Price Target",
+      "page_age": "7 days ago"
+    },
+    {
+      "url": "https://stockanalysis.com/stocks/nvda/",
+      "title": "NVIDIA (NVDA) Stock Price & Overview",
+      "page_age": "4 days ago"
+    },
+    {
+      "url": "https://stockanalysis.com/stocks/nvda/history/",
+      "title": "NVIDIA (NVDA) Stock Price History 1999-2026",
+      "page_age": "10 days ago"
+    },
+    {
+      "url": "https://investor.nvidia.com/stock-info/stock-quote-and-chart/default.aspx",
+      "title": "NVIDIA Corporation - Stock Quote & Chart",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/nvda/articles/624393/what-just-happened-to-nvidia-stock/2026-11-11",
+      "title": "What Just Happened To Nvidia Stock?",
+      "page_age": "8 days ago"
+    },
+    {
+      "url": "https://www.macrotrends.net/stocks/charts/NVDA/nvidia/stock-price-history",
+      "title": "NVIDIA - 15 Year Stock Price History",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/nvda/articles/623367/whats-going-to-happen-with-nvidia-stock-soon/2026-11-06",
+      "title": "What’s Going To Happen With NVIDIA Stock Soon?",
+      "page_age": "12 days ago"
+    },
+    {
+      "url": "https://www.vantagemarkets.com/en/market-analysis/nvda-stock-monthly-outlook-analysis-nvidia/",
+      "title": "Nvidia Stock Analysis November 2026: NVDA Falls 15% From Its Record as Earnings Near",
+      "page_age": "15 days ago"
+    },
+    {
+      "url": "https://www.marketbeat.com/stocks/NASDAQ/NVDA/chart/",
+      "title": "NVIDIA (NVDA) Stock Chart and Price History 2026 - MarketBeat",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.gurufocus.com/news/9208180/unitedhealth-group-unh-shares-drop-over-8-amid-regulatory-concerns-on-november-18-2026",
+      "title": "UnitedHealth Group (UNH) Shares Drop Over 8% Amid Regulatory Concerns on November 18, 2026",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.heygotrade.com/en/news/unitedhealth-unh-stock-news-november-18-2026/",
+      "title": "UnitedHealth Stock (UNH) Falls 5.4% on CMS Audit Proposal (Nov 17)",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/healthcare/articles/why-unitedhealth-stock-falling-122809670.html",
+      "title": "Why Is UnitedHealth Stock Falling?",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.heygotrade.com/en/news/unitedhealth-unh-stock-news-november-19-2026/",
+      "title": "UnitedHealth Stock (UNH) Falls 10.2% on CMS Audit Proposal (Nov 18)",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://finchannel.com/unitedhealth-stock-drops-10-as-medicare-audit-proposal-unsettles-insurers/142214/american-business-trends/2026/11/",
+      "title": "UnitedHealth stock falls 10.21% on Medicare audit fears",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/unh/articles/626878/what-just-happened-to-unitedhealth-stock/2026-11-19",
+      "title": "What Just Happened To UnitedHealth Stock?",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.fxleaders.com/news/2026/11/18/unitedhealth-faces-9-billion-industry-clawback-risk-under-new-cms-rules-sending-unh-stock-to-350/",
+      "title": "UnitedHealth Faces $9 Billion Industry Clawback Risk Under New CMS Rules, Sending UNH Stock to $350 - Forex News by FX Leaders",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://journalarta.com/en/2026/11/18/unitedhealth-unh-stock-update-tumbles-5-42-trading-volume-1-6x-normal/",
+      "title": "UnitedHealth (UNH) Stock: $389.68, Down 5.42% Nov 17 — JournalArta Global",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262310909-unitedhealth-falls-cms-crush-audit-rule-unh-385-23-support-november-18-2026-tradingkey",
+      "title": "UnitedHealth Falls 5.4% on CMS's CRUSH Audit Plan, With $385.23 the Next Test",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://abcnews.com/US/wireStory/fed-minutes-higher-interest-rates-needed-december-inflation-138258781",
+      "title": "Fed minutes: Higher interest rates needed in December as inflation worries mount - ABC News",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.cnbc.com/2026/11/10/fed-governor-waller-sees-december-hike-likely.html",
+      "title": "Fed Governor Waller sees December hike likely, opens door to possible half-point increase",
+      "page_age": "8 days ago"
+    },
+    {
+      "url": "https://www.washingtonpost.com/business/2026/11/18/federal-reserve-inflation-rates/a9391062-e383-11f1-a99e-b3e3805c6b8b_story.html",
+      "title": "Fed minutes: Higher interest rates needed in December as inflation worries mount - The Washington Post",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.jpmorgan.com/insights/global-research/economy/fed-rate-cuts",
+      "title": "What’s The Fed’s Next Move?",
+      "page_age": "16 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/economy/policy/articles/fed-raise-rates-once-more-124512933.html",
+      "title": "Fed to raise rates once more in December as inflation risks stay high: Reuters poll",
+      "page_age": "9 days ago"
+    },
+    {
+      "url": "https://www.ibtimes.com/fed-officials-consider-bigger-december-rate-hike-ai-spending-adds-inflation-risks-3809935",
+      "title": "Fed Officials Consider Bigger December Rate Hike. AI Spending Adds To Inflation Risks.",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.pagetwentyone.com/post/fed-rate-hike-december-2026-explained",
+      "title": "Fed Rate Hike December 2026: Why, and What It Means for You",
+      "page_age": "7 days ago"
+    },
+    {
+      "url": "https://www.forbes.com/sites/simonmoore/2026/11/13/waller-floats-prospect-of-larger-december-interest-rate-hike/",
+      "title": "Fed Could Consider 50 Basis Point Rate Hike in December",
+      "page_age": "5 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/news/federal-reserve-keeps-rate-cut-forecasts-steady-as-economic-growth-inflation-outlooks-rise-181628371.html",
+      "title": "Federal Reserve keeps rate cut forecasts steady as economic growth, inflation outlooks rise",
+      "page_age": null
+    },
+    {
+      "url": "https://tradingeconomics.com/united-states/interest-rate/news/469032",
+      "title": "Fed Still Expects to Cut Rates This Year",
+      "page_age": null
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nov-18-221135469.html",
+      "title": "Stock Market Today, Nov. 18: Nvidia Slips on Strong Results as Succession and China Business Risks Weigh",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nov-18-224446900.html",
+      "title": "Stock Market Today, Nov. 18: Opendoor Extends Rally for Second Straight Session as Investors Watch Housing",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/11/18/stock-market-today-nov-18-s-and-p-500-breaks-key-support-as-fed-minutes-signal-more-rate-hikes-ahead/",
+      "title": "Stock Market Today, Nov. 18: S&P 500 Breaks Key Support as Fed Minutes Signal More Rate Hikes Ahead",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/11/18/stock-market-today-nov-18-opendoor-extends-rally-for-second-straight-session-as-investors-watch-housing/",
+      "title": "Stock Market Today, Nov. 18: Opendoor Extends Rally for Second Straight Session as Investors Watch Housing",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/11/18/stock-market-today-nov-18-nvidia-slips-on-strong-results-as-succession-and-china-business-risks-weigh/",
+      "title": "Stock Market Today, Nov. 18: Nvidia Slips on Strong Results as Succession and China Business Risks Weigh",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/11/18/stock-market-midday-nov-18-nvidia-doubles-revenue-but-wall-street-s-sell-off-continues/",
+      "title": "Stock Market Midday, Nov. 18: Nvidia Doubles Revenue, but Wall Street's Sell-Off Continues",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-18-2026",
+      "title": "Stock Market Today, November 18, 2026: The Dow Closes Lower",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://vistapglobal.com/u-s-stock-market-today-november-18-2026-dow-falls-561-points-nasdaq-rises-ahead-of-anthropic-ipo-ant-eprx-googl-modd-nvda-ser-tgt/",
+      "title": "U.S. Stock Market Today, November 18, 2026: Dow Falls 561 Points, Nasdaq Rises Ahead of Anthropic IPO -( $ANT $EPRX $GOOGL $MODD $NVDA $SER $TGT )",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://armstrongeconomics.com/market-talk/market-talk-november-18-2026",
+      "title": "Market Talk - November 18, 2026",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://abcnews.com/Business/wireStory/walmart-raises-outlook-year-3rd-time-after-solid-138283336",
+      "title": "Walmart raises its outlook for the year for the 3rd time after a solid quarter - ABC News",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.investing.com/news/earnings/walmart-beats-third-quarter-expectations-raises-guidance-5038647",
+      "title": "Walmart beats third quarter expectations, raises guidance By Investing.com",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.bnnbloomberg.ca/business/company-news/2026/11/19/walmart-raises-its-outlook-for-the-year-for-the-3rd-time-after-a-solid-quarter/",
+      "title": "Walmart raises its outlook for the year for the 3rd time after a solid quarter",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/article/walmart-beats-q3-earnings-expectations-raises-2026-outlook-again-120803355.html",
+      "title": "Walmart beats Q3 earnings expectations, raises 2026 outlook again",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.foxbusiness.com/retail/walmart-raises-full-year-outlook-wealthier-shoppers-fuel-sales-growth",
+      "title": "Walmart raises outlook as upper-income market share gains grow",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://uk.investing.com/news/earnings/walmart-beats-third-quarter-expectations-raises-guidance-4993100",
+      "title": "Walmart beats third quarter expectations, raises guidance By Investing.com",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.rochesterfirst.com/news/business/ap-walmart-raises-outlook-for-3rd-time-this-year-after-a-solid-quarter/",
+      "title": "Walmart raises its outlook for the year for the 3rd time after a solid quarter",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.nbcnews.com/news/amp/wbna21256961",
+      "title": "Wal-Mart raises third quarter outlook",
+      "page_age": null
+    },
+    {
+      "url": "https://benzinga.com/z/29726565",
+      "title": "Walmart Stock Jumps: What's Going On?",
+      "page_age": null
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/caterpillar-stocks-move-lower-target-181635433.html",
+      "title": "Caterpillar Stocks Move Lower With Target Cut Putting Its Margin Premium on Trial",
+      "page_age": "16 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/cat/articles/626733/is-caterpillar-stock-priced-right-against-its-rivals/2026-11-19",
+      "title": "Is Caterpillar Stock Priced Right Against Its Rivals?",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.fool.com/investing/2026/11/16/michael-burry-cashed-in-caterpillar-puts-after-a-nearly-4x-gain-even-as-cat-stock-fell-10-in-its-worst-week-in-18-months-is-caterpillar-still-overvalued-or-did-burry-just-lock-in-the-easy-money/",
+      "title": "Michael Burry Cashed In Caterpillar Puts After a Nearly 4x Gain Even as CAT Stock Fell 10% in Its Worst Week in 18 Months. Is Caterpillar Still Overvalued, or Did Burry Just Lock In the Easy Money?",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.marketbeat.com/instant-alerts/price-caterpillar-nyse-cat-stock-falls-65-heres-what-happened-2026-11-05/",
+      "title": "Caterpillar (NYSE:CAT) Stock Falls 6.5% - Here's What Happened",
+      "page_age": "13 days ago"
+    },
+    {
+      "url": "https://www.marketbeat.com/instant-alerts/price-caterpillar-nyse-cat-stock-price-down-52-should-you-sell-2026-11-16/",
+      "title": "Caterpillar (NYSE:CAT) Stock Price Down 5.2% - Should You Sell?",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://stockinvest.us/stock/CAT",
+      "title": "Caterpillar Stock Price Forecast. Should You Buy CAT?",
+      "page_age": "5 days ago"
+    },
+    {
+      "url": "https://tickeron.com/ticker/CAT/",
+      "title": "Why Caterpillar (CAT) Stock Is Down -21.7% in the Last 30 Days",
+      "page_age": "6 days ago"
+    },
+    {
+      "url": "https://www.tradingkey.com/news/market-movers/262307367-market-movers-cat-20261116",
+      "title": "Caterpillar Inc Stock (CAT) Moved Down by 3.37% on Nov 16: Facts Behind the Movement",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.tradingkey.com/news/market-movers/262311413-market-movers-cat-20261118",
+      "title": "Caterpillar Inc Stock (CAT) Moved Down by 3.10% on Nov 18: What Signal Does It Send?",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-stock-down-nearly-17-141342798.html",
+      "title": "Alphabet Stock Down Nearly 17%: What Decides It Now?",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.fool.com/investing/2026/11/17/is-alphabet-stock-a-buy-after-the-dip/",
+      "title": "Is Alphabet Stock a Buy After the Dip?",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.fxleaders.com/news/2026/11/16/alphabet-goog-stock-extends-decline-as-200b-spending-and-google-anthropic-investment-raise-concerns/",
+      "title": "Alphabet GOOG Stock Extends Decline as $200B Spending and Google Anthropic Investment Raise Concerns - Forex News by FX Leaders",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/googl/articles/625697/alphabet-stock-down-nearly-17-what-decides-it-now/2026-11-17",
+      "title": "Alphabet Stock Down Nearly 17%: What Decides It Now?",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/googl/articles/623220/can-you-make-money-off-alphabet-stock-now/2026-11-06",
+      "title": "Can You Make Money Off Alphabet Stock Now?",
+      "page_age": "12 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/googl/articles/622432/alphabet-and-dell-stock-fell-should-you-worry/2026-11-05",
+      "title": "Alphabet And Dell Stock Fell. Should You Worry?",
+      "page_age": "14 days ago"
+    },
+    {
+      "url": "https://tradersunion.com/news/stocks/show/4293742-alphabet-declines-as-asian-bond/",
+      "title": "Alphabet falls with debut of Asian bond sales to support AI investments amid market turbulence",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.marketbeat.com/instant-alerts/price-alphabet-nasdaq-goog-shares-down-38-time-to-sell-2026-11-16/",
+      "title": "Alphabet (NASDAQ:GOOG) Shares Down 3.8% - Time to Sell?",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.thestockobserver.com/2026/11/17/alphabet-nasdaqgoog-shares-down-1-3-whats-next.html",
+      "title": "Alphabet (NASDAQ:GOOG) Shares Down 1.3%",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://stockanalysis.com/stocks/csco/",
+      "title": "Cisco Systems (CSCO) Stock Price, Chart & News",
+      "page_age": "76 days ago"
+    },
+    {
+      "url": "https://stockanalysis.com/stocks/csco/history/",
+      "title": "Cisco Systems (CSCO) Stock Price History 1990-2026",
+      "page_age": "800 days ago"
+    },
+    {
+      "url": "https://www.morningstar.com/stocks/xnas/csco/quote",
+      "title": "CSCO Stock Price (XNAS) & Analyst Rating",
+      "page_age": "5 days ago"
+    },
+    {
+      "url": "https://seekingalpha.com/symbol/CSCO/historical-price-quotes",
+      "title": "Cisco Systems, Inc. (CSCO) Stock Historical Price Data, Closing Price",
+      "page_age": "244 days ago"
+    },
+    {
+      "url": "https://robinhood.com/us/en/stocks/CSCO/",
+      "title": "Cisco Systems (CSCO) — Buy and sell stocks commission-free on Robinhood",
+      "page_age": "5 days ago"
+    },
+    {
+      "url": "https://stockanalysis.com/stocks/csco/forecast/",
+      "title": "Cisco Systems (CSCO) Stock Forecast & Analyst Price Targets",
+      "page_age": "76 days ago"
+    },
+    {
+      "url": "https://investor.cisco.com/stock-info/stock-quote/default.aspx",
+      "title": "Cisco Systems Inc. - Stock Info - Stock Quote",
+      "page_age": "34 days ago"
+    },
+    {
+      "url": "https://stockinvest.us/stock-price/CSCO",
+      "title": "Historical CSCO stock prices (quote) - Cisco Systems",
+      "page_age": null
+    },
+    {
+      "url": "https://www.ad-hoc-news.de/boerse/news/vorboerse/cisco-systems-stock-gains-2-87-prozent-to-eur-89-88-premarket/70534505",
+      "title": "Cisco Systems stock gains 2.87% to EUR 89.88 premarket",
+      "page_age": "0 days ago"
+    }
+  ]
+}

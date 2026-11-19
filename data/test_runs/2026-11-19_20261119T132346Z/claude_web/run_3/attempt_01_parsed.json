@@ -1,0 +1,575 @@
+{
+  "run_date": "2026-11-19",
+  "as_of": "2026-11-18",
+  "macro_view": {
+    "summary": "The Fed is turning hawkish. Fed funds are at 4.0%, CPI is up 4.1% YoY, the 2-year yields 4.8% and the 10-year 5.1% (PKG). The October FOMC minutes show nearly all officials expect a December hike, and two raised the idea of a 50bp move (W2). Waller backs a larger hike (W15), and economists polled expect a December increase (W3). The S&P 500 fell below its 200-day average, and the Dow fell 1.11% on Nov 18 as managed-care stocks sold off (W1). DIA is down 4.3% this week (PKG). AI-linked stocks are being de-rated (NVDA, GOOGL, CAT, CRM). In this setting I favour defensive staples, earnings visibility and cheap low-beta names. The short holiday-shortened week before Thanksgiving makes a quick change in sentiment less likely.",
+    "main_themes": [
+      "fed_and_rates",
+      "inflation",
+      "market_sentiment"
+    ],
+    "favoured_sectors": [
+      "Consumer Staples",
+      "Insurance (P&C)",
+      "Restaurants"
+    ],
+    "disfavoured_sectors": [
+      "Managed Care",
+      "AI-exposed Tech/Semis",
+      "Enterprise Software",
+      "AI-capex Industrials"
+    ],
+    "source_ids": [
+      "PKG",
+      "W1",
+      "W2",
+      "W3",
+      "W15"
+    ]
+  },
+  "stocks": [
+    {
+      "ticker": "WMT",
+      "score": 4,
+      "rank": 1,
+      "rationale": "Q3 FY27 beat (adj EPS $0.65, revenue $188.8bn) and third guidance raise to $2.84–2.89. Gaining share among higher-income shoppers. Strong 1q momentum (+22.7%) and defensive appeal in a hike cycle. Rich P/E is the main risk.",
+      "key_factors": [
+        "earnings_recent",
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG",
+        "W5",
+        "W6",
+        "W7"
+      ]
+    },
+    {
+      "ticker": "PG",
+      "score": 3,
+      "rank": 2,
+      "rationale": "Defensive staple with clear relative strength: +1.6% this week while DIA fell 4.3%, and +19% over 1q. Suits a risk-off market facing more Fed hikes.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W2"
+      ]
+    },
+    {
+      "ticker": "KO",
+      "score": 3,
+      "rank": 3,
+      "rationale": "Positive 1w/1m/1q while the market fell. Low-beta staple with steady demand, well placed if hawkish-Fed risk-off continues.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W1"
+      ]
+    },
+    {
+      "ticker": "TRV",
+      "score": 2,
+      "rank": 4,
+      "rationale": "Cheapest stock in the universe at 10.3x P/E. P&C insurer whose float earns more as yields rise (10y 5.1%). Fell only modestly this week and has no AI or Medicare exposure.",
+      "key_factors": [
+        "valuation",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "MCD",
+      "score": 2,
+      "rank": 5,
+      "rationale": "+11.2% over 1m and nearly flat this week despite the selloff. 2.8% yield and value-oriented consumer positioning are defensive.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "CSCO",
+      "score": 2,
+      "rank": 6,
+      "rationale": "Fiscal Q1 beat with 24% sales growth and a raised outlook. Stock fell after earnings, then rebounded to close at $97.18 on Nov 18 (+2.2%). The package price is missing.",
+      "key_factors": [
+        "earnings_recent",
+        "company_news"
+      ],
+      "source_ids": [
+        "W11",
+        "W12"
+      ]
+    },
+    {
+      "ticker": "JNJ",
+      "score": 1,
+      "rank": 7,
+      "rationale": "Defensive pharma/medtech with +5% over 1m. Not exposed to the Medicare Advantage audit proposal hitting insurers. High trailing P/E limits upside.",
+      "key_factors": [
+        "macro_or_sector",
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG",
+        "W8"
+      ]
+    },
+    {
+      "ticker": "AMZN",
+      "score": 1,
+      "rank": 8,
+      "rationale": "Rose 3.8% on Nov 18 and is positive for the week (+0.6%). Reasonable 21.6x P/E. Holiday retail read-through from Walmart's solid quarter helps.",
+      "key_factors": [
+        "price_momentum",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG",
+        "W1",
+        "W6"
+      ]
+    },
+    {
+      "ticker": "DIS",
+      "score": 1,
+      "rank": 9,
+      "rationale": "One of the few gainers this week (+2.3%), with +9.6% over 1m. Momentum is intact at a moderate 21.7x P/E.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "V",
+      "score": 1,
+      "rank": 10,
+      "rationale": "Payments volume holds up with nominal inflation. +13.5% over 1q and a mild weekly dip. Premium P/E but low credit risk.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "AAPL",
+      "score": 0,
+      "rank": 11,
+      "rationale": "Held up well (+3.8% over 1m, -0.9% this week). However, a 39x P/E is vulnerable as 10-year yields reach 5.1%.",
+      "key_factors": [
+        "price_momentum",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "HON",
+      "score": 0,
+      "rank": 12,
+      "rationale": "Post-spin-off figures are hard to compare. Price is +4.4% over 1m and only -2.2% this week. No catalyst identified.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "AMGN",
+      "score": 0,
+      "rank": 13,
+      "rationale": "Fell 5.2% this week, apparently with the broader healthcare selloff, at a 25.7x P/E. No company-specific catalyst found.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W1"
+      ]
+    },
+    {
+      "ticker": "MMM",
+      "score": 0,
+      "rank": 14,
+      "rationale": "+5.6% over 1m but -4.1% this week. Industrial cyclicality offset by self-help story. Neutral.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "SHW",
+      "score": 0,
+      "rank": 15,
+      "rationale": "Housing-linked and hurt by higher mortgage rates. Held up relatively well over 1m (+3.2%). The 31.9x P/E caps upside.",
+      "key_factors": [
+        "macro_or_sector",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "AXP",
+      "score": 0,
+      "rank": 16,
+      "rationale": "Moderate weekly decline. Affluent cardholders are resilient, but credit sensitivity rises with further hikes. Fair valuation at 17.8x.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "score": 0,
+      "rank": 17,
+      "rationale": "Caught in the AI de-rating (-4.4% over 1m) but less damaged than peers. 26.5x P/E is reasonable. No near-term catalyst.",
+      "key_factors": [
+        "macro_or_sector",
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "CVX",
+      "score": 0,
+      "rank": 18,
+      "rationale": "-8.8% over 1m, with falling gasoline prices cited by the Fed. A 3.5% yield and 15x P/E give some support.",
+      "key_factors": [
+        "macro_or_sector",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG",
+        "W2"
+      ]
+    },
+    {
+      "ticker": "HD",
+      "score": -1,
+      "rank": 19,
+      "rationale": "Highly sensitive to rates. Rising long yields and expected Fed hikes weigh on housing activity. -3.9% this week.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W2"
+      ]
+    },
+    {
+      "ticker": "JPM",
+      "score": -1,
+      "rank": 20,
+      "rationale": "-5.6% this week as financials sold off. Cheap at 13.6x, but risk-off conditions and a weakening trend argue for caution near term.",
+      "key_factors": [
+        "price_momentum",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "GS",
+      "score": -1,
+      "rank": 21,
+      "rationale": "-12.9% over 1q and -5.8% this week. Capital-markets activity tends to suffer when equities break support. Low P/E limits downside.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W1"
+      ]
+    },
+    {
+      "ticker": "MRK",
+      "score": -1,
+      "rank": 22,
+      "rationale": "-6.4% this week and downtrend over 1m and 1q. Distorted 139x trailing P/E. No identified positive catalyst.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "IBM",
+      "score": -1,
+      "rank": 23,
+      "rationale": "-7.9% this week as enterprise software and IT services sold off. Momentum is negative, though a 3% yield gives some support.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W9"
+      ]
+    },
+    {
+      "ticker": "BA",
+      "score": -1,
+      "rank": 24,
+      "rationale": "Persistent downtrend (-24% over 1q, -6.7% this week). No identified catalyst to reverse it.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "GOOGL",
+      "score": -1,
+      "rank": 25,
+      "rationale": "-17% over 1m on capex worries after Q3, with 2027 spending set to rise significantly. Cheap at 14.8x, so bounce potential limits the downgrade.",
+      "key_factors": [
+        "company_news",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG",
+        "W14"
+      ]
+    },
+    {
+      "ticker": "NKE",
+      "score": -2,
+      "rank": 26,
+      "rationale": "Weak consumer discretionary name in a rising-rate environment. Downtrend over 1m and 1q, and -5.2% this week.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "NVDA",
+      "score": -2,
+      "rank": 27,
+      "rationale": "Fell 2.9% after strong results as CEO-succession and China-rule risks dominated. -30% over 1m. Oversold, but the overhangs remain.",
+      "key_factors": [
+        "company_news",
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG",
+        "W4"
+      ]
+    },
+    {
+      "ticker": "CAT",
+      "score": -3,
+      "rank": 28,
+      "rationale": "Down about half from its June peak on fears of an AI slowdown. -23% over 1m and -7% this week. Analysts keep cutting targets.",
+      "key_factors": [
+        "price_momentum",
+        "company_news"
+      ],
+      "source_ids": [
+        "PKG",
+        "W13"
+      ]
+    },
+    {
+      "ticker": "CRM",
+      "score": -3,
+      "rank": 29,
+      "rationale": "Fell 9.5% on Nov 17 amid an enterprise-software selloff. Job cuts and questions over the $5.6bn Braze deal add risk. Earnings come Dec 2, after this window.",
+      "key_factors": [
+        "company_news",
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG",
+        "W9",
+        "W10"
+      ]
+    },
+    {
+      "ticker": "UNH",
+      "score": -4,
+      "rank": 30,
+      "rationale": "Fell 10.2% on Nov 18 after a 5.4% drop on Nov 17, driven by a proposed CMS rule expanding Medicare Advantage audits. The policy overhang is unresolved and the company's exposure is unclear.",
+      "key_factors": [
+        "company_news",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W8"
+      ]
+    }
+  ],
+  "picks": [
+    "WMT",
+    "PG",
+    "KO",
+    "TRV"
+  ],
+  "picks_rationale": "With a December rate hike almost fully priced in and the S&P 500 below its 200-day average (W1, W2), I favour low-beta, earnings-visible names. Walmart just beat and raised guidance for the third time (W5, W6). PG and KO have positive momentum while the Dow fell (PKG). Travelers is the cheapest name at 10.3x and benefits from 5% yields (PKG). Together these limit exposure to the AI de-rating, Medicare Advantage regulation and enterprise software, which are driving the losers.",
+  "sources": [
+    {
+      "id": "PKG",
+      "type": "data_package",
+      "title": "Weekly data package as of 2026-11-18"
+    },
+    {
+      "id": "W1",
+      "type": "web",
+      "title": "Stock Market Today, Nov. 18: S&P 500 Breaks Key Support as Fed Minutes Signal More Rate Hikes Ahead",
+      "publisher": "The Motley Fool",
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/11/18/stock-market-today-nov-18-s-and-p-500-breaks-key-support-as-fed-minutes-signal-more-rate-hikes-ahead/",
+      "published_date": "2026-11-18"
+    },
+    {
+      "id": "W2",
+      "type": "web",
+      "title": "Fed minutes: Higher interest rates needed in December as inflation worries mount",
+      "publisher": "ABC News (AP)",
+      "url": "https://abcnews.com/US/wireStory/fed-minutes-higher-interest-rates-needed-december-inflation-138258781",
+      "published_date": "2026-11-18"
+    },
+    {
+      "id": "W3",
+      "type": "web",
+      "title": "Fed to raise rates once more in December as inflation risks stay high: Reuters poll",
+      "publisher": "Reuters via Yahoo Finance",
+      "url": "https://finance.yahoo.com/economy/policy/articles/fed-raise-rates-once-more-124512933.html",
+      "published_date": "2026-11-10"
+    },
+    {
+      "id": "W4",
+      "type": "web",
+      "title": "Stock Market Today, Nov. 18: Nvidia Slips on Strong Results as Succession and China Business Risks Weigh",
+      "publisher": "Yahoo Finance / The Motley Fool",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nov-18-221135469.html",
+      "published_date": "2026-11-18"
+    },
+    {
+      "id": "W5",
+      "type": "web",
+      "title": "Walmart Q3 FY27 Financial presentation (Form 8-K exhibit)",
+      "publisher": "Walmart Inc. / SEC EDGAR",
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000168/earningspresentationfy27.htm",
+      "published_date": "2026-11-19"
+    },
+    {
+      "id": "W6",
+      "type": "web",
+      "title": "Walmart beats third quarter expectations, raises guidance",
+      "publisher": "Investing.com",
+      "url": "https://www.investing.com/news/earnings/walmart-beats-third-quarter-expectations-raises-guidance-5038647",
+      "published_date": "2026-11-19"
+    },
+    {
+      "id": "W7",
+      "type": "web",
+      "title": "Walmart raises its outlook for the year for the 3rd time after a solid quarter",
+      "publisher": "BNN Bloomberg (AP)",
+      "url": "https://www.bnnbloomberg.ca/business/company-news/2026/11/19/walmart-raises-its-outlook-for-the-year-for-the-3rd-time-after-a-solid-quarter/",
+      "published_date": "2026-11-19"
+    },
+    {
+      "id": "W8",
+      "type": "web",
+      "title": "UnitedHealth stock drops 10% as Medicare audit proposal unsettles insurers",
+      "publisher": "The FINANCIAL (finchannel.com)",
+      "url": "https://finchannel.com/unitedhealth-stock-drops-10-as-medicare-audit-proposal-unsettles-insurers/142214/american-business-trends/2026/11/",
+      "published_date": "2026-11-19"
+    },
+    {
+      "id": "W9",
+      "type": "web",
+      "title": "What Moved Salesforce Stock?",
+      "publisher": "Yahoo Finance (Trefis)",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/moved-salesforce-stock-140544525.html",
+      "published_date": "2026-11-18"
+    },
+    {
+      "id": "W10",
+      "type": "web",
+      "title": "Salesforce cuts jobs as shares plunge; AI spending limits and $5.6 billion Braze deal raise questions",
+      "publisher": "American Bazaar",
+      "url": "https://americanbazaaronline.com/2026/11/18/salesforce-cuts-jobs-as-shares-plunge-ai-spending-limits-and-5-6-billion-braze-deal-raise-questions-492577/",
+      "published_date": "2026-11-18"
+    },
+    {
+      "id": "W11",
+      "type": "web",
+      "title": "Cisco Systems (CSCO) Stock Price History",
+      "publisher": "StockAnalysis",
+      "url": "https://stockanalysis.com/stocks/csco/history/",
+      "published_date": "2026-11-18"
+    },
+    {
+      "id": "W12",
+      "type": "web",
+      "title": "CSCO Stock Quote – Cisco Earnings: What More Could You Want?",
+      "publisher": "Morningstar",
+      "url": "https://www.morningstar.com/stocks/xnas/csco/quote",
+      "published_date": "2026-11-13"
+    },
+    {
+      "id": "W13",
+      "type": "web",
+      "title": "Michael Burry Cashed In Caterpillar Puts After a Nearly 4x Gain Even as CAT Stock Fell 10% in Its Worst Week in 18 Months",
+      "publisher": "The Motley Fool",
+      "url": "https://www.fool.com/investing/2026/11/16/michael-burry-cashed-in-caterpillar-puts-after-a-nearly-4x-gain-even-as-cat-stock-fell-10-in-its-worst-week-in-18-months-is-caterpillar-still-overvalued-or-did-burry-just-lock-in-the-easy-money/",
+      "published_date": "2026-11-16"
+    },
+    {
+      "id": "W14",
+      "type": "web",
+      "title": "Alphabet Stock Down Nearly 17%: What Decides It Now?",
+      "publisher": "Yahoo Finance (Trefis)",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-stock-down-nearly-17-141342798.html",
+      "published_date": "2026-11-17"
+    },
+    {
+      "id": "W15",
+      "type": "web",
+      "title": "Fed Governor Waller sees December hike likely, opens door to possible half-point increase",
+      "publisher": "CNBC",
+      "url": "https://www.cnbc.com/2026/11/10/fed-governor-waller-sees-december-hike-likely.html",
+      "published_date": "2026-11-10"
+    }
+  ],
+  "data_issues": [
+    "CSCO: last_close is null and the 1w/1m/1q changes are all exactly 0.0, so price data is missing. Web sources show a close of $97.18 on 2026-11-18 (W11).",
+    "HON: P/E and market cap are null because of the 2026-06-29 spin-off. Trailing comparisons are not meaningful.",
+    "meta.universe_version is 'draft'.",
+    "Earnings dates are marked unverified (Yahoo). WMT reported before the open on 2026-11-19, which falls before the scoring window opens (W5).",
+    "CPI observation is dated 2026-10-01 (the October monthly reading). DTWEXBGS is dated 2026-11-13, so the macro series have mixed dates."
+  ]
+}

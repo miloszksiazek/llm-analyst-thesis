@@ -1,0 +1,51 @@
+{
+  "run_date": "2026-11-19",
+  "mode": "test",
+  "finished_at": "2026-11-19T13:31:00+00:00",
+  "git_commit": "9ca5f01550e002abab1f8efe7533030e1642c1f5",
+  "late_run": false,
+  "warnings": [],
+  "package": {
+    "path": "data/weekly/2026-11-19/package.json",
+    "sha256": "4c681e072f5161b90102170d282b21f787c15f536d9f731297cbed2494dd4892",
+    "price_source": "yahoo"
+  },
+  "strategies": {
+    "claude_web": {
+      "status": "ok",
+      "picks": [
+        "WMT",
+        "AMZN",
+        "AAPL",
+        "TRV"
+      ],
+      "n_valid_runs": 3,
+      "n_runs_requested": 3,
+      "total_cost_usd": 4.422512
+    },
+    "claude_noweb": {
+      "status": "ok",
+      "picks": [
+        "PG",
+        "KO",
+        "MCD",
+        "TRV"
+      ],
+      "n_valid_runs": 3,
+      "n_runs_requested": 3,
+      "total_cost_usd": 0.43679999999999997
+    },
+    "xgb": {
+      "status": "failed",
+      "picks": null
+    }
+  },
+  "xgb": null,
+  "errors": [
+    {
+      "step": "xgb",
+      "error": "No module named 'xgboost'",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/llm-analyst-thesis/llm-analyst-thesis/src/pipeline/weekly.py\", line 264, in run_week\n    xgb_result = _step_xgb(package_path, out_dir)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/llm-analyst-thesis/llm-analyst-thesis/src/pipeline/weekly.py\", line 164, in _step_xgb\n    model, meta = load_model(model_path)\n                  ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/llm-analyst-thesis/llm-analyst-thesis/src/xgb/predict.py\", line 72, in load_model\n    import xgboost as xgb\nModuleNotFoundError: No module named 'xgboost'\n"
+    }
+  ]
+}

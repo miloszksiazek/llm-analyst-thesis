@@ -1,0 +1,320 @@
+{
+  "variant": "claude_web",
+  "run_date": "2026-11-19",
+  "as_of": "2026-11-18",
+  "package_sha256": "4c681e072f5161b90102170d282b21f787c15f536d9f731297cbed2494dd4892",
+  "n_runs_requested": 3,
+  "n_valid_runs": 3,
+  "fallback_applied": false,
+  "fallback_rule": "keep_prev_portfolio",
+  "picks": [
+    "WMT",
+    "AMZN",
+    "AAPL",
+    "TRV"
+  ],
+  "stocks": [
+    {
+      "ticker": "WMT",
+      "mean_rank": 7.3333,
+      "mean_score": 2.0,
+      "min_rank": 1,
+      "max_rank": 20,
+      "final_rank": 1
+    },
+    {
+      "ticker": "AMZN",
+      "mean_rank": 7.3333,
+      "mean_score": 1.3333,
+      "min_rank": 6,
+      "max_rank": 8,
+      "final_rank": 2
+    },
+    {
+      "ticker": "AAPL",
+      "mean_rank": 9.0,
+      "mean_score": 0.3333,
+      "min_rank": 7,
+      "max_rank": 11,
+      "final_rank": 3
+    },
+    {
+      "ticker": "TRV",
+      "mean_rank": 10.6667,
+      "mean_score": 1.0,
+      "min_rank": 4,
+      "max_rank": 24,
+      "final_rank": 4
+    },
+    {
+      "ticker": "DIS",
+      "mean_rank": 11.0,
+      "mean_score": 0.6667,
+      "min_rank": 7,
+      "max_rank": 17,
+      "final_rank": 5
+    },
+    {
+      "ticker": "V",
+      "mean_rank": 11.0,
+      "mean_score": 0.3333,
+      "min_rank": 10,
+      "max_rank": 13,
+      "final_rank": 6
+    },
+    {
+      "ticker": "PG",
+      "mean_rank": 11.3333,
+      "mean_score": 0.6667,
+      "min_rank": 2,
+      "max_rank": 30,
+      "final_rank": 7
+    },
+    {
+      "ticker": "CSCO",
+      "mean_rank": 11.6667,
+      "mean_score": 0.6667,
+      "min_rank": 6,
+      "max_rank": 18,
+      "final_rank": 8
+    },
+    {
+      "ticker": "KO",
+      "mean_rank": 11.6667,
+      "mean_score": 0.6667,
+      "min_rank": 3,
+      "max_rank": 29,
+      "final_rank": 9
+    },
+    {
+      "ticker": "MCD",
+      "mean_rank": 12.6667,
+      "mean_score": 0.3333,
+      "min_rank": 5,
+      "max_rank": 27,
+      "final_rank": 10
+    },
+    {
+      "ticker": "GOOGL",
+      "mean_rank": 13.0,
+      "mean_score": 1.0,
+      "min_rank": 2,
+      "max_rank": 25,
+      "final_rank": 11
+    },
+    {
+      "ticker": "MSFT",
+      "mean_rank": 13.0,
+      "mean_score": 1.0,
+      "min_rank": 4,
+      "max_rank": 18,
+      "final_rank": 12
+    },
+    {
+      "ticker": "JNJ",
+      "mean_rank": 13.3333,
+      "mean_score": 0.0,
+      "min_rank": 5,
+      "max_rank": 28,
+      "final_rank": 13
+    },
+    {
+      "ticker": "AXP",
+      "mean_rank": 15.0,
+      "mean_score": 0.0,
+      "min_rank": 12,
+      "max_rank": 17,
+      "final_rank": 14
+    },
+    {
+      "ticker": "HON",
+      "mean_rank": 15.0,
+      "mean_score": -0.3333,
+      "min_rank": 12,
+      "max_rank": 19,
+      "final_rank": 15
+    },
+    {
+      "ticker": "JPM",
+      "mean_rank": 15.3333,
+      "mean_score": -0.3333,
+      "min_rank": 11,
+      "max_rank": 20,
+      "final_rank": 16
+    },
+    {
+      "ticker": "AMGN",
+      "mean_rank": 16.3333,
+      "mean_score": -0.3333,
+      "min_rank": 13,
+      "max_rank": 23,
+      "final_rank": 17
+    },
+    {
+      "ticker": "CRM",
+      "mean_rank": 17.0,
+      "mean_score": 0.0,
+      "min_rank": 3,
+      "max_rank": 29,
+      "final_rank": 18
+    },
+    {
+      "ticker": "GS",
+      "mean_rank": 17.0,
+      "mean_score": -0.3333,
+      "min_rank": 9,
+      "max_rank": 21,
+      "final_rank": 19
+    },
+    {
+      "ticker": "MMM",
+      "mean_rank": 17.0,
+      "mean_score": -0.3333,
+      "min_rank": 14,
+      "max_rank": 21,
+      "final_rank": 20
+    },
+    {
+      "ticker": "IBM",
+      "mean_rank": 18.0,
+      "mean_score": -0.3333,
+      "min_rank": 8,
+      "max_rank": 23,
+      "final_rank": 21
+    },
+    {
+      "ticker": "NVDA",
+      "mean_rank": 18.3333,
+      "mean_score": 0.3333,
+      "min_rank": 1,
+      "max_rank": 27,
+      "final_rank": 22
+    },
+    {
+      "ticker": "MRK",
+      "mean_rank": 19.3333,
+      "mean_score": -0.6667,
+      "min_rank": 14,
+      "max_rank": 22,
+      "final_rank": 23
+    },
+    {
+      "ticker": "HD",
+      "mean_rank": 19.6667,
+      "mean_score": -0.6667,
+      "min_rank": 15,
+      "max_rank": 25,
+      "final_rank": 24
+    },
+    {
+      "ticker": "SHW",
+      "mean_rank": 20.3333,
+      "mean_score": -0.6667,
+      "min_rank": 15,
+      "max_rank": 24,
+      "final_rank": 25
+    },
+    {
+      "ticker": "BA",
+      "mean_rank": 20.6667,
+      "mean_score": -1.0,
+      "min_rank": 10,
+      "max_rank": 28,
+      "final_rank": 26
+    },
+    {
+      "ticker": "CAT",
+      "mean_rank": 20.6667,
+      "mean_score": -1.0,
+      "min_rank": 5,
+      "max_rank": 29,
+      "final_rank": 27
+    },
+    {
+      "ticker": "CVX",
+      "mean_rank": 21.3333,
+      "mean_score": -1.0,
+      "min_rank": 18,
+      "max_rank": 26,
+      "final_rank": 28
+    },
+    {
+      "ticker": "NKE",
+      "mean_rank": 22.6667,
+      "mean_score": -1.0,
+      "min_rank": 16,
+      "max_rank": 26,
+      "final_rank": 29
+    },
+    {
+      "ticker": "UNH",
+      "mean_rank": 28.3333,
+      "mean_score": -2.6667,
+      "min_rank": 25,
+      "max_rank": 30,
+      "final_rank": 30
+    }
+  ],
+  "pairwise_spearman": [
+    {
+      "a": "run_1",
+      "b": "run_2",
+      "rho": -0.418
+    },
+    {
+      "a": "run_1",
+      "b": "run_3",
+      "rho": -0.5884
+    },
+    {
+      "a": "run_2",
+      "b": "run_3",
+      "rho": 0.8932
+    }
+  ],
+  "runs": [
+    {
+      "run_id": "run_1",
+      "is_valid": true,
+      "picks": [
+        "NVDA",
+        "GOOGL",
+        "CRM",
+        "MSFT"
+      ],
+      "errors": [],
+      "cost_usd": 2.412264,
+      "input_tokens": 150895,
+      "output_tokens": 10105
+    },
+    {
+      "run_id": "run_2",
+      "is_valid": true,
+      "picks": [
+        "WMT",
+        "PG",
+        "KO",
+        "TRV"
+      ],
+      "errors": [],
+      "cost_usd": 1.0513080000000001,
+      "input_tokens": 180617,
+      "output_tokens": 11442
+    },
+    {
+      "run_id": "run_3",
+      "is_valid": true,
+      "picks": [
+        "WMT",
+        "PG",
+        "KO",
+        "TRV"
+      ],
+      "errors": [],
+      "cost_usd": 0.95894,
+      "input_tokens": 162665,
+      "output_tokens": 10414
+    }
+  ],
+  "total_cost_usd": 4.422512
+}

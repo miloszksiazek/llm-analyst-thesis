@@ -1,0 +1,12 @@
+I don't have a web search tool here, so I'll work only from the data package. A few things need noting: CSCO's last close is null with zero change, the universe version is still a draft, and the earnings figures haven't been verified. The CPI is running at 4.08% year over year while fed funds sits at 4.0 and the 10-year at 5.1, so yields are high. The DIA is down 4.33% on the week.
+
+I'm weighing whether the defensive sectors should be favored given the high inflation and 5.1% ten-year yield, while keeping in mind that short-term reversals may lift oversold names. Walmart reports before the open on the 19th, so the earnings gap is probably already in the opening price, and Salesforce's report on December 2 falls outside this window.
+
+I'm checking the Thanksgiving timing, then picking up CSCO, which has no price data so it gets a neutral middle score. For the picks I'm weighing defensive staples like PG and KO against short-term reversal bets like NVDA or CAT, and I'm leaning toward a blend that keeps WMT at a moderate weight given its P/E of 46.
+
+I'm assigning the remaining scores, with the bearish names NVDA, CAT, and BA at -3 and the lower ones in the -1 to -2 range, and then ranking from PG and KO at the top down through the middle group, where CSCO sits at zero.
+
+I'm tallying the scores for the middle group, where GOOGL, JPM, and CVX sit at -1 and NKE drops a notch, with MRK, IBM, GS, UNH, and CRM at -2 and BA, CAT, and NVDA at -3. The running total comes out to -7, so I'm nudging a few names up, CVX and NKE to zero, CRM and UNH to -1, and AMGN and HON to +1, to bring the sum back near zero before re-ranking by score.
+
+I'm grouping the tickers into score tiers, with PG and KO at the top, then MCD, DIS, and WMT, and checking that the totals come out near zero.
+

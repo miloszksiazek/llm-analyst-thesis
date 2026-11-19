@@ -1,0 +1,90 @@
+{
+  "variant": "claude_web",
+  "run_date": "2026-11-19",
+  "as_of": "2026-11-18",
+  "model_id": "claude-opus-5-5",
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-11-19T13:24:01+00:00",
+      "finished_at": "2026-11-19T13:25:59+00:00",
+      "stop_reason": "end_turn",
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "inference_geo": "global",
+        "input_tokens": 290366,
+        "output_tokens": 12256,
+        "output_tokens_details": {
+          "thinking_tokens": 4339
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 10
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost": {
+        "input_tokens": 290366,
+        "output_tokens": 12256,
+        "web_searches": 10,
+        "input_usd": 1.161464,
+        "output_usd": 0.24512,
+        "search_usd": 0.1,
+        "total_usd": 1.5065840000000001
+      },
+      "validation_ok": false,
+      "errors": [
+        "JSON parse error: Expecting ',' delimiter: line 1 column 2858 (char 2857)"
+      ],
+      "error": null
+    },
+    {
+      "attempt": 2,
+      "started_at": "2026-11-19T13:25:59+00:00",
+      "finished_at": "2026-11-19T13:27:35+00:00",
+      "stop_reason": "end_turn",
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "inference_geo": "global",
+        "input_tokens": 150895,
+        "output_tokens": 10105,
+        "output_tokens_details": {
+          "thinking_tokens": 3154
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 10
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost": {
+        "input_tokens": 150895,
+        "output_tokens": 10105,
+        "web_searches": 10,
+        "input_usd": 0.60358,
+        "output_usd": 0.2021,
+        "search_usd": 0.1,
+        "total_usd": 0.9056799999999999
+      },
+      "validation_ok": true,
+      "errors": [],
+      "error": null
+    }
+  ],
+  "final_attempt": 2,
+  "is_valid": true,
+  "web_search_count": 10,
+  "total_cost_usd": 2.412264
+}

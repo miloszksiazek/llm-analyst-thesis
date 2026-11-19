@@ -1,0 +1,14 @@
+I can't search the web here, so I'll work only from the data in the package. Several fields look off: CSCO has a null last close and a 0.0 change, the universe is still marked as a draft, and Alphabet has taken Verizon's place. On the macro side, CPI is at 4.08% year over year, the 10-year yield is 5.1%, and the Fed rate is 4.0%, while DIA is down 4.33% over the week.
+
+I'm checking the market-cap and share-count figures for the big names, and they look plausible. The Dow's 4.33% weekly drop seems a bit steep given how much of its components fell, but it's consistent with the price-weighted index. For a one-week horizon I'm leaning toward defensive staples with some momentum, and WMT's earnings are still unconfirmed.
+
+I'm weighing whether Walmart's earnings land before the open on 11/19, since the open would already reflect the gap, which lowers the event risk. The Thanksgiving closure pushes the measurement window past CRM's 12/2 report, so that one drops out. I'm leaning toward PG, KO, and MCD as the defensive picks, still weighing whether rates at 5.1% outweigh the recent staples rally.
+
+Now I'm settling on the defensive picks for the week: PG, KO, DIS, and MCD, with TRV next at a low P/E and WMT last. For the bottom of the ranking I'm considering the high-beta names that have dropped hardest, like NVDA, CRM, and UNH, though reversal risk keeps those negatives moderate. CSCO has missing data, so I'm giving it a neutral middle score.
+
+I'm going through the rest of the scores, with the defensive names on the plus side, the mid-range at zero, and the high-beta drawdowns like NVDA and CRM at the bottom.
+
+I'm settling the ranking, finishing the scores for the remaining names, and filling the middle with neutral zeros so the totals come close to balancing out.
+
+Now I'm tallying the scores to make sure the positives and negatives balance out to zero, and they do.
+

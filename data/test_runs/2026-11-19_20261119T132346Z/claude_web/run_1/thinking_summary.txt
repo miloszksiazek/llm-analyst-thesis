@@ -1,0 +1,48 @@
+I'm planning a handful of batched searches, keeping within a budget of ten. I also need to note some data problems: CSCO has a null last close with zero changes, the universe version is still marked as draft, and there's a spin-off note for HON. The Verizon-to-GOOGL replacement note looks doubtful, since I recall NVDA replacing Intel, SHW replacing Dow, and AMZN replacing WBA, and the GOOGL claim hasn't been verified.
+
+I'm checking the remaining figures for plausibility. The CPI and 10-year yield look reasonable, and the market caps for AAPL, NVDA, NKE, and GOOGL imply share counts that seem fine, though NVDA's P/E after a 30% drop looks odd. DIA's level also looks fine.
+
+
+
+---
+
+I'm parsing the results, which come back as JSON strings. The Walmart 8-K is dated "as of 11.19.26," so its release lands today, and since Walmart reports pre-market, I'm checking whether that falls before the next market open.
+
+The stock's likely reaction at the open is already measured from the open, so it should already be priced in, though that still seems fine to accept. I'm also treating the GitHub "social draft" source as unreliable and moving on to parse more of the content.
+
+
+
+---
+
+I'm going through the CNBC, stocktitan, US News Fed, gurufocus UNH, and Walmart 8-K pages now.
+
+
+
+---
+
+Futures are up Thursday on the Anthropic IPO news, with the Nasdaq around 2%, so some of that move may already be priced in by the time the next market open comes around on the 19th. I also need to check the Walmart 8-K release details, and I have five searches left to cover Salesforce, Caterpillar and Chevron on oil, Alphabet, Boeing, and Merck.
+
+I'm lining up the search queries for Walmart's third-quarter results, Caterpillar, Alphabet, oil prices, and Salesforce, using the last of my five searches.
+
+
+
+---
+
+I've used up my 10 searches, so it's time to commit to a view. The Fed sounds hawkish, with a December hike looking likely, the 10-year yield around 5.1%, CPI at 4.1%, and oil high. The Dow ETF is down 4.3% on the week, but Thursday futures point to a Nasdaq gain of about 2% on the Anthropic IPO reviving the AI trade. Since my measurement starts at the open, I need to account for that gap already being priced in.
+
+I'm weighing a few possible picks for next week, a holiday-shortened week where mean reversion after the heavy tech and AI selling could help, though high rates still weigh on long-duration names. NVDA and GOOGL look most interesting, with GOOGL also benefiting from its Anthropic stake if the IPO goes well, while CRM looks riskier because Anthropic's success may further pressure software.
+
+I'm weighing the remaining candidates: UNH looks oversold after its 13% weekly drop, though the Medicare Advantage rule could keep pressure on it, so I'm leaning slightly negative. WMT's results were already reflected before the open, and as a defensive name with a high P/E it may lag if risk appetite returns.
+
+I'm leaning toward NVDA, GOOGL, CRM, and MSFT, with CRM reconsidered because its drop may have been tied to the Anthropic IPO repositioning.
+
+I'm ranking the remaining names by score, with NVDA and GOOGL on top and CRM and MSFT next, followed by CAT and AMZN, then a run of zero and slightly negative scores for the rest of the list.
+
+I'm adjusting the scores so they net to zero: GS and BA drop to 0, while HON and WMT move to -1 to balance the totals.
+
+I'm listing the final rankings for all thirty names, along with the sources I'm citing for the data.
+
+I'm listing the source citations now, with the Walmart filing, the Fed rate coverage, and the oil price reports among them.
+
+I'm checking the data quality issues now: CSCO has a null close, HON is missing, and the CPI figure differs from the earlier search, though that may not be a real conflict. I still need to confirm the earnings dates, and the NVDA close and Walmart date both check out against the sources. Then I'll write the JSON with rationales under 40 words.
+

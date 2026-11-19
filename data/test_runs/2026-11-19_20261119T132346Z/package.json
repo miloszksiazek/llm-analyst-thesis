@@ -1,0 +1,440 @@
+{
+  "data_notes": [
+    "Universe: Dow Jones Industrial Average constituents as of 2026-11-04. Alphabet (GOOGL) replaced Verizon (VZ) on 2026-06-29.",
+    "HON: P/E and market cap omitted – trailing figures not comparable after the 2026-06-29 spin-off."
+  ],
+  "earnings": {
+    "entries": [
+      {
+        "company": "Salesforce Inc",
+        "next_earnings_date": "2026-12-02",
+        "status": "unverified (Yahoo)",
+        "ticker": "CRM"
+      },
+      {
+        "company": "Walmart Inc",
+        "next_earnings_date": "2026-11-19",
+        "status": "unverified (Yahoo)",
+        "ticker": "WMT"
+      }
+    ],
+    "note": "Other universe companies have no earnings date in this window according to Yahoo (dates unverified)."
+  },
+  "macro": [
+    {
+      "id": "DFEDTARU",
+      "name": "Fed funds target upper bound",
+      "obs_date": "2026-11-18",
+      "transform": "latest",
+      "unit": "%",
+      "value": 4.0
+    },
+    {
+      "id": "CPIAUCSL",
+      "name": "CPI all items (seasonally adjusted)",
+      "obs_date": "2026-10-01",
+      "transform": "yoy_pct",
+      "unit": "%",
+      "value": 4.081
+    },
+    {
+      "id": "DGS2",
+      "name": "2-year Treasury yield (constant maturity)",
+      "obs_date": "2026-11-17",
+      "transform": "latest",
+      "unit": "%",
+      "value": 4.8
+    },
+    {
+      "id": "DGS10",
+      "name": "10-year Treasury yield (constant maturity)",
+      "obs_date": "2026-11-17",
+      "transform": "latest",
+      "unit": "%",
+      "value": 5.1
+    },
+    {
+      "id": "DTWEXBGS",
+      "name": "USD broad index (goods and services)",
+      "obs_date": "2026-11-13",
+      "transform": "latest",
+      "unit": "index_jan2006=100",
+      "value": 122.6503
+    }
+  ],
+  "market": {
+    "change_1m_pct": -4.316,
+    "change_1q_pct": -4.887,
+    "change_1w_pct": -4.33,
+    "last_close": 501.73,
+    "ticker": "DIA"
+  },
+  "meta": {
+    "as_of": "2026-11-18",
+    "run_date": "2026-11-19",
+    "universe_tickers": 30,
+    "universe_version": "draft"
+  },
+  "stocks": [
+    {
+      "change_1m_pct": 3.814,
+      "change_1q_pct": 13.219,
+      "change_1w_pct": -0.894,
+      "dividend_yield": 0.31,
+      "last_close": 352.45,
+      "market_cap": 5121867513856,
+      "name": "Apple Inc",
+      "pe_trailing": 39.25,
+      "sector": "Information Technology",
+      "ticker": "AAPL"
+    },
+    {
+      "change_1m_pct": 1.128,
+      "change_1q_pct": 2.342,
+      "change_1w_pct": -5.174,
+      "dividend_yield": 2.27,
+      "last_close": 443.89,
+      "market_cap": 240105209856,
+      "name": "Amgen Inc",
+      "pe_trailing": 25.73,
+      "sector": "Health Care",
+      "ticker": "AMGN"
+    },
+    {
+      "change_1m_pct": 1.946,
+      "change_1q_pct": 2.933,
+      "change_1w_pct": 0.59,
+      "dividend_yield": 0.0,
+      "last_close": 267.74,
+      "market_cap": 2895109423104,
+      "name": "Amazon.com Inc",
+      "pe_trailing": 21.64,
+      "sector": "Consumer Discretionary",
+      "ticker": "AMZN"
+    },
+    {
+      "change_1m_pct": -0.924,
+      "change_1q_pct": -4.756,
+      "change_1w_pct": -2.386,
+      "dividend_yield": 1.2,
+      "last_close": 315.4,
+      "market_cap": 211492093952,
+      "name": "American Express Co",
+      "pe_trailing": 17.77,
+      "sector": "Financials",
+      "ticker": "AXP"
+    },
+    {
+      "change_1m_pct": -14.469,
+      "change_1q_pct": -24.263,
+      "change_1w_pct": -6.663,
+      "dividend_yield": 0.0,
+      "last_close": 162.91,
+      "market_cap": 129098022912,
+      "name": "Boeing Co",
+      "pe_trailing": 16.81,
+      "sector": "Industrials",
+      "ticker": "BA"
+    },
+    {
+      "change_1m_pct": -22.954,
+      "change_1q_pct": -31.472,
+      "change_1w_pct": -7.121,
+      "dividend_yield": 1.17,
+      "last_close": 558.77,
+      "market_cap": 255689900032,
+      "name": "Caterpillar Inc",
+      "pe_trailing": 21.93,
+      "sector": "Industrials",
+      "ticker": "CAT"
+    },
+    {
+      "change_1m_pct": -21.462,
+      "change_1q_pct": -7.316,
+      "change_1w_pct": -12.665,
+      "dividend_yield": 0.92,
+      "last_close": 190.4,
+      "market_cap": 156699197440,
+      "name": "Salesforce Inc",
+      "pe_trailing": 17.42,
+      "sector": "Information Technology",
+      "ticker": "CRM"
+    },
+    {
+      "change_1m_pct": 0.0,
+      "change_1q_pct": 0.0,
+      "change_1w_pct": 0.0,
+      "dividend_yield": 1.73,
+      "last_close": null,
+      "market_cap": 383127126016,
+      "name": "Cisco Systems Inc",
+      "pe_trailing": 25.85,
+      "sector": "Information Technology",
+      "ticker": "CSCO"
+    },
+    {
+      "change_1m_pct": -8.786,
+      "change_1q_pct": 0.053,
+      "change_1w_pct": -3.47,
+      "dividend_yield": 3.46,
+      "last_close": 205.88,
+      "market_cap": 401724112896,
+      "name": "Chevron Corp",
+      "pe_trailing": 15.12,
+      "sector": "Energy",
+      "ticker": "CVX"
+    },
+    {
+      "change_1m_pct": 9.573,
+      "change_1q_pct": 14.014,
+      "change_1w_pct": 2.265,
+      "dividend_yield": 1.63,
+      "last_close": 122.36,
+      "market_cap": 208994516992,
+      "name": "Walt Disney Co",
+      "pe_trailing": 21.73,
+      "sector": "Communication Services",
+      "ticker": "DIS"
+    },
+    {
+      "change_1m_pct": -16.998,
+      "change_1q_pct": -17.093,
+      "change_1w_pct": -3.752,
+      "dividend_yield": 0.31,
+      "last_close": 282.44,
+      "market_cap": 3472317218816,
+      "name": "Alphabet Inc (Class A)",
+      "pe_trailing": 14.75,
+      "sector": "Communication Services",
+      "ticker": "GOOGL"
+    },
+    {
+      "change_1m_pct": -1.314,
+      "change_1q_pct": -12.852,
+      "change_1w_pct": -5.787,
+      "dividend_yield": 2.29,
+      "last_close": 873.18,
+      "market_cap": 251855306752,
+      "name": "Goldman Sachs Group Inc",
+      "pe_trailing": 12.55,
+      "sector": "Financials",
+      "ticker": "GS"
+    },
+    {
+      "change_1m_pct": 7.15,
+      "change_1q_pct": 0.942,
+      "change_1w_pct": -3.891,
+      "dividend_yield": 2.76,
+      "last_close": 337.64,
+      "market_cap": 336859922432,
+      "name": "Home Depot Inc",
+      "pe_trailing": 23.45,
+      "sector": "Consumer Discretionary",
+      "ticker": "HD"
+    },
+    {
+      "change_1m_pct": 4.397,
+      "change_1q_pct": 2.006,
+      "change_1w_pct": -2.17,
+      "dividend_yield": 1.26,
+      "last_close": 222.7,
+      "market_cap": null,
+      "name": "Honeywell International Inc",
+      "pe_trailing": null,
+      "sector": "Industrials",
+      "ticker": "HON"
+    },
+    {
+      "change_1m_pct": -5.535,
+      "change_1q_pct": -2.208,
+      "change_1w_pct": -7.932,
+      "dividend_yield": 2.96,
+      "last_close": 228.53,
+      "market_cap": 215988469760,
+      "name": "International Business Machines Corp",
+      "pe_trailing": 19.5,
+      "sector": "Information Technology",
+      "ticker": "IBM"
+    },
+    {
+      "change_1m_pct": 5.143,
+      "change_1q_pct": 1.993,
+      "change_1w_pct": -2.75,
+      "dividend_yield": 1.97,
+      "last_close": 272.7,
+      "market_cap": 656473587712,
+      "name": "Johnson & Johnson",
+      "pe_trailing": 41.38,
+      "sector": "Health Care",
+      "ticker": "JNJ"
+    },
+    {
+      "change_1m_pct": -3.326,
+      "change_1q_pct": -7.805,
+      "change_1w_pct": -5.615,
+      "dividend_yield": 2.04,
+      "last_close": 324.11,
+      "market_cap": 860709584896,
+      "name": "JPMorgan Chase & Co",
+      "pe_trailing": 13.6,
+      "sector": "Financials",
+      "ticker": "JPM"
+    },
+    {
+      "change_1m_pct": 4.92,
+      "change_1q_pct": 8.387,
+      "change_1w_pct": 0.533,
+      "dividend_yield": 2.16,
+      "last_close": 98.09,
+      "market_cap": 421973590016,
+      "name": "Coca-Cola Co",
+      "pe_trailing": 28.94,
+      "sector": "Consumer Staples",
+      "ticker": "KO"
+    },
+    {
+      "change_1m_pct": 11.159,
+      "change_1q_pct": 1.821,
+      "change_1w_pct": -0.28,
+      "dividend_yield": 2.82,
+      "last_close": 274.03,
+      "market_cap": 193406205952,
+      "name": "McDonald's Corp",
+      "pe_trailing": 21.68,
+      "sector": "Consumer Discretionary",
+      "ticker": "MCD"
+    },
+    {
+      "change_1m_pct": 5.649,
+      "change_1q_pct": 1.662,
+      "change_1w_pct": -4.145,
+      "dividend_yield": 1.72,
+      "last_close": 181.05,
+      "market_cap": 93553893376,
+      "name": "3M Co",
+      "pe_trailing": 27.02,
+      "sector": "Industrials",
+      "ticker": "MMM"
+    },
+    {
+      "change_1m_pct": -7.094,
+      "change_1q_pct": -7.524,
+      "change_1w_pct": -6.387,
+      "dividend_yield": 2.55,
+      "last_close": 137.78,
+      "market_cap": 339661553664,
+      "name": "Merck & Co Inc",
+      "pe_trailing": 139.17,
+      "sector": "Health Care",
+      "ticker": "MRK"
+    },
+    {
+      "change_1m_pct": -4.433,
+      "change_1q_pct": 5.641,
+      "change_1w_pct": -2.464,
+      "dividend_yield": 0.77,
+      "last_close": 508.29,
+      "market_cap": 3774660476928,
+      "name": "Microsoft Corp",
+      "pe_trailing": 26.53,
+      "sector": "Information Technology",
+      "ticker": "MSFT"
+    },
+    {
+      "change_1m_pct": -4.145,
+      "change_1q_pct": -9.699,
+      "change_1w_pct": -5.245,
+      "dividend_yield": 4.52,
+      "last_close": 36.31,
+      "market_cap": 53931565056,
+      "name": "Nike Inc (Class B)",
+      "pe_trailing": 17.46,
+      "sector": "Consumer Discretionary",
+      "ticker": "NKE"
+    },
+    {
+      "change_1m_pct": -30.263,
+      "change_1q_pct": -30.385,
+      "change_1w_pct": -13.107,
+      "dividend_yield": 0.66,
+      "last_close": 150.96,
+      "market_cap": 3645231071232,
+      "name": "NVIDIA Corp",
+      "pe_trailing": 16.21,
+      "sector": "Information Technology",
+      "ticker": "NVDA"
+    },
+    {
+      "change_1m_pct": 6.886,
+      "change_1q_pct": 19.109,
+      "change_1w_pct": 1.563,
+      "dividend_yield": 2.56,
+      "last_close": 170.29,
+      "market_cap": 394695245824,
+      "name": "Procter & Gamble Co",
+      "pe_trailing": 25.65,
+      "sector": "Consumer Staples",
+      "ticker": "PG"
+    },
+    {
+      "change_1m_pct": 3.152,
+      "change_1q_pct": -0.089,
+      "change_1w_pct": -2.575,
+      "dividend_yield": 0.92,
+      "last_close": 346.6,
+      "market_cap": 83734421504,
+      "name": "Sherwin-Williams Co",
+      "pe_trailing": 31.89,
+      "sector": "Materials",
+      "ticker": "SHW"
+    },
+    {
+      "change_1m_pct": -1.049,
+      "change_1q_pct": 7.432,
+      "change_1w_pct": -1.973,
+      "dividend_yield": 1.28,
+      "last_close": 391.58,
+      "market_cap": 80252887040,
+      "name": "Travelers Companies Inc",
+      "pe_trailing": 10.3,
+      "sector": "Financials",
+      "ticker": "TRV"
+    },
+    {
+      "change_1m_pct": -16.541,
+      "change_1q_pct": -9.079,
+      "change_1w_pct": -13.161,
+      "dividend_yield": 2.65,
+      "last_close": 349.91,
+      "market_cap": 313527271424,
+      "name": "UnitedHealth Group Inc",
+      "pe_trailing": 19.97,
+      "sector": "Health Care",
+      "ticker": "UNH"
+    },
+    {
+      "change_1m_pct": 2.128,
+      "change_1q_pct": 13.532,
+      "change_1w_pct": -2.427,
+      "dividend_yield": 0.75,
+      "last_close": 415.22,
+      "market_cap": 774717505536,
+      "name": "Visa Inc (Class A)",
+      "pe_trailing": 33.7,
+      "sector": "Financials",
+      "ticker": "V"
+    },
+    {
+      "change_1m_pct": 8.07,
+      "change_1q_pct": 22.65,
+      "change_1w_pct": 1.345,
+      "dividend_yield": 0.78,
+      "last_close": 127.36,
+      "market_cap": 1010441912320,
+      "name": "Walmart Inc",
+      "pe_trailing": 46.14,
+      "sector": "Consumer Staples",
+      "ticker": "WMT"
+    }
+  ]
+}

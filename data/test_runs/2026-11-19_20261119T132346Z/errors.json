@@ -1,0 +1,7 @@
+[
+  {
+    "step": "xgb",
+    "error": "No module named 'xgboost'",
+    "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/llm-analyst-thesis/llm-analyst-thesis/src/pipeline/weekly.py\", line 264, in run_week\n    xgb_result = _step_xgb(package_path, out_dir)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/llm-analyst-thesis/llm-analyst-thesis/src/pipeline/weekly.py\", line 164, in _step_xgb\n    model, meta = load_model(model_path)\n                  ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/llm-analyst-thesis/llm-analyst-thesis/src/xgb/predict.py\", line 72, in load_model\n    import xgboost as xgb\nModuleNotFoundError: No module named 'xgboost'\n"
+  }
+]

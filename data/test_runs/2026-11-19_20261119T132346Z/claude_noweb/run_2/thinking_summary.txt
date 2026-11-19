@@ -1,0 +1,14 @@
+I don't have a web search tool here, so I'll rely on the data package. A few things stand out: CSCO's last close is missing and its changes show 0.0, so that's a data gap, and the universe is marked as a draft. On the macro side, CPI is running at 4.08% year over year, the 10-year is at 5.1%, the Fed funds rate is 4.0%, and the 2-year is at 4.8%. The market looks stressed, with DIA down 4.33% over the week and a tech selloff where NVDA is off 13% for the week and 30% for the month. There's also a HON spin-off note and an AA item I still need to look at.
+
+I'm checking the market cap and price figures for AAPL and NVDA, and they look plausible. I'm also weighing the Walmart earnings timing: if it reports before today's open, part of the reaction is already priced into the opening gap, so a measurement from open would miss most of it. I'm leaning toward a mild mean-reversion tilt in oversold quality names, though the defensive outperformance makes that a tentative call.
+
+I'm weighing a few candidate picks now: GOOGL looks cheap after its monthly drop, NVDA is oversold but carries more risk, and PG and KO have held up on defensive momentum. With yields this high and inflation still around 4%, I'm wary that the risk-off move could continue, so I'm leaning toward a balanced mix.
+
+I'm settling the candidate list now: I'm adding TRV and either KO or MCD as defensive picks, and I'm scoring the universe from +3 down to -3. GOOGL and PG get the top scores, followed by TRV, KO and MCD, then WMT, JNJ, NVDA, AMZN and V at +1. The rest sit at neutral, and GS, AXP and HD are at -1.
+
+I'm going through the rest of the scores now: I'm putting the defensive and high-P/E names near neutral, and marking the more stressed names like Nike, Unitedhealth, Salesforce, Boeing and Caterpillar lower, with Caterpillar at the bottom given its steep monthly drop. CSCO's missing data has me leaning toward a neutral rank for now.
+
+I'm checking the score tallies, which come to zero overall, and then laying out the final ranking from GOOGL at the top down through MMM, MRK, and the lower names.
+
+I'm going back over the scores and the ranking order, with GOOGL at the top despite its steep monthly drop since it looks cheap on valuation, and I'm checking that the tallies still net out to zero.
+

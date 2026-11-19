@@ -1,0 +1,47 @@
+{
+  "variant": "claude_noweb",
+  "run_date": "2026-11-19",
+  "as_of": "2026-11-18",
+  "model_id": "claude-opus-5-5",
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-11-19T13:25:39+00:00",
+      "finished_at": "2026-11-19T13:26:29+00:00",
+      "stop_reason": "end_turn",
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "inference_geo": "global",
+        "input_tokens": 7985,
+        "output_tokens": 5918,
+        "output_tokens_details": {
+          "thinking_tokens": 1738
+        },
+        "server_tool_use": null,
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost": {
+        "input_tokens": 7985,
+        "output_tokens": 5918,
+        "web_searches": 0,
+        "input_usd": 0.03194,
+        "output_usd": 0.11835999999999999,
+        "search_usd": 0.0,
+        "total_usd": 0.1503
+      },
+      "validation_ok": true,
+      "errors": [],
+      "error": null
+    }
+  ],
+  "final_attempt": 1,
+  "is_valid": true,
+  "web_search_count": 0,
+  "total_cost_usd": 0.1503
+}
