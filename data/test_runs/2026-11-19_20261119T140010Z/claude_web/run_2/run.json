@@ -1,0 +1,50 @@
+{
+  "variant": "claude_web",
+  "run_date": "2026-11-19",
+  "as_of": "2026-11-18",
+  "model_id": "claude-opus-5-5",
+  "attempts": [
+    {
+      "attempt": 1,
+      "started_at": "2026-11-19T14:02:47+00:00",
+      "finished_at": "2026-11-19T14:05:08+00:00",
+      "stop_reason": "end_turn",
+      "usage": {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "inference_geo": "global",
+        "input_tokens": 176117,
+        "output_tokens": 12804,
+        "output_tokens_details": {
+          "thinking_tokens": 4405
+        },
+        "server_tool_use": {
+          "web_fetch_requests": 0,
+          "web_search_requests": 10
+        },
+        "service_tier": "standard",
+        "speed": "standard"
+      },
+      "cost": {
+        "input_tokens": 176117,
+        "output_tokens": 12804,
+        "web_searches": 10,
+        "input_usd": 0.704468,
+        "output_usd": 0.25608,
+        "search_usd": 0.1,
+        "total_usd": 1.060548
+      },
+      "validation_ok": true,
+      "errors": [],
+      "error": null
+    }
+  ],
+  "final_attempt": 1,
+  "is_valid": true,
+  "web_search_count": 10,
+  "total_cost_usd": 1.060548
+}

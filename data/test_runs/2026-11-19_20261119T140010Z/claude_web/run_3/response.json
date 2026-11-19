@@ -1,0 +1,575 @@
+{
+  "run_date": "2026-11-19",
+  "as_of": "2026-11-18",
+  "macro_view": {
+    "summary": "The market is in risk-off mode. DIA fell 4.3% last week (PKG). The S&P 500 dropped below its 200-day average as the Fed minutes pointed to more rate hikes (W1). Markets price a Fed hike in December with high probability (W5, W6). CPI is running at about 4.1% and the 10-year yield is near 5.1% (PKG). AI and software stocks are being repriced: Nvidia fell even after strong results because of a CEO transition (W2), and software stocks sold off ahead of the Anthropic IPO (W12, W4). A proposed CMS rule on Medicare Advantage audits hit managed care (W1, W4). Oil is falling on hopes of Iran peace talks (W14). Higher rates and slowing momentum favour defensive staples and steady consumer names over cyclicals, energy and housing-linked stocks. The coming week is shortened by Thanksgiving, so oversold large caps could bounce.",
+    "main_themes": [
+      "fed_and_rates",
+      "market_sentiment",
+      "energy_and_commodities"
+    ],
+    "favoured_sectors": [
+      "Consumer Staples",
+      "Communication Services",
+      "Consumer Discretionary (defensive restaurants)"
+    ],
+    "disfavoured_sectors": [
+      "Energy",
+      "Industrials (cyclical machinery)",
+      "Managed care",
+      "Housing-linked Materials"
+    ],
+    "source_ids": [
+      "PKG",
+      "W1",
+      "W2",
+      "W4",
+      "W5",
+      "W6",
+      "W12",
+      "W14"
+    ]
+  },
+  "stocks": [
+    {
+      "ticker": "WMT",
+      "score": 3,
+      "rank": 1,
+      "rationale": "Q3 beat: adj EPS $0.65 vs $0.64, revenue $188.8bn. Full-year EPS guidance raised to $2.84–2.89 (W7, W8). Strong 1Q momentum of +22.7% (PKG). Post-earnings drift and its defensive profile suit a market expecting rate hikes.",
+      "key_factors": [
+        "earnings_recent",
+        "price_momentum"
+      ],
+      "source_ids": [
+        "W7",
+        "W8",
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "PG",
+      "score": 2,
+      "rank": 2,
+      "rationale": "Defensive staple with strong momentum: +19.1% over 1Q and +1.6% last week while DIA fell 4.3% (PKG). Should hold up if rate-hike worries persist.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W5"
+      ]
+    },
+    {
+      "ticker": "GOOGL",
+      "score": 2,
+      "rank": 3,
+      "rationale": "Down 17% in a month on capex worries (W10, PKG). Trailing P/E of 14.75 is cheap. The Anthropic IPO could highlight the value of Google's Anthropic investment (W10, W4). Good candidate for a rebound.",
+      "key_factors": [
+        "valuation",
+        "company_news"
+      ],
+      "source_ids": [
+        "PKG",
+        "W10",
+        "W4"
+      ]
+    },
+    {
+      "ticker": "MCD",
+      "score": 2,
+      "rank": 4,
+      "rationale": "Defensive consumer name, +11.2% over 1M and nearly flat last week despite the selloff (PKG). Dividend yield of 2.8%, and a low-beta profile suits a market expecting hikes.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "KO",
+      "score": 2,
+      "rank": 5,
+      "rationale": "Defensive staple, up last week and +8.4% over 1Q (PKG). Steady relative performer if risk-off continues, but a Thanksgiving rebound could limit how far it outperforms.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "CRM",
+      "score": 1,
+      "rank": 6,
+      "rationale": "Software rout ahead of the Anthropic IPO (W12): -12.7% last week, -21.5% over 1M, P/E 17.4 (PKG). The IPO starts trading this week, which may ease the selling pressure. Next earnings Dec 2, after the window (PKG).",
+      "key_factors": [
+        "price_momentum",
+        "valuation"
+      ],
+      "source_ids": [
+        "W12",
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "DIS",
+      "score": 1,
+      "rank": 7,
+      "rationale": "Positive momentum: +2.3% last week and +9.6% over 1M (PKG), at a moderate P/E of 21.7. Has been a relative winner during the selloff.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "V",
+      "score": 1,
+      "rank": 8,
+      "rationale": "Payments network with little credit risk, +13.5% over 1Q (PKG). Less exposed to rising rates than lenders. Premium P/E of 33.7.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "TRV",
+      "score": 1,
+      "rank": 9,
+      "rationale": "Lowest P/E in the universe at 10.3 (PKG). Insurers earn more on their investment portfolios when yields are high (W5). Has fallen less than the market.",
+      "key_factors": [
+        "valuation",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W5"
+      ]
+    },
+    {
+      "ticker": "AMZN",
+      "score": 0,
+      "rank": 10,
+      "rationale": "Held up last week at +0.6% and has a reasonable P/E of 21.6 (PKG). Relative strength among the megacaps, but the AI capex debate is still unresolved.",
+      "key_factors": [
+        "price_momentum",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "JNJ",
+      "score": 0,
+      "rank": 11,
+      "rationale": "Defensive pharma, +5.1% over 1M (PKG). The CMS rule hits insurers rather than drugmakers (W4). High trailing P/E of 41.4.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W4"
+      ]
+    },
+    {
+      "ticker": "AAPL",
+      "score": 0,
+      "rank": 12,
+      "rationale": "Strong 1Q trend of +13.2% and only -0.9% last week (PKG). The rich P/E of 39 limits upside when yields are 5.1%.",
+      "key_factors": [
+        "price_momentum",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "score": 0,
+      "rank": 13,
+      "rationale": "Caught between the software selloff and AI uncertainty (W12). Modest declines (PKG). Neutral.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W12"
+      ]
+    },
+    {
+      "ticker": "NVDA",
+      "score": 0,
+      "rank": 14,
+      "rationale": "Beat and raised guidance but still fell because of the CEO transition and China rules (W2). Also faces a class action (W15). Down 30% over 1M at a P/E of 16.2 (PKG). Equal chance of a rebound or further losses.",
+      "key_factors": [
+        "earnings_recent",
+        "company_news"
+      ],
+      "source_ids": [
+        "W2",
+        "W15",
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "HON",
+      "score": 0,
+      "rank": 15,
+      "rationale": "Up 4.4% over 1M (PKG). Valuation figures are not comparable after the spin-off. Neutral.",
+      "key_factors": [
+        "other"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "IBM",
+      "score": 0,
+      "rank": 16,
+      "rationale": "Down 7.9% last week amid software weakness (PKG, W12). P/E of 19.5 and a 3% dividend yield offer some support. Neutral.",
+      "key_factors": [
+        "price_momentum",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG",
+        "W12"
+      ]
+    },
+    {
+      "ticker": "AMGN",
+      "score": 0,
+      "rank": 17,
+      "rationale": "No price data in the package: close is null and all changes are zero (PKG). No basis to call it either way, so neutral.",
+      "key_factors": [
+        "other"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "MMM",
+      "score": 0,
+      "rank": 18,
+      "rationale": "Down 4.1% last week, in line with the market, but +5.6% over 1M (PKG). No catalyst.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "JPM",
+      "score": 0,
+      "rank": 19,
+      "rationale": "P/E of 13.6. High yields help net interest income, but the stock fell 5.6% last week as risk appetite weakened (PKG, W1).",
+      "key_factors": [
+        "valuation",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W1"
+      ]
+    },
+    {
+      "ticker": "CSCO",
+      "score": -1,
+      "rank": 20,
+      "rationale": "Steady downtrend: -8.9% over 1M and -11.3% over 1Q (PKG). Tech hardware is weak while the AI trade unwinds (W2).",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG",
+        "W2"
+      ]
+    },
+    {
+      "ticker": "HD",
+      "score": -1,
+      "rank": 21,
+      "rationale": "A 10-year yield of 5.1% and expected Fed hikes are bad for housing activity (PKG, W5). Down 3.9% last week.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W5"
+      ]
+    },
+    {
+      "ticker": "SHW",
+      "score": -1,
+      "rank": 22,
+      "rationale": "Housing-sensitive coatings maker trading at a P/E of 31.9 while rates rise (PKG, W5).",
+      "key_factors": [
+        "macro_or_sector",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG",
+        "W5"
+      ]
+    },
+    {
+      "ticker": "AXP",
+      "score": -1,
+      "rank": 23,
+      "rationale": "Consumer credit exposure as rates rise and hikes are expected (W5, W6). Weak 1Q at -4.8% (PKG).",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W5",
+        "W6"
+      ]
+    },
+    {
+      "ticker": "MRK",
+      "score": -1,
+      "rank": 24,
+      "rationale": "Down 6.4% last week with poor momentum (PKG). The trailing P/E of 139 is distorted. Healthcare is under policy pressure (W4).",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG",
+        "W4"
+      ]
+    },
+    {
+      "ticker": "GS",
+      "score": -1,
+      "rank": 25,
+      "rationale": "High-beta financial, -5.8% last week and -12.9% over 1Q (PKG). Fragile sentiment and the market breaking below its 200-day average weigh on it (W1).",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W1"
+      ]
+    },
+    {
+      "ticker": "NKE",
+      "score": -1,
+      "rank": 26,
+      "rationale": "Persistent downtrend: -9.7% over 1Q (PKG). Discretionary spending faces higher rates.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "BA",
+      "score": -1,
+      "rank": 27,
+      "rationale": "Steep downtrend: -24.3% over 1Q and -6.7% last week (PKG). No catalyst found that would turn it around.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "CAT",
+      "score": -2,
+      "rank": 28,
+      "rationale": "Unwind of the AI-power trade: down 22.8% in a month, nearly half off its June high (W11). Dealers are cutting inventory and 2027 guidance comes only in January.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "W11",
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "UNH",
+      "score": -2,
+      "rank": 29,
+      "rationale": "The proposed CMS Medicare Advantage audit rule drove a 10% drop on Nov 18 (W1, W4, W9). This regulatory overhang will likely last beyond the coming week.",
+      "key_factors": [
+        "company_news",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "W1",
+        "W4",
+        "W9",
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "CVX",
+      "score": -2,
+      "rank": 30,
+      "rationale": "Oil is sliding on hopes of Iran peace talks (W14). The stock fell 4% on Nov 18, partly because it went ex-dividend (W13). Down 8.8% over 1M (PKG).",
+      "key_factors": [
+        "macro_or_sector",
+        "price_momentum"
+      ],
+      "source_ids": [
+        "W14",
+        "W13",
+        "PKG"
+      ]
+    }
+  ],
+  "picks": [
+    "WMT",
+    "PG",
+    "GOOGL",
+    "MCD"
+  ],
+  "picks_rationale": "WMT beat Q3 expectations and raised its full-year guidance (W7, W8), and it has strong momentum, so post-earnings drift is likely. PG and MCD are low-beta, steady performers that should hold up while markets price in Fed hikes and yields stay above 5% (W5, PKG). GOOGL adds a rebound candidate: a P/E under 15 after a 17% monthly drop, with the Anthropic IPO a possible catalyst for its stake (W10, W4). The mix balances defensive names against the risk of a broad Thanksgiving-week rebound.",
+  "sources": [
+    {
+      "id": "PKG",
+      "type": "data_package",
+      "title": "Weekly data package as of 2026-11-18"
+    },
+    {
+      "id": "W1",
+      "type": "web",
+      "title": "Stock Market Today, Nov. 18: S&P 500 Breaks Key Support as Fed Minutes Signal More Rate Hikes Ahead",
+      "publisher": "The Motley Fool",
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/11/18/stock-market-today-nov-18-s-and-p-500-breaks-key-support-as-fed-minutes-signal-more-rate-hikes-ahead/",
+      "published_date": "2026-11-18"
+    },
+    {
+      "id": "W2",
+      "type": "web",
+      "title": "Stock Market Today, Nov. 18: Nvidia Slips on Strong Results as Succession and China Business Risks Weigh",
+      "publisher": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nov-18-221135469.html",
+      "published_date": "2026-11-18"
+    },
+    {
+      "id": "W4",
+      "type": "web",
+      "title": "Stock market today: Dow, S&P 500 slip ahead of Anthropic IPO, Nvidia stock extends decline",
+      "publisher": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-18-dow-sp-500-nasdaq-nvidia-earnings-anthropic-ipo-143530588.html",
+      "published_date": "2026-11-18"
+    },
+    {
+      "id": "W5",
+      "type": "web",
+      "title": "10-year Treasury yield moves to 5.17% as traders weigh producer price report",
+      "publisher": "CNBC",
+      "url": "https://www.cnbc.com/2026/11/13/treasury-yields-fed-rates.html",
+      "published_date": "2026-11-13"
+    },
+    {
+      "id": "W6",
+      "type": "web",
+      "title": "Fed holds interest rates at 3.75%-4.00% after September hike, with more hikes expected",
+      "publisher": "U.S. Bank",
+      "url": "https://www.usbank.com/investing/financial-perspectives/market-news/federal-reserve-interest-rate.html",
+      "published_date": "2026-10-29"
+    },
+    {
+      "id": "W7",
+      "type": "web",
+      "title": "Walmart Inc. Form 8-K – Q3 FY27 earnings release",
+      "publisher": "SEC EDGAR / Walmart",
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000168/earningsreleasefy27q3.htm",
+      "published_date": "2026-11-19"
+    },
+    {
+      "id": "W8",
+      "type": "web",
+      "title": "Walmart beats third quarter expectations, raises guidance",
+      "publisher": "Investing.com",
+      "url": "https://www.investing.com/news/earnings/walmart-beats-third-quarter-expectations-raises-guidance-5038647",
+      "published_date": "2026-11-19"
+    },
+    {
+      "id": "W9",
+      "type": "web",
+      "title": "Why Is UnitedHealth Stock Falling?",
+      "publisher": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/healthcare/articles/why-unitedhealth-stock-falling-122809670.html",
+      "published_date": "2026-11-18"
+    },
+    {
+      "id": "W10",
+      "type": "web",
+      "title": "Alphabet Stock Extends Decline as $200B Spending and Google Anthropic Investment Raise Concerns",
+      "publisher": "FX Leaders",
+      "url": "https://www.fxleaders.com/news/2026/11/16/alphabet-stock-extends-decline-as-200b-spending-and-google-anthropic-investment-raise-concerns/",
+      "published_date": "2026-11-16"
+    },
+    {
+      "id": "W11",
+      "type": "web",
+      "title": "Is Caterpillar Stock Priced Right Against Its Rivals?",
+      "publisher": "Trefis",
+      "url": "https://www.trefis.com/stock/cat/articles/626733/is-caterpillar-stock-priced-right-against-its-rivals/2026-11-19",
+      "published_date": "2026-11-19"
+    },
+    {
+      "id": "W12",
+      "type": "web",
+      "title": "Dow Slides 1.4% as Salesforce Leads Software Rout Before Anthropic IPO: Stock Market Today",
+      "publisher": "Benzinga",
+      "url": "https://www.benzinga.com/markets/equities/26/11/63359152/stock-market-today-salesforce-software-selloff-anthropic-ipo-nvidia-november-17",
+      "published_date": "2026-11-17"
+    },
+    {
+      "id": "W13",
+      "type": "web",
+      "title": "Chevron Corporation (CVX) Stock Price, News, Quote & History",
+      "publisher": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/quote/CVX/",
+      "published_date": "2026-11-18"
+    },
+    {
+      "id": "W14",
+      "type": "web",
+      "title": "Oil slips in Asia led by Murban, Brent, WTI: What to know on Nov. 18, 2026",
+      "publisher": "Gulf News",
+      "url": "https://gulfnews.com/business/energy/oil-slips-in-asia-led-by-murban-brent-wti-what-to-know-on-nov-18-2026-1.500751476",
+      "published_date": "2026-11-18"
+    },
+    {
+      "id": "W15",
+      "type": "web",
+      "title": "What Just Happened To Nvidia Stock?",
+      "publisher": "Trefis",
+      "url": "https://www.trefis.com/stock/nvda/articles/624393/what-just-happened-to-nvidia-stock/2026-11-11",
+      "published_date": "2026-11-11"
+    }
+  ],
+  "data_issues": [
+    "AMGN has a null last_close and all price changes are exactly 0.0, so its price data looks missing or stale.",
+    "meta.universe_version is 'draft'.",
+    "HON P/E and market cap are omitted because of the spin-off, as noted in the package.",
+    "Earnings dates are marked unverified (Yahoo). WMT reported before the open on 2026-11-19, so the earnings reaction falls at the start of the scoring window.",
+    "Macro observation dates differ: DGS2/DGS10 are from 2026-11-17, the USD index from 2026-11-13 and CPI from the October 2026 reading, not the 2026-11-18 as-of date.",
+    "MRK's trailing P/E of 139.17 looks distorted, probably by one-off charges.",
+    "The scoring window includes the Thanksgiving market holiday (2026-11-26), so the week has fewer trading days."
+  ]
+}

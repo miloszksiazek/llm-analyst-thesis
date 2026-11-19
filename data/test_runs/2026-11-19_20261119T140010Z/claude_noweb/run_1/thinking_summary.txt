@@ -1,0 +1,12 @@
+I'm noting there's no web search tool available, so I'll have to work from the data I already have. The macro picture is rate-sensitive: fed funds near 4%, CPI around 4%, and a steep curve with the 10-year at 5.1%. Stocks are risk-off, with the Dow down about 4% this week, while staples like PG, KO and WMT are holding up. NVDA has fallen roughly 13% this week and 30% this month, which points to a tech and AI selloff. I also need to account for a data issue with AMGN.
+
+I'm checking the data quality issues next: AMGN is missing its last close and HON's market cap is null, and the earnings dates haven't been verified. WMT's earnings date of Nov 19 is today, so its reaction would likely be priced in at the open, and NVDA's earnings date is absent from the package, which may mean the calendar is incomplete.
+
+I'm settling on PG, KO, TRV and MCD as the picks, leaving WMT out because its earnings reaction is too uncertain to bet on. I'm ranking the stocks by score, with the defensives at the top and AMGN sitting in the middle given its missing data.
+
+Now I'm ranking the remaining stocks by score, with a run of mild negatives and the weakest names at the bottom, NVDA last at -3.
+
+I'm going through the scoring totals, which net out to about -1, so the ranking stays close to neutral. I also want to flag that NVDA's 30% monthly drop is large and its cause isn't clear from the package, and that Thanksgiving falls on Nov 26, so the week's window ends at the Nov 27 open.
+
+I'm going to mention the holiday-shortened week in the macro summary, since Thanksgiving falls on Nov 26 and the window ends at the Nov 27 open. Then I'll write out the JSON.
+

@@ -1,0 +1,501 @@
+{
+  "queries": [
+    {
+      "tool_use_id": "srvtoolu_0172Az2ZstWernTJjcbj3WzW",
+      "query": "Walmart earnings November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01MWLzDPjfQaBhbMvY23umUp",
+      "query": "stock market November 18 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01BBaTtCr5vuE7A5f4Y8wMss",
+      "query": "Nvidia stock November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_011ZQ6w1kPJhtNFy6DWLw7i2",
+      "query": "Treasury yields November 2026 Fed"
+    },
+    {
+      "tool_use_id": "srvtoolu_012Dd1srBNw9g6uK4gxMsHcx",
+      "query": "UnitedHealth stock November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01BJa5EGkajgojMjo47sn2cn",
+      "query": "Salesforce stock drop November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01Px37nqMMyeWyMtSY2sYSjn",
+      "query": "Nvidia CEO succession Jensen Huang November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01GCU8tsXhAtn61vqDrqbmtp",
+      "query": "Walmart shares third quarter results November 19 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_012gn8BcMM2G2gYG5zadAWgZ",
+      "query": "Home Depot earnings November 2026 shares"
+    },
+    {
+      "tool_use_id": "srvtoolu_01ViYwayego1qSm38dhRim35",
+      "query": "Amgen stock November 2026"
+    }
+  ],
+  "retrieved": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000168/earningspresentationfy27.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000145/earningsreleasefy27q2.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000145/earningspresentationfy27.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000136/wmt-20260716.htm",
+      "title": "Walmart Inc. - Form 11-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000095/earningsreleasefy27q1.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000032/earningsreleasefy26q4.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.fool.com/investing/2026/11/17/walmart-reports-earnings-on-nov-19-2026-heres-what-investors-should-be-watching/",
+      "title": "Walmart Reports Earnings on Nov. 19 2026. Here's What Investors Should Be Watching.",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000091/wmtfy26annualreport-final.pdf",
+      "title": "Walmart Inc. - Form ARS - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000095/earningspresentationfy27.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nov-18-221135469.html",
+      "title": "Stock Market Today, Nov. 18: Nvidia Slips on Strong Results as Succession and China Business Risks Weigh",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/11/18/stock-market-midday-nov-18-nvidia-doubles-revenue-but-wall-street-s-sell-off-continues/",
+      "title": "Stock Market Midday, Nov. 18: Nvidia Doubles Revenue, but Wall Street's Sell-Off Continues",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/11/18/stock-market-today-nov-18-nvidia-slips-on-strong-results-as-succession-and-china-business-risks-weigh/",
+      "title": "Stock Market Today, Nov. 18: Nvidia Slips on Strong Results as Succession and China Business Risks Weigh",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.fool.com/coverage/stock-market-today/2026/11/18/stock-market-today-nov-18-s-and-p-500-breaks-key-support-as-fed-minutes-signal-more-rate-hikes-ahead/",
+      "title": "Stock Market Today, Nov. 18: S&P 500 Breaks Key Support as Fed Minutes Signal More Rate Hikes Ahead",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Nigerian_Exchange_Group",
+      "title": "Nigerian Exchange Group",
+      "page_age": null
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Nasdaq",
+      "title": "Nasdaq",
+      "page_age": null
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Shanghai_Stock_Exchange_STAR_Market",
+      "title": "Shanghai Stock Exchange STAR Market",
+      "page_age": null
+    },
+    {
+      "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-18-2026",
+      "title": "Stock Market Today, November 18, 2026: The Dow Closes Lower",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.alainguillot.com/stock-market-recap-november-18-2026/",
+      "title": "Stock Market Recap — November 18, 2026: Nasdaq Rebounds, Dow Falls 561 Points, and Canada's TSX Plunges - Alain Guillot",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://explore.nemo.money/en/stocks/NVDA",
+      "title": "Nvidia (NVDA) Stock Forecast 2026: Price Target",
+      "page_age": "7 days ago"
+    },
+    {
+      "url": "https://stockanalysis.com/stocks/nvda/",
+      "title": "NVIDIA (NVDA) Stock Price & Overview",
+      "page_age": "4 days ago"
+    },
+    {
+      "url": "https://stockanalysis.com/stocks/nvda/history/",
+      "title": "NVIDIA (NVDA) Stock Price History 1999-2026",
+      "page_age": "10 days ago"
+    },
+    {
+      "url": "https://investor.nvidia.com/stock-info/stock-quote-and-chart/default.aspx",
+      "title": "NVIDIA Corporation - Stock Quote & Chart",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/nvda/articles/624393/what-just-happened-to-nvidia-stock/2026-11-11",
+      "title": "What Just Happened To Nvidia Stock?",
+      "page_age": "8 days ago"
+    },
+    {
+      "url": "https://www.macrotrends.net/stocks/charts/NVDA/nvidia/stock-price-history",
+      "title": "NVIDIA - 15 Year Stock Price History",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/nvda/articles/623367/whats-going-to-happen-with-nvidia-stock-soon/2026-11-06",
+      "title": "What’s Going To Happen With NVIDIA Stock Soon?",
+      "page_age": "12 days ago"
+    },
+    {
+      "url": "https://www.vantagemarkets.com/en/market-analysis/nvda-stock-monthly-outlook-analysis-nvidia/",
+      "title": "Nvidia Stock Analysis November 2026: NVDA Falls 15% From Its Record as Earnings Near",
+      "page_age": "15 days ago"
+    },
+    {
+      "url": "https://www.marketbeat.com/stocks/NASDAQ/NVDA/chart/",
+      "title": "NVIDIA (NVDA) Stock Chart and Price History 2026 - MarketBeat",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.gurufocus.com/news/9209735/us-treasury-yields-rise-as-investors-assess-feds-october-meeting",
+      "title": "US Treasury Yields Rise as Investors Assess Fed's October Meeting",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://wolfstreet.com/2026/11/14/treasury-yields-snap-back-on-ugly-inflation-rough-10-year-30-year-treasury-auctions-bond-bloodbath-returns/",
+      "title": "Treasury Yields Snap Back on Ugly Inflation, Rough 10-Year & 30-Year Treasury Auctions. Bond Bloodbath Returns",
+      "page_age": "3 days ago"
+    },
+    {
+      "url": "https://www.nuveen.com/en-us/insights/fixed-income/fixed-income-weekly-commentary",
+      "title": "Fixed income weekly market commentary",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.cnbc.com/amp/2026/11/16/treasury-yields-bonds-inflation.html",
+      "title": "Treasury yields fall as investors await comments from Fed Chairman Warsh",
+      "page_age": "3 days ago"
+    },
+    {
+      "url": "https://www.cnbc.com/amp/2026/11/18/treasury-yields-bonds-fed.html",
+      "title": "Longer-dated Treasury yields fall as traders weigh Waller comments, Fed minutes",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.cnbc.com/2026/11/17/treasury-yields-bonds-inflation.html",
+      "title": "Treasury yields: Investors moderate as investors digest retail sales data",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://stockmarketwatch.com/bonds",
+      "title": "Treasury Yields Today — 10-Year, 2-Year & Bond Rates",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://yourbestsavings.com/treasury-yields/",
+      "title": "Treasury Yields Today (November 2026): 1-Month to 30-Year",
+      "page_age": "6 days ago"
+    },
+    {
+      "url": "https://tradingeconomics.com/united-states/government-bond-yield/news/499452",
+      "title": "US 10-Year Yield Holds Near 4-Week High",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000266/unh-20260930.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 10-Q - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.gurufocus.com/news/9208180/unitedhealth-group-unh-shares-drop-over-8-amid-regulatory-concerns-on-november-18-2026",
+      "title": "UnitedHealth Group (UNH) Shares Drop Over 8% Amid Regulatory Concerns on November 18, 2026",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000255/earningsrelease3q26unh.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000197/unh-20260630.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 10-Q - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000127/unh-20260331.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 10-Q - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000121/uhgearningsreleaseq12026.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://finance.yahoo.com/healthcare/articles/why-unitedhealth-stock-falling-122809670.html",
+      "title": "Why Is UnitedHealth Stock Falling?",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000191/earningsrelease2q26_7152.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000121/earningsrelease1q26press.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.gurufocus.com/news/9205668/salesforce-crm-shares-drop-nearly-10-amid-sector-weakness-on-november-17-2026",
+      "title": "Salesforce (CRM) Shares Drop Nearly 10% Amid Sector Weakness on November 17, 2026",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.gurufocus.com/news/9205947/salesforce-crm-shares-fall-94-amid-tech-sector-selloff-ahead-of-anthropic-ipo",
+      "title": "Salesforce (CRM) Shares Fall 9.4% Amid Tech Sector Selloff Ahead of Anthropic IPO",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.benzinga.com/trading-ideas/movers/26/11/63399866/why-is-salesforce-stock-falling-on-wednesday",
+      "title": "Why Is Salesforce Stock Falling on Wednesday? - Salesforce (NYSE:CRM) - Benzinga",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/crm/articles/626280/what-moved-salesforce-stock/2026-11-18",
+      "title": "What Moved Salesforce Stock?",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/crm/articles/625153/is-salesforce-stock-about-to-rebound-again/2026-11-16",
+      "title": "Is Salesforce Stock About To Rebound Again?",
+      "page_age": "3 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/crm/articles/624231/can-salesforce-stock-fall-30/2026-11-11",
+      "title": "Can Salesforce Stock Fall 30%?",
+      "page_age": "8 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/crm/articles/624931/has-buying-the-dip-in-salesforce-stock-paid-off/2026-11-13",
+      "title": "Has Buying The Dip In Salesforce Stock Paid Off?",
+      "page_age": "6 days ago"
+    },
+    {
+      "url": "https://www.benzinga.com/trading-ideas/movers/26/11/63362264/why-is-salesforce-stock-falling-on-tuesday-2",
+      "title": "Why Is Salesforce Stock Falling on Tuesday? - Salesforce (NYSE:CRM) - Benzinga",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262310309-salesforce-worst-day-since-2024-ai-fears-software-selloff-189-50-support-november-18-2026-tradingkey",
+      "title": "Salesforce Suffers Its Worst Day Since 2024 as AI Fears Hit Software, With $189.50 Next",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000082/nvidiaannouncesceotransiti.htm",
+      "title": "NVIDIA CORP - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-CEO-Transition/",
+      "title": "NVIDIA Corporation - NVIDIA Announces CEO Transition",
+      "page_age": "7 days ago"
+    },
+    {
+      "url": "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition",
+      "title": "NVIDIA Announces CEO Transition",
+      "page_age": "7 days ago"
+    },
+    {
+      "url": "https://www.trendforce.com/news/2026/11/16/news-nvidias-ceo-succession-three-scenarios-from-huangs-rumored-comeback-to-internal-and-external-picks/",
+      "title": "[News] NVIDIA’s CEO Succession: Three Scenarios, from Huang’s Rumored Comeback to Internal and External Picks",
+      "page_age": "3 days ago"
+    },
+    {
+      "url": "https://www.axios.com/2026/11/09/nvidia-jensen-huang-succession-plan",
+      "title": "Nvidia has no obvious successor to Jensen Huang — and that's a problem",
+      "page_age": "9 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000082/nvda-20261111.htm",
+      "title": "NVIDIA CORP - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.kore1.com/nvidia-ceo-succession-planning-lesson/",
+      "title": "CEO Succession Planning: What Nvidia's Exit Teaches - KORE1",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.cnbc.com/2026/11/12/nvidia-jensen-huang-ceo-live-updates.html",
+      "title": "Nvidia CEO Jensen Huang resigns: Live updates",
+      "page_age": "6 days ago"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Jensen_Huang",
+      "title": "Jensen Huang",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000038/a2026-annualxreportxwebxfi.pdf",
+      "title": "NVIDIA CORP - Form ARS - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000168/earningsreleasefy27q3.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000145/earningspresentationfy27.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000145/earningsreleasefy27q2.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.investing.com/news/earnings/walmart-beats-third-quarter-expectations-raises-guidance-5038647",
+      "title": "Walmart beats third quarter expectations, raises guidance By Investing.com",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/walmart-reports-revenue-growth-5-120000596.html",
+      "title": "Walmart reports revenue growth of 5.2%, up 4.5% in constant currency (cc)",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.wftv.com/news/business/walmart-raises/EWZMVZKFEE7HDHEIZFU6BXGY4I/",
+      "title": "Walmart raises its outlook for the year for the 3rd time after a solid quarter",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.investing.com/news/analyst-ratings/truist-reiterates-buy-on-walmart-stock-after-strong-q3-results-93CH-5039053",
+      "title": "Truist reiterates Buy on Walmart stock after strong Q3 results By Investing.com",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.therepublic.com/2026/11/19/walmart-raises-its-outlook-for-the-year-for-the-3rd-time-after-a-solid-quarter/",
+      "title": "Walmart raises its outlook for the year for the 3rd time after a solid quarter - The Republic News",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262312955-walmart-earnings-today-wmt-three-report-losing-streak-125-10-november-19-2026-tradingkey",
+      "title": "Walmart Earnings Today: Can WMT Break Its Three-Report Losing Streak Above $125.10?",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000354950/000035495026000184/hd_exhibit991x11012026.htm",
+      "title": "HOME DEPOT, INC. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000354950/000035495026000145/hd_exhibit991x08022026.htm",
+      "title": "HOME DEPOT, INC. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://ir.homedepot.com/news-releases/2026/11-17-2026-110221331",
+      "title": "The Home Depot Announces Third Quarter Fiscal 2026 Results; Updates Fiscal 2026 Guidance",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000354950/000035495026000101/hd_exhibit991x05032026.htm",
+      "title": "HOME DEPOT, INC. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.gurufocus.com/news/9207436/home-depot-hd-posts-strong-q3-earnings-with-positive-analyst-outlook",
+      "title": "Home Depot (HD) Posts Strong Q3 Earnings with Positive Analyst Outlook",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.cnbc.com/2026/11/17/home-depot-hd-q3-earnings-2026.html",
+      "title": "Home Depot (HD) Q3 earnings 2026",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.cnbc.com/investingclub/2026/11/17/why-home-depot-shares-are-falling-despite-an-earnings-beat-and-how-to-proceed.html",
+      "title": "Why Home Depot shares are falling despite an earnings beat — and how to proceed",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://247wallst.com/companies/hd/earnings/",
+      "title": "Home Depot (HD) Q3 2026 Earnings: Results, Market Reaction & History",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://in.investing.com/news/stock-market-news/home-depot-earnings-analysis-questions-answered-and-next-catalysts-93CH-5710686",
+      "title": "Home Depot earnings analysis: questions answered and next catalysts By Investing.com",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://stockanalysis.com/stocks/amgn/",
+      "title": "Amgen (AMGN) Stock Price, Chart & News",
+      "page_age": "106 days ago"
+    },
+    {
+      "url": "https://www.gurufocus.com/news/9208571/a-look-at-amgen-inc-amgn-after-31-decline-gf-value-37323-vs-price-44389",
+      "title": "A Look at Amgen Inc (AMGN) After 3.1% Decline -- GF Value $373.23 vs Price $443.89",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/quote/AMGN/history/",
+      "title": "Amgen Inc. (AMGN) Stock Historical Prices & Data - Yahoo Finance",
+      "page_age": "529 days ago"
+    },
+    {
+      "url": "https://www.macrotrends.net/stocks/charts/AMGN/amgen/stock-price-history",
+      "title": "Amgen - 15 Year Stock Price History",
+      "page_age": "356 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/amgn/articles/623208/could-late-biosimilar-launches-slow-amgen-stock/2026-11-06",
+      "title": "Could Late Biosimilar Launches Slow Amgen Stock?",
+      "page_age": "12 days ago"
+    },
+    {
+      "url": "https://massive.com/quote/amgn",
+      "title": "Amgen Inc (AMGN) Stock Price, Quote & News - Massive",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.globalbankingandfinance.com/amgen-amgn-falls-2026-11-18/",
+      "title": "Amgen falls 2.86% in Wednesday's session",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.forbes.com/companies/amgen/",
+      "title": "Amgen",
+      "page_age": "6 days ago"
+    },
+    {
+      "url": "https://www.tradingview.com/symbols/MIL-1AMGN",
+      "title": "MIL 1AMGN",
+      "page_age": null
+    }
+  ]
+}

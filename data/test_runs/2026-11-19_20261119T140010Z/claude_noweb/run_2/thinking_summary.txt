@@ -1,0 +1,14 @@
+I'm checking whether I have a web search tool, and it seems I don't, so I'll rely only on the provided package. I'm noting some data gaps: AMGN's last close is missing, and there's a HON spin-off and a draft universe version to flag. The macro picture looks like high inflation and high rates, with CPI at 4.08% and the 10-year at 5.1%, and the market fell 4.3% over the week.
+
+I'm checking the Walmart earnings timing against the trading window, since it may report before the open on the 19th and already be reflected in that price. Those dates are unverified, and I'm not claiming NVDA's report date because it isn't in the package. I'm also noting that MRK's P/E of 139 looks odd and may reflect a one-off charge.
+
+I'm settling on a defensive tilt for the picks: PG and KO at the top, then TRV and MCD, with JNJ also in the mix. Next I'm scoring the rest of the universe around zero, giving a slight positive to WMT, V, AMZN and DIS, while flagging AAPL and the high-P/E names, AMGN for missing data, and a few slightly negative scores for AXP, MMM and GOOGL.
+
+Now I'm tallying the scores: the positives add to 16, the zeros cover a handful of names, and the negatives total about -18.
+
+I'm finishing the scores so they roughly balance out, nudging a few of the negatives up to zero to bring the total closer to center. Then I'm ranking the universe, with PG and KO on top, followed by TRV, MCD and JNJ, and the zero-scored names filling the middle.
+
+I'm working through the remaining scores, placing the later names in the 0 to -3 range, and confirming the total comes to about -1, which is close enough to centre. Then I'm settling the ranking, with the defensive picks still at the top.
+
+I'm weighing the remaining sectors here, noting that semiconductors and industrials are the areas I'd lean against in this risk-off market.
+

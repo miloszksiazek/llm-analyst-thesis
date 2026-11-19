@@ -1,0 +1,428 @@
+{
+  "run_date": "2026-11-19",
+  "as_of": "2026-11-18",
+  "macro_view": {
+    "summary": "No web search was available, so this view rests only on the data package. The environment is risk-off and rates are restrictive. DIA fell 4.3% over the past week and 4.3% over the past month. CPI inflation is running at 4.1% year on year. The 10-year yield is 5.1%, above the 2-year at 4.8% and well above the 4.0% fed funds upper bound. That points to inflation and term-premium pressure that weighs on long-duration growth and cyclical assets. The selling has been concentrated in AI and semiconductors (NVDA), cyclicals (CAT, BA) and software. Staples (PG, KO, WMT) and some consumer names have held up. For the coming week I favour low-beta defensives and cheap insurers. I keep high-beta cyclicals and crowded tech underweight, while accepting some risk of a short-term rebound in the most oversold names.",
+    "main_themes": [
+      "inflation",
+      "fed_and_rates",
+      "market_sentiment"
+    ],
+    "favoured_sectors": [
+      "Consumer Staples",
+      "Health Care",
+      "Financials (insurance)"
+    ],
+    "disfavoured_sectors": [
+      "Information Technology (semiconductors/software)",
+      "Industrials (cyclical)"
+    ],
+    "source_ids": [
+      "PKG"
+    ]
+  },
+  "stocks": [
+    {
+      "ticker": "PG",
+      "score": 3,
+      "rank": 1,
+      "rationale": "Defensive staple with strong momentum: +1.6% in a week when DIA fell 4.3%, and +19% over the quarter. Its low beta suits a high-inflation, high-yield risk-off tape.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "KO",
+      "score": 3,
+      "rank": 2,
+      "rationale": "Gained 0.5% in a down week and is up 8% over the quarter. A defensive staple with a 2.2% yield should keep relative leadership if the risk-off mood persists.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "TRV",
+      "score": 2,
+      "rank": 3,
+      "rationale": "Cheapest stock in the universe at 10.3x trailing P/E. A P&C insurer benefits from higher yields on its float and has low economic beta. It fell only 2% this week.",
+      "key_factors": [
+        "valuation",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "MCD",
+      "score": 2,
+      "rank": 4,
+      "rationale": "Value-oriented defensive consumer name, up 11% over the month and roughly flat this week (-0.3%). Its 2.8% yield and resilient trading should hold up in a weak market.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "JNJ",
+      "score": 2,
+      "rank": 5,
+      "rationale": "Defensive health care name, up 5% over the month and down only modestly this week. Low beta is supportive, but the 41x trailing P/E limits upside.",
+      "key_factors": [
+        "macro_or_sector",
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "WMT",
+      "score": 1,
+      "rank": 6,
+      "rationale": "Strong momentum (+22.6% over the quarter) and defensive appeal, but earnings are expected 2026-11-19 (unverified). A rich 46x P/E makes the reaction binary.",
+      "key_factors": [
+        "earnings_upcoming",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "V",
+      "score": 1,
+      "rank": 7,
+      "rationale": "Quality payments franchise, up 13.5% over the quarter. It fell only 2.4% in the sell-off, and its inflation-linked revenue offers some resilience.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "AMZN",
+      "score": 1,
+      "rank": 8,
+      "rationale": "Rose 0.6% in a down week, showing relative strength among megacaps. Its 21.6x P/E is moderate versus tech peers.",
+      "key_factors": [
+        "price_momentum",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "DIS",
+      "score": 1,
+      "rank": 9,
+      "rationale": "Best weekly performer (+2.3%), with a 9.6% one-month gain at a reasonable 21.7x P/E. Momentum is likely to persist near term.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "AAPL",
+      "score": 0,
+      "rank": 10,
+      "rationale": "Resilient relative performance (-0.9% this week, +13% over the quarter), but 39x P/E with a 5.1% 10-year yield caps upside.",
+      "key_factors": [
+        "valuation",
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "HD",
+      "score": 0,
+      "rank": 11,
+      "rationale": "Up 7% over the month but down 3.9% this week. High mortgage rates implied by a 5.1% 10-year are a headwind for housing-related spending.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "HON",
+      "score": 0,
+      "rank": 12,
+      "rationale": "Held up better than other industrials (-2.2% this week). Post-spin-off figures are not comparable, so I hold a neutral view.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "SHW",
+      "score": 0,
+      "rank": 13,
+      "rationale": "Modest moves overall. Exposure to housing and rates is a headwind and 31.9x P/E is rich, though it fell less than the market.",
+      "key_factors": [
+        "valuation",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "AMGN",
+      "score": 0,
+      "rank": 14,
+      "rationale": "Price data is missing (null close, zero changes). It is a defensive biotech, but there is no current evidence, so I score it neutral.",
+      "key_factors": [
+        "other"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "CVX",
+      "score": 0,
+      "rank": 15,
+      "rationale": "Down 8.8% over the month. Its 15x P/E and 3.5% yield offer value, but energy momentum is weak.",
+      "key_factors": [
+        "valuation",
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "score": 0,
+      "rank": 16,
+      "rationale": "Down 2.5% this week, better than tech peers. The AI-complex selloff is a drag, while a 26.5x P/E is reasonable for its quality.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "GOOGL",
+      "score": 0,
+      "rank": 17,
+      "rationale": "Down 17% over the month on AI weakness, but a 14.75x P/E is cheap. Rebound potential offsets negative momentum.",
+      "key_factors": [
+        "valuation",
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "AXP",
+      "score": 0,
+      "rank": 18,
+      "rationale": "Fell 2.4% this week, a moderate drawdown. Consumer credit exposure in a 4% inflation environment is a mild risk.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "MMM",
+      "score": 0,
+      "rank": 19,
+      "rationale": "Up 5.6% over the month but down 4.1% this week. It is an industrial with average sensitivity to the risk-off move.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "IBM",
+      "score": 0,
+      "rank": 20,
+      "rationale": "Sharp 7.9% weekly drop amid tech weakness. The 3% yield and 19.5x P/E could attract a short-term rebound.",
+      "key_factors": [
+        "price_momentum",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "JPM",
+      "score": -1,
+      "rank": 21,
+      "rationale": "Down 5.6% this week. The risk-off tone and credit worries weigh on banks despite a cheap 13.6x P/E.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "GS",
+      "score": -1,
+      "rank": 22,
+      "rationale": "Down 5.8% this week and 12.9% over the quarter. Capital-markets revenue is sensitive to the equity selloff.",
+      "key_factors": [
+        "macro_or_sector",
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "CSCO",
+      "score": -1,
+      "rank": 23,
+      "rationale": "Down 8.9% over the month in the tech/AI drawdown. Momentum is negative and its 25.9x P/E is not cheap.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "MRK",
+      "score": -1,
+      "rank": 24,
+      "rationale": "Fell 6.4% this week, weak for a defensive name. The anomalous 139x trailing P/E suggests one-off charges, adding uncertainty.",
+      "key_factors": [
+        "price_momentum",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "UNH",
+      "score": -1,
+      "rank": 25,
+      "rationale": "Fell 13.2% this week and 16.5% over the month, signalling stock-specific stress. A sharp oversold bounce is possible but the risk is elevated.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "NKE",
+      "score": -2,
+      "rank": 26,
+      "rationale": "Persistent downtrend (-9.7% over the quarter, -5.2% this week). The consumer discretionary weakness has not turned.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "BA",
+      "score": -2,
+      "rank": 27,
+      "rationale": "Down 24% over the quarter and 6.7% this week. A high-beta cyclical in a risk-off, high-rate tape.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "CRM",
+      "score": -2,
+      "rank": 28,
+      "rationale": "Down 21.5% over the month and 12.7% this week as software sells off. Earnings expected 2026-12-02 (unverified), outside the window.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "CAT",
+      "score": -3,
+      "rank": 29,
+      "rationale": "Severe downtrend (-31.5% over the quarter, -7.1% this week). A cyclical industrial facing high rates and growth worries.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "NVDA",
+      "score": -3,
+      "rank": 30,
+      "rationale": "Epicentre of the AI selloff: -30% over the month and -13.1% this week. Volatility is extreme. Its 16x P/E looks cheap, but momentum is strongly negative.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    }
+  ],
+  "picks": [
+    "PG",
+    "KO",
+    "TRV",
+    "MCD"
+  ],
+  "picks_rationale": "The market is risk-off: DIA fell 4.3% over the week, inflation is about 4.1% and the 10-year yield is 5.1%. The picks therefore tilt to low-beta, resilient names. PG and KO are staples that gained this week and have positive quarterly momentum. TRV is the cheapest stock in the universe (10.3x P/E) and benefits from higher yields on its float. MCD is a value-oriented defensive name up 11% over the month. WMT was excluded because of binary earnings risk and a 46x P/E. This analysis used no web search and relies on the data package only.",
+  "sources": [
+    {
+      "id": "PKG",
+      "type": "data_package",
+      "title": "Weekly data package as of 2026-11-18 (SHA-256 33b24e9a...)"
+    }
+  ],
+  "data_issues": [
+    "AMGN: last_close is null and all price changes are 0.0, so price data appears missing.",
+    "HON: P/E and market cap omitted after the 2026-06-29 spin-off, which limits comparability.",
+    "MRK trailing P/E of 139.17 looks anomalous, probably distorted by one-off charges.",
+    "Earnings dates are unverified (Yahoo). WMT's 2026-11-19 report timing relative to the window start is unclear.",
+    "Universe version is marked 'draft'.",
+    "Macro observation dates differ: CPI is for October 2026, USD index is from 2026-11-13 and yields are from 2026-11-17."
+  ]
+}

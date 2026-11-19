@@ -1,0 +1,215 @@
+{
+  "run_date": "2026-11-19",
+  "mode": "test",
+  "finished_at": "2026-11-19T14:06:59+00:00",
+  "git_commit": "49756aa9c81b0232734eebfb057a2dedf8beaf37",
+  "late_run": false,
+  "warnings": [],
+  "package": {
+    "path": "data/weekly/2026-11-19/package.json",
+    "sha256": "33b24e9a0af7aa00d65989d6c9651f315967abfed695461150be31d6dfe589d5",
+    "price_source": "yahoo"
+  },
+  "strategies": {
+    "claude_web": {
+      "status": "ok",
+      "picks": [
+        "WMT",
+        "PG",
+        "KO",
+        "MCD"
+      ],
+      "n_valid_runs": 3,
+      "n_runs_requested": 3,
+      "total_cost_usd": 2.820972
+    },
+    "claude_noweb": {
+      "status": "ok",
+      "picks": [
+        "TRV",
+        "KO",
+        "PG",
+        "V"
+      ],
+      "n_valid_runs": 3,
+      "n_runs_requested": 3,
+      "total_cost_usd": 0.47015599999999996
+    },
+    "xgb": {
+      "status": "ok",
+      "picks": [
+        "BA",
+        "CRM",
+        "UNH",
+        "CAT"
+      ],
+      "model": "models/xgb_provisional.json"
+    }
+  },
+  "xgb": {
+    "model_path": "models/xgb_provisional.json",
+    "model_status": "provisional",
+    "trained_through": "2026-11-06",
+    "git_commit_at_training": "491679309039b31c15c6bdde085b853c9f043ddb",
+    "as_of": "2026-11-18",
+    "picks": [
+      "BA",
+      "CRM",
+      "UNH",
+      "CAT"
+    ],
+    "ranking": [
+      {
+        "rank": 1,
+        "ticker": "BA",
+        "score": 0.06952673196792603
+      },
+      {
+        "rank": 2,
+        "ticker": "CRM",
+        "score": 0.033622823655605316
+      },
+      {
+        "rank": 3,
+        "ticker": "UNH",
+        "score": 0.029316002503037453
+      },
+      {
+        "rank": 4,
+        "ticker": "CAT",
+        "score": 0.027938270941376686
+      },
+      {
+        "rank": 5,
+        "ticker": "GS",
+        "score": 0.013832884840667248
+      },
+      {
+        "rank": 6,
+        "ticker": "CSCO",
+        "score": 0.012687538750469685
+      },
+      {
+        "rank": 7,
+        "ticker": "GOOGL",
+        "score": 0.012487851083278656
+      },
+      {
+        "rank": 8,
+        "ticker": "HD",
+        "score": 0.010489316657185555
+      },
+      {
+        "rank": 9,
+        "ticker": "MRK",
+        "score": 0.010290306061506271
+      },
+      {
+        "rank": 10,
+        "ticker": "NKE",
+        "score": 0.01023870799690485
+      },
+      {
+        "rank": 11,
+        "ticker": "SHW",
+        "score": 0.009251322597265244
+      },
+      {
+        "rank": 12,
+        "ticker": "NVDA",
+        "score": 0.008759795688092709
+      },
+      {
+        "rank": 13,
+        "ticker": "JPM",
+        "score": 0.008586404845118523
+      },
+      {
+        "rank": 14,
+        "ticker": "AMGN",
+        "score": 0.008412899449467659
+      },
+      {
+        "rank": 15,
+        "ticker": "JNJ",
+        "score": 0.0077493577264249325
+      },
+      {
+        "rank": 16,
+        "ticker": "MMM",
+        "score": 0.00768653629347682
+      },
+      {
+        "rank": 17,
+        "ticker": "MSFT",
+        "score": 0.007422941736876965
+      },
+      {
+        "rank": 18,
+        "ticker": "IBM",
+        "score": 0.007356848567724228
+      },
+      {
+        "rank": 19,
+        "ticker": "HON",
+        "score": 0.007073479704558849
+      },
+      {
+        "rank": 20,
+        "ticker": "AXP",
+        "score": 0.006069239694625139
+      },
+      {
+        "rank": 21,
+        "ticker": "CVX",
+        "score": 0.005589494481682777
+      },
+      {
+        "rank": 22,
+        "ticker": "V",
+        "score": 0.003904815064743161
+      },
+      {
+        "rank": 23,
+        "ticker": "MCD",
+        "score": 0.003835090668871999
+      },
+      {
+        "rank": 24,
+        "ticker": "DIS",
+        "score": 0.0035331801045686007
+      },
+      {
+        "rank": 25,
+        "ticker": "AMZN",
+        "score": 0.002374697010964155
+      },
+      {
+        "rank": 26,
+        "ticker": "KO",
+        "score": 0.002236122265458107
+      },
+      {
+        "rank": 27,
+        "ticker": "PG",
+        "score": 0.0018187734531238675
+      },
+      {
+        "rank": 28,
+        "ticker": "TRV",
+        "score": 0.0005946247256360948
+      },
+      {
+        "rank": 29,
+        "ticker": "AAPL",
+        "score": -9.464373579248786e-05
+      },
+      {
+        "rank": 30,
+        "ticker": "WMT",
+        "score": -0.0009330389439128339
+      }
+    ]
+  },
+  "errors": []
+}

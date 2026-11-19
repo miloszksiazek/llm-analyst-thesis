@@ -1,0 +1,54 @@
+I'm planning the search approach now, with today's date as November 19, 2026 and a budget of 10 searches. The first query is general stock market news for the week, and the second is Nvidia's earnings, since its shares fell about 13% in the past week and the report usually lands in late November.
+
+I'm checking the remaining data points now: Amgen's missing last close, the Honeywell spin-off, and the Nvidia, Apple, Nike and Alphabet market caps against their share prices to confirm the figures hold together. I'm also noting the current CPI, the upper Fed funds bound and the 10-year yield before running the next searches.
+
+
+
+---
+
+I'm parsing the JSON strings in the results so I can look at each one in more detail.
+
+
+
+---
+
+I'm going through a lot of market news: the Fed seems to be signaling rate hikes under a Warsh chairmanship, the 10-year yield is around 5.1%, and Nvidia's CEO is stepping down. I'm also noting the SEC probe, the Anthropic IPO, health insurers selling off on a regulatory rule, and Walmart's beat-and-raise. I'm trying to pin down whether today's November 19 premarket means trading resumes at the November 19 open.
+
+I'm settling on four more searches to cover Caterpillar's industrials selloff, the software stocks' drop, Nvidia's leadership change and its SEC probe, and either Merck or Boeing.
+
+
+
+---
+
+I've used ten searches already, so I'll stop searching and pull more detail from the results I have. I'm looking at the Fool article on the Dow and the StockTitan item on health insurers, plus the Walmart details and the Fool piece on the Fed.
+
+
+
+---
+
+I've got what I need now. The UNH figures check out against the sources: a one-week drop of about 13% in the data, though the Fool reports 10.2% for November 18, and the package's last close is 349.91 against a midday quote of 356.89. DIA's last close of 501.73 fits a Dow near 50,198, and its weekly move is down 4.33%. Against that, the macro backdrop is hawkish, with Warsh as chair, minutes pointing to a December hike, and CPI at 4.1%.
+
+I'm weighing the macro backdrop against the picks: rates are rising, a December hike looks likely, and the Anthropic IPO adds pressure on software. I'm also considering one-week reversal for heavy losers against continued momentum from news-driven drops, and that Thanksgiving week is a holiday-shortened period.
+
+I'm weighing the remaining picks: NVDA's sharp weekly drop and strong results against the SEC probe and export-control investigation, which makes it risky. CRM looks like a possible reversal after its 12.7% weekly fall, since software selling tied to the Anthropic IPO may ease once the offering prices, though the AI-disruption worry could still intensify. CAT's 23% monthly decline reflects strong downward momentum and AI-slowdown fears, with hawkish rates weighing on industrials.
+
+I'm weighing the remaining large caps: WMT and PG look solid for a holiday-shortened week, and GOOGL may be oversold at a low P/E, though its tie to Anthropic's IPO adds uncertainty. I'm also considering GS and JPM, which face rate-hike pressure even as higher yields help their net interest income.
+
+I'm weighing the remaining large caps against the rate backdrop: WMT, PG, and KO look like defensives that hold up in a hawkish, falling market, while GOOGL is cheap and oversold but tied to the Anthropic IPO. The biggest one-week losers (UNH, NVDA, CRM, IBM, CAT) are the reversal candidates I'm sorting through.
+
+I'm settling on the final allocation now: WMT, PG, GOOGL and KO get the heaviest weights, with MCD, AMZN and TRV behind them and a few smaller positions after that.
+
+Now I'm checking the remaining tickers against the sector and rate picture, going through the defensives and the reversal names one by one. The list is mostly weightings for the lower-conviction names.
+
+Now I'm checking the allocation arithmetic: the weights net out to about zero, and I'm considering whether to shift a point here or there, with NVDA's sharp drop and the scandal around Huang still weighing on whether it gets a negative weight.
+
+Now I'm setting the ranking: WMT on top at +4, then PG, GOOGL and KO at +3, followed by the +2 and +1 names, with the zeros in the middle and a few slight negatives near the bottom.
+
+Now I'm finishing the ranking: the negatives from IBM and GS down to UNH, with NVDA, MRK, NKE and CVX at -2, BA and CAT at -3, and UNH at the bottom. The totals balance out to zero, and GOOGL sits near the top on its low P/E and oversold move, though the Anthropic IPO adds some uncertainty.
+
+Now I'm listing the source references for the picks, from the market recap and the Nvidia and Walmart filings to the UNH, Fed minutes, AMGN and CRM coverage.
+
+I'm noting a few data problems now: AMGN's last close is missing and its changes show as zero, though a source puts the real close near 443.89. I'm also flagging that its ex-dividend date on November 20 isn't marked, and that the universe is still labeled as a draft.
+
+I'm writing the JSON now, keeping each rationale under 40 words and 320 characters, and checking the lengths as I go.
+

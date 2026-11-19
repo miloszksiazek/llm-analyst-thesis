@@ -1,0 +1,16 @@
+No web search is available, so I'll have to work from the package alone. The AMGN last close is null and its change shows 0.0, so that row is missing data. I also see the universe note: GOOGL replaced VZ on 2026-06-29, the list is current as of 2026-11-04, and HON is a spin-off. On the macro side, CPI is running at 4.08% year over year, the 10-year sits at 5.1% and the 2-year at 4.8%, while the Fed funds rate is 4.0%, so the curve looks moderately steep.
+
+Now I'm checking the weekly moves: the broad market is down about 4.3%, with staples like WMT, PG, and KO holding up while NVDA, UNH, CRM, IBM, and CAT took the heaviest hits. I'm weighing whether a short-term reversal after these selloffs might outweigh momentum, given rising yields and the holiday-shortened week.
+
+I'm weighing a few large weekly losers like NVDA, UNH, and CRM as possible short-term reversal picks, alongside lower-valuation names such as GOOGL and TRV. I'm still deciding between them, since I don't know the cause of the drops and UNH has a history of company-specific problems.
+
+I'm settling on NVDA, GOOGL, TRV, and GS for the picks, then I'll assign scores, with JPM next and IBM after.
+
+I'm assigning scores to the rest of the list, giving the low-valuation and oversold names small positive marks, the extended defensives and WMT negative ones, and the rest zero.
+
+I'm adjusting the scores so the total balances out: I'm moving CRM and MRK to zero and setting HON to -1, which brings the net to zero. I'll rank the final order from NVDA and GOOGL at the top down to the zero-scored names.
+
+I'm assigning the remaining scores, with the zero-scored names in the middle, the negatives for the extended defensives, and the net total checked to come out to zero.
+
+I'm making sure the JSON rationales stay within the 40-word and 320-character limits.
+

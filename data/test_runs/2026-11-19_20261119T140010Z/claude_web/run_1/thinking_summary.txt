@@ -1,0 +1,44 @@
+I'm planning a handful of batched searches within a budget of ten. Looking over the data, I notice a few things that need checking: AMGN has a null last close with zero changes, the universe is marked as draft, and NVDA's P/E of 16.21 doesn't sit well with its price and market cap alongside a 30% monthly drop.
+
+I'm also noting that the DIA market index is down 4.33% over the past week, and I'm going to run a search now.
+
+
+
+---
+
+I'm going to pull out more detail from each result, focusing on the content of the most important ones.
+
+
+
+---
+
+I'm confirming the Dow figure of 50,198 lines up with DIA at 501.73. Next I'll open the key articles on the S&P support break and Fed minutes, the CNBC yield piece, UNH's regulatory news, the CRM Benzinga story, and the WMT 8-K results, and pull out the relevant snippets.
+
+
+
+---
+
+I'm noting that Walmart reported premarket today, Nov 19, with guidance raised, so the reaction should show up in the open price. I'm still unsure whether our window starts at today's open or the next one. I'll check how WMT traded on the news, and also look into whether NVDA's earnings involve a CEO transition.
+
+I'm going to look up a few more items: Walmart's stock move, whether Nvidia has a CEO transition, the Fed and October CPI outlook, Amgen, Home Depot's earnings, and Merck. I have about four searches left.
+
+
+
+---
+
+I've got Amgen at $443.89 on Nov 18 with no package data, and I've used 10 searches so far, so I'm wrapping up the search phase. On the macro side, I'm noting the Fed funds rate at 4.0%, CPI at 4.1%, minutes pointing toward a December hike, and yields around 5.1% on the 10-year and 5.4% on the 30-year. The Dow is down 4.3% on the week, and I'm weighing risk-off sentiment, AI uncertainty, and IPO supply pressure on software.
+
+I'm now weighing a mix of defensive staples and short-term reversal candidates for the one-week window, with Thanksgiving week likely low-volume and seasonally supportive. I'm leaning toward WMT, PG, and KO for their defensive profile, and considering TRV or a reversal pick like UNH, while steering clear of NVDA given its volatility.
+
+I'm now scoring each stock on a simple scale, giving the defensive names like WMT and PG the highest marks and leaning slightly negative on the rate-sensitive and AI-exposed names. Amgen gets a neutral score since its data is missing, and I'm marking GS, IBM, MRK, and NKE lower for the rate and selloff pressure.
+
+I'm adjusting the scores so the totals net out: CSCO, JPM, and GOOGL each move to 0, which brings the sum to zero. Next I'm ranking the top names, with WMT and PG tied at 4 ahead of KO and MCD at 3.
+
+Ranking the remaining names by score now, with the defensives at the top, the AI and rate-sensitive names near the bottom, and NVDA last at -4.
+
+I'm going through the source list now: a few market and company pieces covering the Fed minutes, Treasury yields, NVIDIA's CEO transition, Walmart's conservative outlook, and UNH and CRM news. One yield figure looks off, so I'm skipping that item and leaning on the other sources.
+
+I'm checking the data quality notes now: Amgen's close is missing in one source though the web shows $443.89, and I'm flagging a 10-year yield figure that looks inconsistent, while the DIA weekly and monthly returns look fine.
+
+I'm now settling on the output format, a JSON object with short rationales of no more than about 40 words each.
+
