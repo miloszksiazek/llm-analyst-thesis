@@ -20,8 +20,15 @@
   "train_weeks": 570,
   "trained_through": "2026-11-06",
   "status": "provisional",
-  "note": "Trained on all data available on 2026-11-18 for the 2026-11-22 pilot; will be replaced by the frozen model on 2026-11-30.",
-  "git_commit": "9f314e9fa4e75c083fa34174efc20006dba90e6e",
-  "saved_at": "2026-11-18",
+  "note": "Trained on all data available on 2026-11-19 for the 2026-11-22 pilot; will be replaced by the frozen model on 2026-11-30.",
+  "target_definition": {
+    "type": "total_return",
+    "formula": "Open[exit]/Open[entry] - 1 + sum(cash_dividend[t,d] for d in (entry, exit]) / Open[entry]",
+    "dividend_source": "data/raw/dividends.parquet (yfinance cash dividends)",
+    "spinoff_handling": "rows whose (entry, exit] window crosses a spin-off ex-date are dropped",
+    "decision_ref": "docs/zmiany_do_planu.md 2026-11-10"
+  },
+  "git_commit": "5205a4ac402a962fdc3df028fc1ec4f45c656e82",
+  "saved_at": "2026-11-19",
   "seed": 20261110
 }

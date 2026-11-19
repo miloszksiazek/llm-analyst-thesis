@@ -103,7 +103,10 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     ap = argparse.ArgumentParser()
     ap.add_argument("--as-of",      required=True, help="YYYY-MM-DD trading date")
-    ap.add_argument("--model-path", default="data/raw/xgb_latest.ubj")
+    ap.add_argument("--model-path", default="models/xgb_provisional.json",
+                    help="Path to the trained XGBoost model. The weekly pipeline "
+                         "prefers models/xgb_frozen.json if present, else "
+                         "models/xgb_provisional.json (src/pipeline/weekly.py:_pick_model).")
     ap.add_argument("--train-first", action="store_true",
                     help="Train on data/raw/panel.parquet using params from "
                          "data/raw/xgb_cv_results.json before predicting.")
