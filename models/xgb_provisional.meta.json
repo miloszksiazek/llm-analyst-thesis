@@ -28,7 +28,9 @@
     "spinoff_handling": "rows whose (entry, exit] window crosses a spin-off ex-date are dropped",
     "decision_ref": "docs/zmiany_do_planu.md 2026-11-10"
   },
-  "git_commit": "5205a4ac402a962fdc3df028fc1ec4f45c656e82",
+  "xgboost_version": "3.4.1",
+  "python_version": "3.12.12",
+  "git_commit": "491679309039b31c15c6bdde085b853c9f043ddb",
   "saved_at": "2026-11-19",
   "seed": 20261110
 }

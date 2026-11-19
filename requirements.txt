@@ -1,8 +1,21 @@
+# Pinned via `pip freeze` in a clean .venv (Python 3.12.12) on 2026-11-19.
+# `anthropic==2.3.0` is a frozen research decision (docs/zmiany_do_planu.md 2026-11-02);
+# every other version is whatever pip resolved to on this date and should move only
+# with an explicit CHANGELOG entry.
+# `scikit-learn` is not imported directly by the code but is required by xgboost 3.x
+# for the XGBRegressor sklearn API (earlier xgboost versions bundled a shim).
+
+alpaca-py==0.45.0
 anthropic==2.3.0
-python-dotenv==1.2.4
-pyyaml==6.0.3
-alpaca-py==0.44.0
-yfinance==1.8.0
-fredapi==0.5.2
 exchange_calendars==4.13.3
+fredapi==0.5.2
+numpy==2.5.5
+pandas==3.1.1
+pyarrow==26.0.1
 pytest==9.2.0
+python-dotenv==1.2.4
+PyYAML==6.0.3
+scikit-learn==1.9.1
+scipy==1.18.1
+xgboost==3.4.1
+yfinance==1.8.0
