@@ -26,8 +26,19 @@ Aggregation (n_runs > 1):
 
 API parameters verified against anthropic==2.3.0 types:
     - thinking      = {"type": "adaptive", "display": "summarized"}
-    - output_config = {"effort": <settings.effort>}
+    - output_config = {"effort": <settings.effort>,
+                       "format":  {"type": "json_schema", "schema": <transformed>}}
     - tools         = [web_search_20260318] for claude_web, else absent
+
+output_config.format enables Anthropic's structured-outputs feature: the API
+compiles the (transformed) JSON schema and guarantees the final text content
+block parses as JSON matching the schema shape. This eliminates the
+"malformed JSON → full retry at ~$1.50" failure mode seen on 2026-11-19
+run 1 (`docs/zmiany_do_planu.md` 2026-11-20). The schema is the same for
+both variants; `anthropic.transform_schema` relocates unsupported
+constraints (`minItems`/`maxItems` above 1, `maxLength`, integer ranges)
+into field descriptions, where they are still enforced by our local
+validator (`src/agent/validate.py`).
 """
 
 from __future__ import annotations
@@ -55,8 +66,27 @@ logger = logging.getLogger(__name__)
 
 _SETTINGS_FILE = _ROOT / "config" / "settings.yaml"
 _UNIVERSE_FILE = _ROOT / "config" / "universe.yaml"
+_SCHEMA_FILE   = _ROOT / "prompts" / "output_schema.json"
 
 VARIANTS = ("claude_web", "claude_noweb")
+
+
+# ── Output schema (lazy, cached) ──────────────────────────────────────────────
+
+_OUTPUT_SCHEMA_CACHE: dict | None = None
+
+
+def _load_output_schema() -> dict:
+    """Load prompts/output_schema.json, pass through `anthropic.transform_schema`,
+    and cache the result for the lifetime of the process. The transform moves
+    unsupported constraints (e.g. `minItems: 30`, `maxLength`, integer ranges)
+    into each field's `description`; required/additionalProperties, types, enums
+    and formats are preserved and enforced by the API."""
+    global _OUTPUT_SCHEMA_CACHE
+    if _OUTPUT_SCHEMA_CACHE is None:
+        raw = json.loads(_SCHEMA_FILE.read_text(encoding="utf-8"))
+        _OUTPUT_SCHEMA_CACHE = anthropic.transform_schema(raw)
+    return _OUTPUT_SCHEMA_CACHE
 
 
 # ── Settings & universe ───────────────────────────────────────────────────────
@@ -177,7 +207,13 @@ def _build_request(variant: str, system: str, user: str, settings: dict) -> dict
         "system":      system,
         "messages":    [{"role": "user", "content": user}],
         "thinking":    {"type": "adaptive", "display": settings["thinking_display"]},
-        "output_config": {"effort": settings["effort"]},
+        "output_config": {
+            "effort": settings["effort"],
+            "format": {
+                "type":   "json_schema",
+                "schema": _load_output_schema(),
+            },
+        },
     }
     if variant == "claude_web":
         req["tools"] = [{
