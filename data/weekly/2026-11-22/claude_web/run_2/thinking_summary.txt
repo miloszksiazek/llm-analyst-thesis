@@ -1,0 +1,48 @@
+I'm planning out the searches with a budget of 10, since today is 2026-11-22. I want to see what's behind the market selloff, with DIA down about 8% over the week and NVDA down about 23%. I'll run a few searches in one batch.
+
+
+
+---
+
+I'm checking the Nvidia headline about Jensen Huang resigning as CEO, which seems surprising, so I want to read further into that article. I'll also look at the UNH news and pull up more of the content.
+
+
+
+---
+
+The scenario is pretty dramatic, so I'm going to look at the remaining results for each query.
+
+
+
+---
+
+I'm checking the market context from earlier: an AI selloff, a Fed hike in September, sticky inflation near 4%, and the 10-year at 5.04%. I'm also noting the Thanksgiving week calendar and the likely PCE and Fed minutes releases. I have four searches left, and I'm about to search for the week-ahead preview.
+
+I'm picking the last searches: a Thanksgiving-week market preview, Salesforce for the software side, banks given the private credit worries, and Alphabet.
+
+
+
+---
+
+I've run through ten searches, so it's time to settle on a view. The week ahead is short because of Thanksgiving, with core PCE expected around 3.2%, Dell's AI-server earnings, and the VIX sitting at 37. I'm weighing the hot inflation and jobs data against a Fed that hiked in September and is holding at 3.75–4.00%, with the 10-year near 5.04%. After capitulation-style weeks like this one, short-term rebounds tend to show up, and I'm thinking through whether that applies here.
+
+I'm weighing a balanced tilt toward oversold, high-quality names like MSFT, GS, JPM, and CAT, while keeping NVDA's SEC probe and CEO exit in mind. Defensives held up best, so they'd lag a relief rally but outperform if the selloff continues. With PCE due midweek and the 10-year near 5%, I'm leaning toward the usual post-capitulation rebound pattern, though the idiosyncratic news could still drag momentum lower.
+
+I'm leaning toward high-beta, oversold names that don't carry a live negative catalyst, which leaves out NVDA given the SEC probe and UNH given the policy risk. I'm weighing GS, CAT, MSFT, and JPM against GOOGL, with CAT up slightly after hours Friday and CRM excluded since its earnings land after the window.
+
+I'm ranking the remaining names, putting UNH low because of the Medicare policy overhang and CMS audits. NVDA goes low too, since the SEC probe and CEO exit could drag it further even though it might bounce hard, and NKE looks distressed given its large dividend yield. I'm placing the defensives (WMT, KO, PG, MCD) a bit lower too, since they'd lag in a rebound.
+
+The scores are in: Goldman and Caterpillar lead at +3, then Alphabet, Microsoft, and JPMorgan at +2. The defensives sit at the bottom, with McDonald's and Walmart at -2.
+
+I'm checking the sums for the bottom-ranked names, with NKE's unusually high dividend yield making me hesitate about its placement since I have no news on why it fell. I'm working out whether to keep it at -2 or nudge it to -1 so the total balances.
+
+I'm settling the bottom of the ranking: the two dividend-heavy and policy-exposed names go lowest, with Nike and McDonald's nudged down a notch, and I'm tuning the scores so the total nets to roughly zero.
+
+I'm double-checking the remaining bottom-ranked names, and the data looks mostly consistent. NKE's 4.98% dividend yield seems unusually high, so I'm questioning whether that figure is right before I trust it.
+
+I'm checking the remaining data points, and most figures line up across sources, including UNH's price move and the GS and JPM levels. The only thing I want to flag is NKE's 4.98% dividend yield, which looks high but could be consistent with a sharp price drop. I'm also noting that the 2-year and 10-year yields are dated November 19 rather than the 20th.
+
+I'm going through the remaining sources, checking which ones are dated and which are blog-style, and listing the ones I'll use for the macro and stock details: a Fool piece on the Nvidia probe, a rate update, the Cleveland Fed nowcast, the UNH note, a week-ahead preview, Caterpillar's after-hours move, and Alphabet's recent low.
+
+I'm lining up the sources I'll cite, a mix of news, filings, and market data notes, and I'm planning to write the final output as JSON with a short rationale for each pick, kept under 40 words.
+

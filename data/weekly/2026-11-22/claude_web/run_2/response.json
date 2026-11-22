@@ -1,0 +1,537 @@
+{
+  "run_date": "2026-11-22",
+  "as_of": "2026-11-20",
+  "macro_view": {
+    "summary": "US stocks are in a correction. Last week DIA fell 8.0%, the S&P 500 fell 8.6% and the Nasdaq fell 10% as the AI trade unwound. NVDA's slide, made worse by a reported SEC accounting probe, led the drop (W1, W2). The VIX nearly doubled to about 37 (W11). Inflation is still running hot: CPI was 4.1% YoY in October and the 10-year yield is 5.04% (PKG). The Fed is holding at 3.75-4.00% after hiking in September, and markets are still weighing the odds of another hike (W3, W4). Next week is short for Thanksgiving. October PCE (core expected around 3.2%) and Dell's earnings are the main events (W6). After a fall this severe and fast, I expect a partial relief rebound. That would favour cheap, oversold quality cyclicals and megacaps over the defensives that held up. I would still avoid names with ongoing company-specific problems: NVDA (SEC probe, no permanent CEO) and UNH (Medicare-for-All push, wider Medicare Advantage audits).",
+    "main_themes": [
+      "market_sentiment",
+      "inflation",
+      "fed_and_rates"
+    ],
+    "favoured_sectors": [
+      "Financials (capital markets/banks)",
+      "Industrials (machinery)",
+      "Communication Services",
+      "Information Technology (ex-semis)"
+    ],
+    "disfavoured_sectors": [
+      "Managed care",
+      "Semiconductors",
+      "Consumer Staples"
+    ],
+    "source_ids": [
+      "PKG",
+      "W1",
+      "W2",
+      "W3",
+      "W4",
+      "W6",
+      "W11"
+    ]
+  },
+  "stocks": [
+    {
+      "ticker": "GS",
+      "score": 3,
+      "rank": 1,
+      "rationale": "Fell 13.7% on the week and trades at 11.4x P/E. It dropped about 8% Friday on rate fears despite strong results (W10). Oversold, cheap and high-beta, so likely to lead a relief bounce.",
+      "key_factors": [
+        "price_momentum",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG",
+        "W10"
+      ]
+    },
+    {
+      "ticker": "CAT",
+      "score": 3,
+      "rank": 2,
+      "rationale": "Down 15% on the week and about 50% from its June peak on AI-capex fears. Trades at 20x P/E. It rose about 1.5% after hours on Friday (W7). A capitulation-like drop leaves room for a reversal.",
+      "key_factors": [
+        "price_momentum",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG",
+        "W7"
+      ]
+    },
+    {
+      "ticker": "GOOGL",
+      "score": 2,
+      "rank": 3,
+      "rationale": "Trades at 13.9x P/E and is at a one-year low after falling 10.3% on the week. Heavy debt-funded capex is a concern (W8), but the valuation now prices in a lot of bad news.",
+      "key_factors": [
+        "valuation",
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG",
+        "W8"
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "score": 2,
+      "rank": 4,
+      "rationale": "A quality megacap at 25x P/E, down 7.5% on the week with no specific negative catalyst found. Likely to benefit if the AI-led selloff stabilises.",
+      "key_factors": [
+        "macro_or_sector",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG",
+        "W1"
+      ]
+    },
+    {
+      "ticker": "JPM",
+      "score": 2,
+      "rank": 5,
+      "rationale": "Down 10.3% on the week at 13x P/E as selling spread to banks (W1). A cheap, high-quality bank that should bounce if sentiment improves.",
+      "key_factors": [
+        "price_momentum",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG",
+        "W1"
+      ]
+    },
+    {
+      "ticker": "CRM",
+      "score": 1,
+      "rank": 6,
+      "rationale": "Down 17% on the week and 28% over the month at 16.5x P/E, on software-wide fears of AI disruption (W9). Deeply oversold. Earnings on Dec 2 (unverified) fall after this window.",
+      "key_factors": [
+        "price_momentum",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG",
+        "W9"
+      ]
+    },
+    {
+      "ticker": "AMZN",
+      "score": 1,
+      "rank": 7,
+      "rationale": "Lowest P/E of the megacaps here at 19.95x, down 7.4% on the week. Black Friday spending data could give it support.",
+      "key_factors": [
+        "valuation",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W6"
+      ]
+    },
+    {
+      "ticker": "IBM",
+      "score": 1,
+      "rank": 8,
+      "rationale": "Down 9.2% on the week at 19x P/E with a 3% dividend yield. Oversold tech value name likely to recover modestly.",
+      "key_factors": [
+        "price_momentum",
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "AXP",
+      "score": 0,
+      "rank": 9,
+      "rationale": "Down 5.9% on the week at 17x P/E. Sensitive to consumer credit while inflation is hot. I expect it to roughly track the group.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "BA",
+      "score": 0,
+      "rank": 10,
+      "rationale": "Down 9% on the week and 26% over the quarter. High beta could help in a rebound, but no catalyst was found.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "CSCO",
+      "score": 0,
+      "rank": 11,
+      "rationale": "Down 5.2% on the week and 13.6% over the month. Exposed to AI networking capex sentiment. Neutral.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "AAPL",
+      "score": 0,
+      "rank": 12,
+      "rationale": "Held up relatively well (down 3.8% on the week), but 38x P/E limits rebound upside. Neutral.",
+      "key_factors": [
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "V",
+      "score": 0,
+      "rank": 13,
+      "rationale": "Down 5.6% on the week at 32.6x P/E. A steady compounder. Expected in line with the group.",
+      "key_factors": [
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "MRK",
+      "score": 0,
+      "rank": 14,
+      "rationale": "Down 9.5% on the week. Its trailing P/E of 135 looks distorted by one-off charges. No catalyst found. Neutral.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "CVX",
+      "score": 0,
+      "rank": 15,
+      "rationale": "Down 5.2% on the week with a 3.4% dividend yield at 15x P/E. Energy sold off alongside the market. Neutral.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "HON",
+      "score": 0,
+      "rank": 16,
+      "rationale": "Down 4.4% on the week. Valuation is not comparable after the spin-off (PKG note). No clear edge.",
+      "key_factors": [
+        "other"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "AMGN",
+      "score": 0,
+      "rank": 17,
+      "rationale": "Down 6.4% on the week at 25x P/E. Defensive biotech. Expected in line.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "HD",
+      "score": 0,
+      "rank": 18,
+      "rationale": "Up 3.5% over the month, but a 5% 10-year yield hurts housing. Neutral.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "DIS",
+      "score": 0,
+      "rank": 19,
+      "rationale": "Held up well (down 0.8% on the week, up 4.3% over the month). Gains less from a rebound. Neutral.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "SHW",
+      "score": 0,
+      "rank": 20,
+      "rationale": "Down 2.9% on the week at 31x P/E. High rates weigh on housing-linked demand. Neutral.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "MMM",
+      "score": 0,
+      "rank": 21,
+      "rationale": "Down 3.1% on the week, up 1.4% over the month. Low beta in a likely rebound. Neutral.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "TRV",
+      "score": 0,
+      "rank": 22,
+      "rationale": "Defensive insurer at 10.3x P/E, down only 2.5% on the week. Steady, but likely to lag a risk-on bounce.",
+      "key_factors": [
+        "valuation"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "JNJ",
+      "score": -1,
+      "rank": 23,
+      "rationale": "41x trailing P/E. A defensive that should lag if oversold cyclicals bounce.",
+      "key_factors": [
+        "valuation",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "NKE",
+      "score": -1,
+      "rank": 24,
+      "rationale": "Down 13% on the week. A 5% dividend yield signals distress. Consumer discretionary is under pressure from hot inflation. No supporting news found.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "KO",
+      "score": -1,
+      "rank": 25,
+      "rationale": "Defensive staple at 28.6x P/E, down only 2.3% on the week. Likely to lag in a relief rally.",
+      "key_factors": [
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "PG",
+      "score": -1,
+      "rank": 26,
+      "rationale": "Up 15.5% over the quarter as a safe haven. Money rotating back into risk would favour other names.",
+      "key_factors": [
+        "price_momentum",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "MCD",
+      "score": -1,
+      "rank": 27,
+      "rationale": "Up 8.2% over the month and the only gainer last week. A crowded defensive that risks giving back gains in a rebound.",
+      "key_factors": [
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG"
+      ]
+    },
+    {
+      "ticker": "WMT",
+      "score": -2,
+      "rank": 28,
+      "rationale": "Stretched at 46x P/E after a 20% quarterly gain. Beat-and-raise is already priced in (W1). A likely source of funds if risk appetite returns.",
+      "key_factors": [
+        "valuation",
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG",
+        "W1"
+      ]
+    },
+    {
+      "ticker": "NVDA",
+      "score": -3,
+      "rank": 29,
+      "rationale": "Down 23% on the week with a reported SEC accounting probe, a DoJ review of the Hugging Face deal and no permanent CEO (W2, W12). Cheap at 13.5x P/E, but the overhang is unresolved.",
+      "key_factors": [
+        "company_news",
+        "price_momentum"
+      ],
+      "source_ids": [
+        "PKG",
+        "W2",
+        "W12"
+      ]
+    },
+    {
+      "ticker": "UNH",
+      "score": -3,
+      "rank": 30,
+      "rationale": "Down 16.6% on the week on a renewed Medicare-for-All push and wider CMS Medicare Advantage audits (W5). The policy overhang is likely to persist.",
+      "key_factors": [
+        "company_news",
+        "macro_or_sector"
+      ],
+      "source_ids": [
+        "PKG",
+        "W5"
+      ]
+    }
+  ],
+  "picks": [
+    "GS",
+    "CAT",
+    "GOOGL",
+    "MSFT"
+  ],
+  "picks_rationale": "Last week looked like a liquidation: the Dow fell at least 1% in each of five sessions and the VIX hit about 37 (W1, W11). In the short Thanksgiving week I expect a partial relief bounce. These four are oversold, reasonably valued, high-quality names without a specific new negative catalyst. GS trades at 11x P/E after a 13.7% weekly drop. CAT is 50% off its peak and ticked up after hours. GOOGL trades at 13.9x P/E. MSFT is a quality megacap at 25x. The main risk is a hot PCE print driving yields higher and extending the selloff.",
+  "sources": [
+    {
+      "id": "PKG",
+      "type": "data_package",
+      "title": "Weekly data package as of 2026-11-20"
+    },
+    {
+      "id": "W1",
+      "type": "web",
+      "title": "Markets News, Nov. 20, 2026: Major Stock Indexes Sink, Wipe Out 2026 Gains as AI Trade Melts Down",
+      "publisher": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-futures-plunge-131303598.html",
+      "published_date": "2026-11-20"
+    },
+    {
+      "id": "W2",
+      "type": "web",
+      "title": "Nvidia Stock Plunge Wipes Out Nearly $500 Billion in One Day as SEC Reportedly Probes Its Accounting",
+      "publisher": "The Motley Fool",
+      "url": "https://www.fool.com/investing/2026/11/20/nvidia-stock-plunge-wipes-out-nearly-usd500-billion-in-one-day-as-sec-reportedly-probes-its-accounting/",
+      "published_date": "2026-11-20"
+    },
+    {
+      "id": "W3",
+      "type": "web",
+      "title": "Market Update – November 2026",
+      "publisher": "RG Wealth",
+      "url": "https://rgwealth.com/market-thoughts/market-update-november-2026/",
+      "published_date": "2026-11-19"
+    },
+    {
+      "id": "W4",
+      "type": "web",
+      "title": "Inflation Nowcasting",
+      "publisher": "Federal Reserve Bank of Cleveland",
+      "url": "https://www.clevelandfed.org/indicators-and-data/inflation-nowcasting",
+      "published_date": "2026-11-20"
+    },
+    {
+      "id": "W5",
+      "type": "web",
+      "title": "UnitedHealth Stock (UNH) Falls 5.6% as Health Insurers Slide (Nov 19)",
+      "publisher": "Gotrade",
+      "url": "https://www.heygotrade.com/en/news/unitedhealth-unh-stock-news-november-20-2026/",
+      "published_date": "2026-11-20"
+    },
+    {
+      "id": "W6",
+      "type": "web",
+      "title": "Wall Street Week Ahead",
+      "publisher": "Seeking Alpha",
+      "url": "https://seekingalpha.com/article/4970920-wall-street-week-ahead",
+      "published_date": "2026-11-22"
+    },
+    {
+      "id": "W7",
+      "type": "web",
+      "title": "Caterpillar (CAT) Stock Price, Chart & News",
+      "publisher": "StockAnalysis",
+      "url": "https://stockanalysis.com/stocks/cat/",
+      "published_date": "2026-11-20"
+    },
+    {
+      "id": "W8",
+      "type": "web",
+      "title": "Alphabet Stock Just Hit a 1-Year Low. Why Is Google's Parent Borrowing So Much Money?",
+      "publisher": "The Motley Fool",
+      "url": "https://www.fool.com/investing/2026/11/21/alphabet-stock-just-hit-a-1-year-low-why-is-google-s-parent-borrowing-so-much-money/",
+      "published_date": "2026-11-21"
+    },
+    {
+      "id": "W9",
+      "type": "web",
+      "title": "What Moved Salesforce Stock?",
+      "publisher": "Trefis",
+      "url": "https://www.trefis.com/stock/crm/articles/626280/what-moved-salesforce-stock/2026-11-18",
+      "published_date": "2026-11-18"
+    },
+    {
+      "id": "W10",
+      "type": "web",
+      "title": "Goldman Sachs (GS) Plunge 8% to Near $801 as Hot Inflation and Jobs Data Rattle Rate Outlook",
+      "publisher": "FX Leaders",
+      "url": "https://www.fxleaders.com/news/2026/11/20/goldman-sachs-gs-plunge-8-to-near-801-as-hot-inflation-and-jobs-data-rattle-rate-outlook/",
+      "published_date": "2026-11-20"
+    },
+    {
+      "id": "W11",
+      "type": "web",
+      "title": "Bull Bear Report: Week Of November 20, 2026",
+      "publisher": "Lance Roberts (Substack)",
+      "url": "https://lanceroberts.substack.com/p/bull-bear-report-week-of-november-2a6",
+      "published_date": "2026-11-21"
+    },
+    {
+      "id": "W12",
+      "type": "web",
+      "title": "Nvidia shares plunge amid reports board to discuss CEO Huang's future",
+      "publisher": "Al Jazeera",
+      "url": "https://www.aljazeera.com/economy/2026/11/12/nvidia-shares-plunge-amid-reports-board-to-discuss-ceo-huangs-future",
+      "published_date": "2026-11-12"
+    }
+  ],
+  "data_issues": [
+    "meta.universe_version is 'draft', so universe composition is not finalised.",
+    "HON market_cap and pe_trailing are null (explained by the spin-off note); no comparable valuation is available.",
+    "DTWEXBGS (USD broad index) is dated 2026-11-13, a week staler than the other series; DGS2/DGS10 are dated 2026-11-19, not 2026-11-20.",
+    "The earnings calendar lists only CRM (2026-12-02, unverified) and says other dates are unverified; earnings coverage may be incomplete.",
+    "MRK trailing P/E of 135 looks distorted (likely one-off charges) and is not comparable.",
+    "NKE dividend yield of 4.98% is unusually high; it may reflect the price collapse or a stale dividend figure."
+  ]
+}

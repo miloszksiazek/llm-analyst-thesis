@@ -1,0 +1,165 @@
+{
+  "model_path": "models/xgb_provisional.json",
+  "model_status": "provisional",
+  "trained_through": "2026-11-06",
+  "git_commit_at_training": "491679309039b31c15c6bdde085b853c9f043ddb",
+  "as_of": "2026-11-20",
+  "picks": [
+    "CAT",
+    "CRM",
+    "GOOGL",
+    "GS"
+  ],
+  "ranking": [
+    {
+      "rank": 1,
+      "ticker": "CAT",
+      "score": 0.06310977041721344
+    },
+    {
+      "rank": 2,
+      "ticker": "CRM",
+      "score": 0.05807368829846382
+    },
+    {
+      "rank": 3,
+      "ticker": "GOOGL",
+      "score": 0.05723411217331886
+    },
+    {
+      "rank": 4,
+      "ticker": "GS",
+      "score": 0.04016623646020889
+    },
+    {
+      "rank": 5,
+      "ticker": "BA",
+      "score": 0.03930887207388878
+    },
+    {
+      "rank": 6,
+      "ticker": "NKE",
+      "score": 0.032548386603593826
+    },
+    {
+      "rank": 7,
+      "ticker": "CSCO",
+      "score": 0.013994861394166946
+    },
+    {
+      "rank": 8,
+      "ticker": "MRK",
+      "score": 0.01275112759321928
+    },
+    {
+      "rank": 9,
+      "ticker": "NVDA",
+      "score": 0.011760043911635876
+    },
+    {
+      "rank": 10,
+      "ticker": "AAPL",
+      "score": 0.010263482108712196
+    },
+    {
+      "rank": 11,
+      "ticker": "AXP",
+      "score": 0.01001687441021204
+    },
+    {
+      "rank": 12,
+      "ticker": "V",
+      "score": 0.009885151870548725
+    },
+    {
+      "rank": 13,
+      "ticker": "HON",
+      "score": 0.009832716546952724
+    },
+    {
+      "rank": 14,
+      "ticker": "AMZN",
+      "score": 0.009200351312756538
+    },
+    {
+      "rank": 15,
+      "ticker": "AMGN",
+      "score": 0.009182702749967575
+    },
+    {
+      "rank": 16,
+      "ticker": "JPM",
+      "score": 0.008906240575015545
+    },
+    {
+      "rank": 17,
+      "ticker": "JNJ",
+      "score": 0.008899261243641376
+    },
+    {
+      "rank": 18,
+      "ticker": "MSFT",
+      "score": 0.008542275056242943
+    },
+    {
+      "rank": 19,
+      "ticker": "HD",
+      "score": 0.008188096806406975
+    },
+    {
+      "rank": 20,
+      "ticker": "MMM",
+      "score": 0.007333596237003803
+    },
+    {
+      "rank": 21,
+      "ticker": "SHW",
+      "score": 0.007018096279352903
+    },
+    {
+      "rank": 22,
+      "ticker": "KO",
+      "score": 0.0056771342642605305
+    },
+    {
+      "rank": 23,
+      "ticker": "CVX",
+      "score": 0.005069740582257509
+    },
+    {
+      "rank": 24,
+      "ticker": "TRV",
+      "score": 0.004403627477586269
+    },
+    {
+      "rank": 25,
+      "ticker": "MCD",
+      "score": 0.003835090668871999
+    },
+    {
+      "rank": 26,
+      "ticker": "UNH",
+      "score": 0.0031030212994664907
+    },
+    {
+      "rank": 27,
+      "ticker": "WMT",
+      "score": 0.002894954290241003
+    },
+    {
+      "rank": 28,
+      "ticker": "IBM",
+      "score": 0.0028526848182082176
+    },
+    {
+      "rank": 29,
+      "ticker": "PG",
+      "score": 0.002251728903502226
+    },
+    {
+      "rank": 30,
+      "ticker": "DIS",
+      "score": 0.002056439872831106
+    }
+  ]
+}

@@ -1,0 +1,501 @@
+{
+  "queries": [
+    {
+      "tool_use_id": "srvtoolu_01Ghb9VJYsBnpRd5zZBphHdV",
+      "query": "Nvidia stock November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01EKK5hGXJRFPUeuimkCk857",
+      "query": "Fed December 2026 rate decision outlook"
+    },
+    {
+      "tool_use_id": "srvtoolu_011gbbrh55L9CuPks4d77Stt",
+      "query": "Caterpillar stock plunge November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_013TdyWEptP4m8Pb9vW521HY",
+      "query": "stock market week November 20 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01ApvSu68QFbKUzxhmVmChdW",
+      "query": "Treasury 10-year yield November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01TdirjDgemoE4zxokmzneM5",
+      "query": "UnitedHealth stock November 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01Ba6sgGa2ye5qhpMjdbPbX4",
+      "query": "Walmart earnings November 2026 results"
+    },
+    {
+      "tool_use_id": "srvtoolu_015MZEaE66kx8zdDFrP8HD2R",
+      "query": "why Nvidia stock fell 14% November 20 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_01Radb9xtyDNsMa33T1QmVXB",
+      "query": "stock futures week ahead Thanksgiving November 23 2026"
+    },
+    {
+      "tool_use_id": "srvtoolu_015KwFNYNbdE3uhk19UDEWsS",
+      "query": "Salesforce stock drop November 2026"
+    }
+  ],
+  "retrieved": [
+    {
+      "url": "https://stockanalysis.com/stocks/nvda/history/",
+      "title": "NVIDIA (NVDA) Stock Price History 1999-2026",
+      "page_age": "13 days ago"
+    },
+    {
+      "url": "https://investor.nvidia.com/stock-info/stock-quote-and-chart/default.aspx",
+      "title": "NVIDIA Corporation - Stock Quote & Chart",
+      "page_age": "4 days ago"
+    },
+    {
+      "url": "https://www.investing.com/equities/nvidia-corp-historical-data",
+      "title": "NVIDIA Stock Price History - Investing.com",
+      "page_age": "33 days ago"
+    },
+    {
+      "url": "https://www.litefinance.org/blog/analysts-opinions/nvda-stock-price-prediction/",
+      "title": "Nvidia (NVDA) Stock Forecast & Predictions for 2026, 2027, 2028–2030, 2040",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/nvda/articles/624393/what-just-happened-to-nvidia-stock/2026-11-11",
+      "title": "What Just Happened To Nvidia Stock?",
+      "page_age": "11 days ago"
+    },
+    {
+      "url": "https://www.macrotrends.net/stocks/charts/NVDA/nvidia/stock-price-history",
+      "title": "NVIDIA - 10 Year Stock Price History",
+      "page_age": "4 days ago"
+    },
+    {
+      "url": "https://www.vantagemarkets.com/en/market-analysis/nvda-stock-monthly-outlook-analysis-nvidia/",
+      "title": "Nvidia Stock Analysis November 2026: NVDA Falls 15% From Its Record as Earnings Near",
+      "page_age": "18 days ago"
+    },
+    {
+      "url": "https://www.marketbeat.com/stocks/NASDAQ/NVDA/chart/",
+      "title": "NVIDIA (NVDA) Stock Chart and Price History 2026 - MarketBeat",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.forbes.com/sites/jimosman/2026/11/22/nvidia-stock-has-a-cockroach-problem-what-comes-next-could-be-worse/",
+      "title": "Nvidia Stock Has A Cockroach Problem. What Comes Next Could Be Worse",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://kalshi.com/markets/kxfeddecision/fed-meeting/kxfeddecision-26dec",
+      "title": "Fed Meeting December 2026: Interest Rate Decision Odds",
+      "page_age": "18 days ago"
+    },
+    {
+      "url": "https://admiralmarkets.com/analytics/traders-blog/fed-rate-decision-december-2026-preview",
+      "title": "Fed Meeting December 2026: Date and Time, Rate Hike Odds",
+      "page_age": "3 days ago"
+    },
+    {
+      "url": "https://www.fxempire.com/forecasts/article/interest-rate-forecast-december-fed-hike-bets-support-us-dollar-1646310",
+      "title": "Interest Rate Forecast: December Fed Hike Bets Support US Dollar",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://sarkariresultine.com/us/fed-rate-hike-december-2026/",
+      "title": "Fed Rate Hike December 2026: Urgent Warning for Loans & Stocks - SarkariResultine USA",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/economy/policy/articles/fed-minutes-higher-interest-rates-190932735.html",
+      "title": "Fed minutes: Higher interest rates needed in December as inflation worries mount",
+      "page_age": "4 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/economy/policy/articles/fed-raise-rates-once-more-124512933.html",
+      "title": "Fed to raise rates once more in December as inflation risks stay high: Reuters poll",
+      "page_age": "12 days ago"
+    },
+    {
+      "url": "https://www.forbes.com/sites/simonmoore/2026/11/09/what-to-expect-from-the-feds-december-meeting/",
+      "title": "Fed December Meeting What To Expect For Interest Rates In 2027",
+      "page_age": "13 days ago"
+    },
+    {
+      "url": "https://www.forbes.com/sites/simonmoore/2026/11/13/waller-floats-prospect-of-larger-december-interest-rate-hike/",
+      "title": "Fed Could Consider 50 Basis Point Rate Hike in December",
+      "page_age": "9 days ago"
+    },
+    {
+      "url": "https://www.fxstreet.com/analysis/all-eyes-on-fed-decision-rate-cut-priced-in-2026-outlook-uncertain-202512100642",
+      "title": "all eyes on fed decision rate cut priced in 2026 outlook uncertain 202512100642",
+      "page_age": null
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/caterpillar-stocks-move-lower-target-181635433.html",
+      "title": "Caterpillar Stocks Move Lower With Target Cut Putting Its Margin Premium on Trial",
+      "page_age": "20 days ago"
+    },
+    {
+      "url": "https://247wallst.com/cards/cat-xpost-01m7za14w9v3d73etnrkdbrh2f",
+      "title": "Caterpillar's 51.9% drop is its worst drawdown since 2008",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/cat/articles/624527/how-much-downside-is-left-in-caterpillar-stock/2026-11-12",
+      "title": "How Much Downside Is Left In Caterpillar Stock?",
+      "page_age": "10 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/cat/articles/623254/what-mattered-most-in-caterpillars-latest-quarter/2026-11-06",
+      "title": "What Mattered Most In Caterpillar’s Latest Quarter?",
+      "page_age": "15 days ago"
+    },
+    {
+      "url": "https://www.ebc.com/forex/caterpillar-stock-50-percent-drop-52-week-low",
+      "title": "Caterpillar Stock Plunges 50% From June Peak to 52-Week Low",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://tickeron.com/ticker/CAT/",
+      "title": "Why Caterpillar (CAT) Stock Is Down -21.7% in the Last 30 Days",
+      "page_age": "9 days ago"
+    },
+    {
+      "url": "https://www.tradingkey.com/news/market-movers/262313615-market-movers-cat-20261119",
+      "title": "Caterpillar Inc Stock (CAT) Moved Down by 3.78% on Nov 19: Key Drivers Unveiled",
+      "page_age": "3 days ago"
+    },
+    {
+      "url": "https://www.tradingkey.com/news/market-movers/262307367-market-movers-cat-20261116",
+      "title": "Caterpillar Inc Stock (CAT) Moved Down by 3.37% on Nov 16: Facts Behind the Movement",
+      "page_age": "6 days ago"
+    },
+    {
+      "url": "https://www.tradingkey.com/news/market-movers/262315924-market-movers-cat-20261120",
+      "title": "Caterpillar Inc Stock (CAT) Moved Down by 3.98% on Nov 20: Facts Behind the Movement",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-futures-plunge-131303598.html",
+      "title": "Markets News, Nov. 20, 2026: Major Stock Indexes Sink, Wipe Out 2026 Gains as AI Trade Melts Down; Nvidia Leads Tech Rout, Anthropic Slides After IPO",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://theglassdesk.substack.com/p/weekly-market-review-nov-20-2026",
+      "title": "Weekly Market Review: Nov 20, 2026 - The Glass Desk",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://lanceroberts.substack.com/p/bull-bear-report-week-of-november-2a6",
+      "title": "Bull Bear Report: Week Of November 20, 2026",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.theclosingprint.net/2026/11/post-market-and-weekly-summary-2026-11-20/",
+      "title": "Post-Market & Weekly Summary",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.alainguillot.com/stock-market-recap-november-20-2026/",
+      "title": "Stock Market Recap — November 20, 2026: Nasdaq Crashes 5.3% as AI Selloff Deepens - Alain Guillot",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.uspress.news/u-s-stock-market-weekly-update-ending-nov-20-2026/",
+      "title": "U.S. Stock Market Weekly Update Ending Nov. 20, 2026 - USPress.News",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.everhint.com/stock-market-news-november-20-2026-friday-evening-last-12-hours-pacific-time/",
+      "title": "Stock Market News — November 20, 2026 — Friday Evening — Last 12 Hours (Pacific Time)",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.stl.news/u-s-stock-market-weekly-update-ending-nov-20-2026/",
+      "title": "U.S. Stock Market Weekly Update Ending Nov. 20, 2026",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.byteseu.com/2534807/",
+      "title": "Stock market news for Nov. 20, 2026 - Bytes Europe",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://govspending.org/series/DGS10/",
+      "title": "10-Year Treasury Yield — 5.15% (Nov 13, 2026)",
+      "page_age": "9 days ago"
+    },
+    {
+      "url": "https://www.etftrends.com/fixed-income-content-hub/treasury-yields-snapshot-november-20-2026/",
+      "title": "Treasury Yields Snapshot: November 20, 2026",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://tradingeconomics.com/united-states/government-bond-yield",
+      "title": "US 10 Year Treasury Note Yield - Quote - Chart - Historical Data - News",
+      "page_age": "808 days ago"
+    },
+    {
+      "url": "https://www.macrotrends.net/2016/10-year-treasury-bond-rate-yield-chart",
+      "title": "10 Year Treasury Yield (1962-2026)",
+      "page_age": "4 days ago"
+    },
+    {
+      "url": "https://www.econlearn.org/economy-today/treasury-yields",
+      "title": "10-Year Treasury Yield Today and the Yield Curve",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://streetstats.finance/rates/treasuries",
+      "title": "U.S. Treasury Yield Curve - T-Bills, Treasury Notes, Treasury Bonds Interest Rates",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.forecasts.org/10yrT.htm",
+      "title": "10-Year Treasury Yield Forecast by Month",
+      "page_age": "52 days ago"
+    },
+    {
+      "url": "https://www.forbes.com/advisor/investing/treasury-rates/",
+      "title": "Treasury Rates Today: November 18, 2026",
+      "page_age": "4 days ago"
+    },
+    {
+      "url": "https://stockmarketwatch.com/bonds/10-year-treasury-yield",
+      "title": "10-Year Treasury Yield Today — Live Rate & Chart",
+      "page_age": "3 days ago"
+    },
+    {
+      "url": "https://yourbestsavings.com/treasury-yields/",
+      "title": "Treasury Yields Today (November 2026): 1-Month to 30-Year",
+      "page_age": "9 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000266/unh-20260930.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 10-Q - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000255/earningsrelease3q26unh.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000197/unh-20260630.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 10-Q - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.heygotrade.com/en/news/unitedhealth-unh-stock-news-november-20-2026/",
+      "title": "UnitedHealth Stock (UNH) Falls 5.6% as Health Insurers Slide (Nov 19)",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000127/unh-20260331.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 10-Q - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000121/uhgearningsreleaseq12026.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.investing.com/equities/united-health-group",
+      "title": "Unitedhealth Stock Price Today",
+      "page_age": "38 days ago"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000191/earningsrelease2q26_7152.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000121/earningsrelease1q26press.htm",
+      "title": "UNITEDHEALTH GROUP INC - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000168/earningsreleasefy27q3.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000168/earningspresentationfy27.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000145/earningsreleasefy27q2.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000032/earningsreleasefy26q4.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000145/earningspresentationfy27.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000091/wmtfy26annualreport-final.pdf",
+      "title": "Walmart Inc. - Form ARS - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/0000104169/000010416926000095/earningspresentationfy27.htm",
+      "title": "Walmart Inc. - Form 8-K - FY2026",
+      "page_age": null
+    },
+    {
+      "url": "https://admiralmarkets.com/analytics/traders-blog/walmart-earnings-preview-q3-fiscal-2027",
+      "title": "Walmart Earnings 19 November 2026: Date, Time and Forecasts",
+      "page_age": "5 days ago"
+    },
+    {
+      "url": "https://www.cnbc.com/2026/11/19/walmart-wmt-q3-2026-earnings.html",
+      "title": "Walmart (WMT) Q3 2026 earnings",
+      "page_age": "3 days ago"
+    },
+    {
+      "url": "https://www.cnbc.com/2026/11/20/nvidias-7-week-losing-streak-is-longest-since-2008-financial-crisis.html",
+      "title": "Nvidia stock plunges 14%, wraps up longest weekly losing streak since 2008 financial crisis",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://www.fool.com/investing/2026/11/20/here-is-why-nvidia-stock-crashed-on-friday/",
+      "title": "Here's Why Nvidia Stock Crashed on Friday",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.fool.com/investing/2026/11/20/nvidia-stock-plunge-wipes-out-nearly-usd500-billion-in-one-day-as-sec-reportedly-probes-its-accounting/",
+      "title": "Nvidia Stock Plunge Wipes Out Nearly $500 Billion in One Day as SEC Reportedly Probes Its Accounting",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nov-20-215502847.html",
+      "title": "Stock Market Today, Nov. 20: Nvidia's $2.5 Trillion Rout Deepens as SEC Accounting Probe Adds to Wall Street's AI Sell-Off",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://finance.yahoo.com/markets/article/nvidia-stock-extends-25-trillion-rout-as-sec-probe-reportedly-investigates-its-accounting-194945274.html",
+      "title": "Nvidia stock extends $2.7 trillion rout as SEC probe reportedly investigates its accounting",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://aistockwire.com/blog/nvidia-nvda-stock-falls-14-percent-sec-accounting-probe-november-2026",
+      "title": "Nvidia stock falls 14% on report of SEC accounting focus",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://finance.biggo.com/news/d18e569f-526d-447e-980b-10bb46a6fe95",
+      "title": "Nvidia Plunges 14%, Nasdaq Sinks 5.3% as SEC Accounting Probe Adds to Woes — BigGo Finance",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://coinpaper.com/39159/nvidia-stock-crashes-11-as-sec-investigation-targets-ai-chipmaker-s-accounting-practices",
+      "title": "Nvidia Stock Crashes 14% as SEC Investigation Targets AI Chipmaker's Accounting Practices",
+      "page_age": "2 days ago"
+    },
+    {
+      "url": "https://journalarta.com/en/2026/11/22/nvidia-shares-fall-sec-examines-accounting/",
+      "title": "Nvidia Shares Sink 14% as SEC Examines Accounting — JournalArta Global",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://x.com/marketsday/status/2124179531732828453",
+      "title": "Markets Today on X: \"U.S. Stock Market Thanksgiving Holiday Trading Schedule - November 23 to 27, 2026 🔹 U.S. equity markets, including the NYSE and Nasdaq, will operate on a shortened Thanksgiving holiday week from November 23 to November 27, 2026. 🔹 From Monday, November 23 through Wednesday,… / X",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://news.sbs.co.kr/english/article.do?news_id=N1008858193",
+      "title": "Thanksgiving Later This Week Raises Possibility of Increased Volatility",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.schaeffersresearch.com/content/news/2026/11/19/the-week-ahead-thanksgiving-week-brings-more-inflation-data",
+      "title": "The Week Ahead: Thanksgiving Week Brings More Inflation Data - Schaeffer's Investment Research",
+      "page_age": "3 days ago"
+    },
+    {
+      "url": "https://delphicalpha.substack.com/p/the-week-ahead-6-2327-november-2026",
+      "title": "The Week Ahead #6: 23–27 November 2026 - by oracle",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.fxleaders.com/news/2026/11/22/market-wrap-tech-selloff-deepens-ahead-of-holiday-shortened-week-as-vix-spikes-near-36/",
+      "title": "Market Wrap: Tech Selloff Deepens Ahead of Holiday-Shortened Week as VIX Spikes Near 36 - Forex News by FX Leaders",
+      "page_age": "0 days ago"
+    },
+    {
+      "url": "https://www.investing.com/holiday-calendar/",
+      "title": "Stock Market Holiday Calendar - Investing.com",
+      "page_age": "136 days ago"
+    },
+    {
+      "url": "https://www.cmegroup.com/trading-hours.html",
+      "title": "CME Group Holiday and Trading Hours - CME Group",
+      "page_age": "34 days ago"
+    },
+    {
+      "url": "https://www.regardsofwallstreet.com/premarket",
+      "title": "Stock Market Futures This Weekend: Reopen Sunday 6pm ET, Ahead of Nov 23",
+      "page_age": null
+    },
+    {
+      "url": "https://sixsigmaresearch.com/p/preview-of-the-week-ahead-wc-november-df9",
+      "title": "Preview of the Week Ahead: W/C November 23, 2026",
+      "page_age": "1 days ago"
+    },
+    {
+      "url": "https://www.gurufocus.com/news/9205668/salesforce-crm-shares-drop-nearly-10-amid-sector-weakness-on-november-17-2026",
+      "title": "Salesforce (CRM) Shares Drop Nearly 10% Amid Sector Weakness on November 17, 2026",
+      "page_age": "5 days ago"
+    },
+    {
+      "url": "https://www.gurufocus.com/news/9205947/salesforce-crm-shares-fall-94-amid-tech-sector-selloff-ahead-of-anthropic-ipo",
+      "title": "Salesforce (CRM) Shares Fall 9.4% Amid Tech Sector Selloff Ahead of Anthropic IPO",
+      "page_age": "5 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/crm/articles/626280/what-moved-salesforce-stock/2026-11-18",
+      "title": "What Moved Salesforce Stock?",
+      "page_age": "4 days ago"
+    },
+    {
+      "url": "https://news.jkn.co.kr/editions/english/post/1102769",
+      "title": "Salesforce Shares Tumble Over Six Percent in New York : 기업주식정보 : JKN",
+      "page_age": "5 days ago"
+    },
+    {
+      "url": "https://www.benzinga.com/markets/equities/26/11/63359152/stock-market-today-salesforce-software-selloff-anthropic-ipo-nvidia-november-17",
+      "title": "Salesforce Sinks Ahead of Anthropic IPO: Stock Market Today - Salesforce (NYSE:CRM) - Benzinga",
+      "page_age": "5 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/crm/articles/625153/is-salesforce-stock-about-to-rebound-again/2026-11-16",
+      "title": "Is Salesforce Stock About To Rebound Again?",
+      "page_age": "6 days ago"
+    },
+    {
+      "url": "https://www.trefis.com/stock/crm/articles/624931/has-buying-the-dip-in-salesforce-stock-paid-off/2026-11-13",
+      "title": "Has Buying The Dip In Salesforce Stock Paid Off?",
+      "page_age": "9 days ago"
+    },
+    {
+      "url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262310309-salesforce-worst-day-since-2024-ai-fears-software-selloff-189-50-support-november-18-2026-tradingkey",
+      "title": "Salesforce Suffers Its Worst Day Since 2024 as AI Fears Hit Software, With $189.50 Next",
+      "page_age": "4 days ago"
+    },
+    {
+      "url": "https://www.tradingkey.com/news/market-movers/262313882-market-movers-crm-20261119",
+      "title": "Salesforce Inc Stock (CRM) Moved Down by 3.48% on Nov 19: Key Drivers Unveiled",
+      "page_age": "3 days ago"
+    }
+  ]
+}

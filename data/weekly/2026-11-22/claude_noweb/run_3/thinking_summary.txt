@@ -1,0 +1,12 @@
+No web search is available, so I'm relying only on the data package. The market picture is a sharp risk-off move: DIA is down 8% on the week and nearly 9% on the month, with the 10-year at 5.04%, CPI at 4.08% year over year, and the Fed funds rate at 4.0%. On the data side, the universe note lists GOOGL replacing VZ and an HON spin-off both dated 2026-06-29, which may just be a coincidence, the universe version is marked as draft, and the earnings dates still need checking.
+
+I'm checking the constituent share counts against their market caps, and most of them look plausible. MRK's P/E of 135 stands out as possibly a one-time charge, and the macro observations are lagging, so I'll need to note those dates.
+
+I'm weighing whether a sharp selloff like this tends to bounce, given the short-term reversal effect, against the pull of defensive, low-volatility names. A holiday week may also lean positive, so I'm leaning toward a balanced mix that includes some defensive picks like WMT and PG.
+
+I'm working through the candidate scores now, giving the most defensive and oversold-quality names a positive tilt, like GOOGL, WMT and PG at +3, and leaving the high-volatility names like NVDA neutral.
+
+Now I'm finishing the scores, with Nike and Salesforce at -3, and noting the totals net to zero. The top of the ranking is Walmart, Alphabet and P&G at 3, then McDonald's, Coca-Cola and Microsoft at 2.
+
+Now I'm ranking the rest of the list, with Johnson & Johnson, Travelers, Apple and Disney at +1, Visa, JPMorgan, Amazon, 3M, Sherwin-Williams, Honeywell and Nvidia held neutral at zero, and the weaker names sliding down from Chevron and Amgen at -1 to Nike and Salesforce at the bottom.
+

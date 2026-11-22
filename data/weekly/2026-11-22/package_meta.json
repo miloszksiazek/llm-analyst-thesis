@@ -1,0 +1,194 @@
+{
+  "as_of": "2026-11-20",
+  "price_source": "yahoo",
+  "retrieved_at": "2026-11-22T23:28:16+00:00",
+  "run_date": "2026-11-22",
+  "sanity_warnings": [],
+  "sources": [
+    "yahoo (prices)",
+    "Yahoo Finance (fundamentals, earnings)",
+    "FRED (macro)"
+  ],
+  "stocks": [
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 14532182000,
+      "ticker": "AAPL",
+      "yahoo_market_cap": 4978144444416
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 540911490,
+      "ticker": "AMGN",
+      "yahoo_market_cap": 235642683392
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 10813138306,
+      "ticker": "AMZN",
+      "yahoo_market_cap": 2668898811904
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 670552018,
+      "ticker": "AXP",
+      "yahoo_market_cap": 202305552384
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 792449940,
+      "ticker": "BA",
+      "yahoo_market_cap": 123535015936
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 457594174,
+      "ticker": "CAT",
+      "yahoo_market_cap": 233578954752
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 823000000,
+      "ticker": "CRM",
+      "yahoo_market_cap": 148650262528
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 3942448184,
+      "ticker": "CSCO",
+      "yahoo_market_cap": 357343494144
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 1951253686,
+      "ticker": "CVX",
+      "yahoo_market_cap": 406582722560
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 1708029668,
+      "ticker": "DIS",
+      "yahoo_market_cap": 201513353216
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 5888000000,
+      "ticker": "GOOGL",
+      "yahoo_market_cap": 3261475323904
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 288434583,
+      "ticker": "GS",
+      "yahoo_market_cap": 228062347264
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 997689626,
+      "ticker": "HD",
+      "yahoo_market_cap": 338256691200
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 317358518,
+      "ticker": "HON",
+      "yahoo_market_cap": 67483115520
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 945120805,
+      "ticker": "IBM",
+      "yahoo_market_cap": 212122927104
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 2407310266,
+      "ticker": "JNJ",
+      "yahoo_market_cap": 651105206272
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 2655609509,
+      "ticker": "JPM",
+      "yahoo_market_cap": 824646434816
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 4301902335,
+      "ticker": "KO",
+      "yahoo_market_cap": 417241497600
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 705784744,
+      "ticker": "MCD",
+      "yahoo_market_cap": 192848625664
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 516729574,
+      "ticker": "MMM",
+      "yahoo_market_cap": 91972698112
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 2465245688,
+      "ticker": "MRK",
+      "yahoo_market_cap": 329652666368
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 7426194552,
+      "ticker": "MSFT",
+      "yahoo_market_cap": 3598139523072
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 1203921077,
+      "ticker": "NKE",
+      "yahoo_market_cap": 48896364544
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 24147000000,
+      "ticker": "NVDA",
+      "yahoo_market_cap": 3031172907008
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 2317783143,
+      "ticker": "PG",
+      "yahoo_market_cap": 392562900992
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 241588072,
+      "ticker": "SHW",
+      "yahoo_market_cap": 82077122560
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 204946347,
+      "ticker": "TRV",
+      "yahoo_market_cap": 80593100800
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 896022611,
+      "ticker": "UNH",
+      "yahoo_market_cap": 304513286144
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 1724473215,
+      "ticker": "V",
+      "yahoo_market_cap": 749809041408
+    },
+    {
+      "market_cap_source": "Yahoo marketCap field (covers all share classes)",
+      "shares_outstanding": 7958079155,
+      "ticker": "WMT",
+      "yahoo_market_cap": 1018236174336
+    }
+  ]
+}

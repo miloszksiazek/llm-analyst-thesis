@@ -1,0 +1,218 @@
+{
+  "model": "claude-opus-5-5",
+  "max_tokens": 16000,
+  "system": "You are an equity research analyst. Once a week you assess the 30 stocks in a fixed universe of large US companies and rank them by how you expect them to perform relative to each other over the coming week.\n\nYour situation:\n- Today is 2026-11-22 (Sunday). The most recent US market close is 2026-11-20. Trading resumes at the next market open.\n- You start from a clean slate every week. You have no record of previous weeks, no portfolio and no knowledge of past decisions. Judge each stock only on what you know now.\n- You receive a data package (below, in the user message) with prices, price changes, basic valuation figures, an earnings calendar and macroeconomic indicators. Treat the package as the authoritative source for all current numbers. It is correct as of 2026-11-20.\n- Your background knowledge has a training cutoff and may be outdated. Do not present anything from memory as current news. If something you remember could have changed, say so or leave it out.\n- You may or may not have a web search tool in this session. If you have one, use it to research the macroeconomic situation and company-specific news that is relevant for the coming week, within a budget of at most 10 searches; plan your searches before you start. If you do not have one, rely only on the data package and general knowledge, and do not claim knowledge of recent events that is not in the package.\n- Never invent facts, figures, events or sources. Every factual claim about a recent event must be supported either by the data package or by a source you actually retrieved in this session.\n- Prefer primary sources (company releases, official statistics, central banks) and established financial media over blogs and aggregators.\n\nYour task:\n1. Form a brief view of the current macroeconomic and market environment and how it is likely to affect sectors over the coming week.\n2. Assess each of the 30 stocks. Consider whatever evidence you judge most relevant: recent price behaviour, valuation, upcoming earnings, company news, sector and macro conditions. There is no prescribed strategy.\n3. Give each stock a score from -5 to +5 (integers only) for its expected performance RELATIVE TO THE OTHER 29 STOCKS over the next week, measured from the next market open to the market open one week later. +5 = expected to clearly outperform the group, 0 = in line with the group, -5 = expected to clearly underperform. This is a relative judgement: on average the scores should be centred around zero, whatever you expect the market as a whole to do.\n4. Rank all 30 stocks from 1 (best) to 30 (worst), with no ties. The ranking must be consistent with the scores: a stock with a higher score must have a better (lower) rank. Use the ranking to separate stocks with equal scores.\n5. The stocks ranked 1 to 4 are the ones to buy for the coming week, in equal weights. You must always name exactly four; there is no option to hold cash. If you see no strong opportunities, pick the four you expect to do best relative to the others.\n\nOutput rules:\n- Your final answer must be a single JSON object that follows the schema given in the user message. Output nothing before or after the JSON object: no commentary, no markdown code fences, no disclaimers.\n- Keep each stock rationale short (at most 40 words) and specific. Refer to sources by their id.\n- Use the source id \"PKG\" for information taken from the data package. Give every web source you rely on its own id (W1, W2, ...) with its title, publisher, URL and publication date if available.\n- Use the exact tickers from the data package.",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Data package (as of 2026-11-20, SHA-256 562fc670ff999fc287d651ec270a6ab48c6571576c6070ebab6a1d6ee5740530):\n\n{\n  \"data_notes\": [\n    \"Universe: Dow Jones Industrial Average constituents as of 2026-11-04. Alphabet (GOOGL) replaced Verizon (VZ) on 2026-06-29.\",\n    \"HON: P/E and market cap omitted \u2013 trailing figures not comparable after the 2026-06-29 spin-off.\"\n  ],\n  \"earnings\": {\n    \"entries\": [\n      {\n        \"company\": \"Salesforce Inc\",\n        \"next_earnings_date\": \"2026-12-02\",\n        \"status\": \"unverified (Yahoo)\",\n        \"ticker\": \"CRM\"\n      }\n    ],\n    \"note\": \"Other universe companies have no earnings date in this window according to Yahoo (dates unverified).\"\n  },\n  \"macro\": [\n    {\n      \"id\": \"DFEDTARU\",\n      \"name\": \"Fed funds target upper bound\",\n      \"obs_date\": \"2026-11-20\",\n      \"transform\": \"latest\",\n      \"unit\": \"%\",\n      \"value\": 4.0\n    },\n    {\n      \"id\": \"CPIAUCSL\",\n      \"name\": \"CPI all items (seasonally adjusted)\",\n      \"obs_date\": \"2026-10-01\",\n      \"transform\": \"yoy_pct\",\n      \"unit\": \"%\",\n      \"value\": 4.081\n    },\n    {\n      \"id\": \"DGS2\",\n      \"name\": \"2-year Treasury yield (constant maturity)\",\n      \"obs_date\": \"2026-11-19\",\n      \"transform\": \"latest\",\n      \"unit\": \"%\",\n      \"value\": 4.76\n    },\n    {\n      \"id\": \"DGS10\",\n      \"name\": \"10-year Treasury yield (constant maturity)\",\n      \"obs_date\": \"2026-11-19\",\n      \"transform\": \"latest\",\n      \"unit\": \"%\",\n      \"value\": 5.04\n    },\n    {\n      \"id\": \"DTWEXBGS\",\n      \"name\": \"USD broad index (goods and services)\",\n      \"obs_date\": \"2026-11-13\",\n      \"transform\": \"latest\",\n      \"unit\": \"index_jan2006=100\",\n      \"value\": 122.6503\n    }\n  ],\n  \"market\": {\n    \"change_1m_pct\": -8.867,\n    \"change_1q_pct\": -9.851,\n    \"change_1w_pct\": -8.042,\n    \"last_close\": 481.08,\n    \"ticker\": \"DIA\"\n  },\n  \"meta\": {\n    \"as_of\": \"2026-11-20\",\n    \"run_date\": \"2026-11-22\",\n    \"universe_tickers\": 30,\n    \"universe_version\": \"draft\"\n  },\n  \"stocks\": [\n    {\n      \"change_1m_pct\": -1.625,\n      \"change_1q_pct\": 10.382,\n      \"change_1w_pct\": -3.848,\n      \"dividend_yield\": 0.32,\n      \"last_close\": 342.56,\n      \"market_cap\": 4978144444416,\n      \"name\": \"Apple Inc\",\n      \"pe_trailing\": 38.15,\n      \"sector\": \"Information Technology\",\n      \"ticker\": \"AAPL\"\n    },\n    {\n      \"change_1m_pct\": -2.602,\n      \"change_1q_pct\": -1.848,\n      \"change_1w_pct\": -6.449,\n      \"dividend_yield\": 2.31,\n      \"last_close\": 435.64,\n      \"market_cap\": 235642683392,\n      \"name\": \"Amgen Inc\",\n      \"pe_trailing\": 25.25,\n      \"sector\": \"Health Care\",\n      \"ticker\": \"AMGN\"\n    },\n    {\n      \"change_1m_pct\": -1.422,\n      \"change_1q_pct\": -5.819,\n      \"change_1w_pct\": -7.44,\n      \"dividend_yield\": 0.0,\n      \"last_close\": 246.82,\n      \"market_cap\": 2668898811904,\n      \"name\": \"Amazon.com Inc\",\n      \"pe_trailing\": 19.95,\n      \"sector\": \"Consumer Discretionary\",\n      \"ticker\": \"AMZN\"\n    },\n    {\n      \"change_1m_pct\": -7.218,\n      \"change_1q_pct\": -10.562,\n      \"change_1w_pct\": -5.895,\n      \"dividend_yield\": 1.26,\n      \"last_close\": 301.7,\n      \"market_cap\": 202305552384,\n      \"name\": \"American Express Co\",\n      \"pe_trailing\": 17.0,\n      \"sector\": \"Financials\",\n      \"ticker\": \"AXP\"\n    },\n    {\n      \"change_1m_pct\": -16.881,\n      \"change_1q_pct\": -25.929,\n      \"change_1w_pct\": -9.102,\n      \"dividend_yield\": 0.0,\n      \"last_close\": 155.89,\n      \"market_cap\": 123535015936,\n      \"name\": \"Boeing Co\",\n      \"pe_trailing\": 16.09,\n      \"sector\": \"Industrials\",\n      \"ticker\": \"BA\"\n    },\n    {\n      \"change_1m_pct\": -27.498,\n      \"change_1q_pct\": -37.061,\n      \"change_1w_pct\": -14.953,\n      \"dividend_yield\": 1.28,\n      \"last_close\": 510.45,\n      \"market_cap\": 233578954752,\n      \"name\": \"Caterpillar Inc\",\n      \"pe_trailing\": 20.03,\n      \"sector\": \"Industrials\",\n      \"ticker\": \"CAT\"\n    },\n    {\n      \"change_1m_pct\": -27.836,\n      \"change_1q_pct\": -13.604,\n      \"change_1w_pct\": -17.086,\n      \"dividend_yield\": 0.97,\n      \"last_close\": 180.62,\n      \"market_cap\": 148650262528,\n      \"name\": \"Salesforce Inc\",\n      \"pe_trailing\": 16.53,\n      \"sector\": \"Information Technology\",\n      \"ticker\": \"CRM\"\n    },\n    {\n      \"change_1m_pct\": -13.586,\n      \"change_1q_pct\": -17.772,\n      \"change_1w_pct\": -5.228,\n      \"dividend_yield\": 1.85,\n      \"last_close\": 90.64,\n      \"market_cap\": 357343494144,\n      \"name\": \"Cisco Systems Inc\",\n      \"pe_trailing\": 24.11,\n      \"sector\": \"Information Technology\",\n      \"ticker\": \"CSCO\"\n    },\n    {\n      \"change_1m_pct\": -8.077,\n      \"change_1q_pct\": 2.6,\n      \"change_1w_pct\": -5.239,\n      \"dividend_yield\": 3.42,\n      \"last_close\": 208.37,\n      \"market_cap\": 406582722560,\n      \"name\": \"Chevron Corp\",\n      \"pe_trailing\": 15.3,\n      \"sector\": \"Energy\",\n      \"ticker\": \"CVX\"\n    },\n    {\n      \"change_1m_pct\": 4.287,\n      \"change_1q_pct\": 6.663,\n      \"change_1w_pct\": -0.832,\n      \"dividend_yield\": 1.7,\n      \"last_close\": 117.98,\n      \"market_cap\": 201513353216,\n      \"name\": \"Walt Disney Co\",\n      \"pe_trailing\": 20.96,\n      \"sector\": \"Communication Services\",\n      \"ticker\": \"DIS\"\n    },\n    {\n      \"change_1m_pct\": -18.176,\n      \"change_1q_pct\": -23.78,\n      \"change_1w_pct\": -10.305,\n      \"dividend_yield\": 0.33,\n      \"last_close\": 265.29,\n      \"market_cap\": 3261475323904,\n      \"name\": \"Alphabet Inc (Class A)\",\n      \"pe_trailing\": 13.85,\n      \"sector\": \"Communication Services\",\n      \"ticker\": \"GOOGL\"\n    },\n    {\n      \"change_1m_pct\": -11.288,\n      \"change_1q_pct\": -23.699,\n      \"change_1w_pct\": -13.733,\n      \"dividend_yield\": 2.53,\n      \"last_close\": 790.69,\n      \"market_cap\": 228062347264,\n      \"name\": \"Goldman Sachs Group Inc\",\n      \"pe_trailing\": 11.37,\n      \"sector\": \"Financials\",\n      \"ticker\": \"GS\"\n    },\n    {\n      \"change_1m_pct\": 3.451,\n      \"change_1q_pct\": 0.477,\n      \"change_1w_pct\": -2.767,\n      \"dividend_yield\": 2.75,\n      \"last_close\": 339.04,\n      \"market_cap\": 338256691200,\n      \"name\": \"Home Depot Inc\",\n      \"pe_trailing\": 23.54,\n      \"sector\": \"Consumer Discretionary\",\n      \"ticker\": \"HD\"\n    },\n    {\n      \"change_1m_pct\": -2.597,\n      \"change_1q_pct\": -0.992,\n      \"change_1w_pct\": -4.414,\n      \"dividend_yield\": 1.32,\n      \"last_close\": 212.64,\n      \"market_cap\": null,\n      \"name\": \"Honeywell International Inc\",\n      \"pe_trailing\": null,\n      \"sector\": \"Industrials\",\n      \"ticker\": \"HON\"\n    },\n    {\n      \"change_1m_pct\": -10.975,\n      \"change_1q_pct\": -2.857,\n      \"change_1w_pct\": -9.181,\n      \"dividend_yield\": 3.01,\n      \"last_close\": 224.44,\n      \"market_cap\": 212122927104,\n      \"name\": \"International Business Machines Corp\",\n      \"pe_trailing\": 19.15,\n      \"sector\": \"Information Technology\",\n      \"ticker\": \"IBM\"\n    },\n    {\n      \"change_1m_pct\": 1.069,\n      \"change_1q_pct\": -0.941,\n      \"change_1w_pct\": -5.347,\n      \"dividend_yield\": 1.98,\n      \"last_close\": 270.47,\n      \"market_cap\": 651105206272,\n      \"name\": \"Johnson & Johnson\",\n      \"pe_trailing\": 41.04,\n      \"sector\": \"Health Care\",\n      \"ticker\": \"JNJ\"\n    },\n    {\n      \"change_1m_pct\": -7.729,\n      \"change_1q_pct\": -12.868,\n      \"change_1w_pct\": -10.301,\n      \"dividend_yield\": 2.13,\n      \"last_close\": 310.53,\n      \"market_cap\": 824646434816,\n      \"name\": \"JPMorgan Chase & Co\",\n      \"pe_trailing\": 13.03,\n      \"sector\": \"Financials\",\n      \"ticker\": \"JPM\"\n    },\n    {\n      \"change_1m_pct\": 1.731,\n      \"change_1q_pct\": 5.435,\n      \"change_1w_pct\": -2.277,\n      \"dividend_yield\": 2.19,\n      \"last_close\": 96.99,\n      \"market_cap\": 417241497600,\n      \"name\": \"Coca-Cola Co\",\n      \"pe_trailing\": 28.61,\n      \"sector\": \"Consumer Staples\",\n      \"ticker\": \"KO\"\n    },\n    {\n      \"change_1m_pct\": 8.158,\n      \"change_1q_pct\": 0.257,\n      \"change_1w_pct\": 0.467,\n      \"dividend_yield\": 2.83,\n      \"last_close\": 273.24,\n      \"market_cap\": 192848625664,\n      \"name\": \"McDonald's Corp\",\n      \"pe_trailing\": 21.62,\n      \"sector\": \"Consumer Discretionary\",\n      \"ticker\": \"MCD\"\n    },\n    {\n      \"change_1m_pct\": 1.384,\n      \"change_1q_pct\": -0.57,\n      \"change_1w_pct\": -3.087,\n      \"dividend_yield\": 1.75,\n      \"last_close\": 177.99,\n      \"market_cap\": 91972698112,\n      \"name\": \"3M Co\",\n      \"pe_trailing\": 26.57,\n      \"sector\": \"Industrials\",\n      \"ticker\": \"MMM\"\n    },\n    {\n      \"change_1m_pct\": -9.182,\n      \"change_1q_pct\": -11.244,\n      \"change_1w_pct\": -9.502,\n      \"dividend_yield\": 2.63,\n      \"last_close\": 133.72,\n      \"market_cap\": 329652666368,\n      \"name\": \"Merck & Co Inc\",\n      \"pe_trailing\": 135.07,\n      \"sector\": \"Health Care\",\n      \"ticker\": \"MRK\"\n    },\n    {\n      \"change_1m_pct\": -7.016,\n      \"change_1q_pct\": -0.573,\n      \"change_1w_pct\": -7.513,\n      \"dividend_yield\": 0.81,\n      \"last_close\": 484.52,\n      \"market_cap\": 3598139523072,\n      \"name\": \"Microsoft Corp\",\n      \"pe_trailing\": 25.29,\n      \"sector\": \"Information Technology\",\n      \"ticker\": \"MSFT\"\n    },\n    {\n      \"change_1m_pct\": -14.092,\n      \"change_1q_pct\": -19.215,\n      \"change_1w_pct\": -13.346,\n      \"dividend_yield\": 4.98,\n      \"last_close\": 32.92,\n      \"market_cap\": 48896364544,\n      \"name\": \"Nike Inc (Class B)\",\n      \"pe_trailing\": 15.83,\n      \"sector\": \"Consumer Discretionary\",\n      \"ticker\": \"NKE\"\n    },\n    {\n      \"change_1m_pct\": -40.846,\n      \"change_1q_pct\": -39.788,\n      \"change_1w_pct\": -22.917,\n      \"dividend_yield\": 0.8,\n      \"last_close\": 125.53,\n      \"market_cap\": 3031172907008,\n      \"name\": \"NVIDIA Corp\",\n      \"pe_trailing\": 13.48,\n      \"sector\": \"Information Technology\",\n      \"ticker\": \"NVDA\"\n    },\n    {\n      \"change_1m_pct\": 2.283,\n      \"change_1q_pct\": 15.532,\n      \"change_1w_pct\": -0.253,\n      \"dividend_yield\": 2.57,\n      \"last_close\": 169.37,\n      \"market_cap\": 392562900992,\n      \"name\": \"Procter & Gamble Co\",\n      \"pe_trailing\": 25.51,\n      \"sector\": \"Consumer Staples\",\n      \"ticker\": \"PG\"\n    },\n    {\n      \"change_1m_pct\": -1.704,\n      \"change_1q_pct\": -2.016,\n      \"change_1w_pct\": -2.901,\n      \"dividend_yield\": 0.94,\n      \"last_close\": 339.74,\n      \"market_cap\": 82077122560,\n      \"name\": \"Sherwin-Williams Co\",\n      \"pe_trailing\": 31.25,\n      \"sector\": \"Materials\",\n      \"ticker\": \"SHW\"\n    },\n    {\n      \"change_1m_pct\": -3.009,\n      \"change_1q_pct\": 6.123,\n      \"change_1w_pct\": -2.477,\n      \"dividend_yield\": 1.27,\n      \"last_close\": 393.24,\n      \"market_cap\": 80593100800,\n      \"name\": \"Travelers Companies Inc\",\n      \"pe_trailing\": 10.34,\n      \"sector\": \"Financials\",\n      \"ticker\": \"TRV\"\n    },\n    {\n      \"change_1m_pct\": -20.032,\n      \"change_1q_pct\": -14.773,\n      \"change_1w_pct\": -16.593,\n      \"dividend_yield\": 2.73,\n      \"last_close\": 339.85,\n      \"market_cap\": 304513286144,\n      \"name\": \"UnitedHealth Group Inc\",\n      \"pe_trailing\": 19.4,\n      \"sector\": \"Health Care\",\n      \"ticker\": \"UNH\"\n    },\n    {\n      \"change_1m_pct\": -3.01,\n      \"change_1q_pct\": 5.089,\n      \"change_1w_pct\": -5.611,\n      \"dividend_yield\": 0.78,\n      \"last_close\": 401.87,\n      \"market_cap\": 749809041408,\n      \"name\": \"Visa Inc (Class A)\",\n      \"pe_trailing\": 32.62,\n      \"sector\": \"Financials\",\n      \"ticker\": \"V\"\n    },\n    {\n      \"change_1m_pct\": 5.639,\n      \"change_1q_pct\": 20.152,\n      \"change_1w_pct\": -0.109,\n      \"dividend_yield\": 0.77,\n      \"last_close\": 127.95,\n      \"market_cap\": 1018236174336,\n      \"name\": \"Walmart Inc\",\n      \"pe_trailing\": 46.36,\n      \"sector\": \"Consumer Staples\",\n      \"ticker\": \"WMT\"\n    }\n  ]\n}\n\n\nReturn your assessment as a single JSON object that conforms to this JSON Schema:\n\n{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"$id\": \"agent_output_v0\",\n  \"title\": \"Weekly agent assessment\",\n  \"type\": \"object\",\n  \"additionalProperties\": false,\n  \"required\": [\"run_date\", \"as_of\", \"macro_view\", \"stocks\", \"picks\", \"picks_rationale\", \"sources\", \"data_issues\"],\n  \"properties\": {\n    \"run_date\": { \"type\": \"string\", \"format\": \"date\", \"description\": \"Copy from the prompt.\" },\n    \"as_of\": { \"type\": \"string\", \"format\": \"date\", \"description\": \"Copy from the prompt.\" },\n    \"macro_view\": {\n      \"type\": \"object\",\n      \"additionalProperties\": false,\n      \"required\": [\"summary\", \"main_themes\", \"favoured_sectors\", \"disfavoured_sectors\", \"source_ids\"],\n      \"properties\": {\n        \"summary\": { \"type\": \"string\", \"maxLength\": 1200, \"description\": \"At most about 150 words.\" },\n        \"main_themes\": {\n          \"type\": \"array\",\n          \"minItems\": 1,\n          \"maxItems\": 3,\n          \"items\": {\n            \"type\": \"string\",\n            \"enum\": [\"fed_and_rates\", \"inflation\", \"labour_market\", \"growth\", \"earnings_season\", \"geopolitics\", \"fiscal_policy\", \"energy_and_commodities\", \"currency\", \"market_sentiment\", \"other\"]\n          }\n        },\n        \"favoured_sectors\": { \"type\": \"array\", \"items\": { \"type\": \"string\" }, \"maxItems\": 4 },\n        \"disfavoured_sectors\": { \"type\": \"array\", \"items\": { \"type\": \"string\" }, \"maxItems\": 4 },\n        \"source_ids\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\n      }\n    },\n    \"stocks\": {\n      \"type\": \"array\",\n      \"minItems\": 30,\n      \"maxItems\": 30,\n      \"items\": {\n        \"type\": \"object\",\n        \"additionalProperties\": false,\n        \"required\": [\"ticker\", \"score\", \"rank\", \"rationale\", \"key_factors\", \"source_ids\"],\n        \"properties\": {\n          \"ticker\": { \"type\": \"string\" },\n          \"score\": { \"type\": \"integer\", \"minimum\": -5, \"maximum\": 5 },\n          \"rank\": { \"type\": \"integer\", \"minimum\": 1, \"maximum\": 30 },\n          \"rationale\": { \"type\": \"string\", \"maxLength\": 320, \"description\": \"At most 40 words.\" },\n          \"key_factors\": {\n            \"type\": \"array\",\n            \"minItems\": 1,\n            \"maxItems\": 2,\n            \"items\": {\n              \"type\": \"string\",\n              \"enum\": [\"price_momentum\", \"valuation\", \"earnings_upcoming\", \"earnings_recent\", \"company_news\", \"macro_or_sector\", \"other\"]\n            }\n          },\n          \"source_ids\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\n        }\n      }\n    },\n    \"picks\": {\n      \"type\": \"array\",\n      \"minItems\": 4,\n      \"maxItems\": 4,\n      \"items\": { \"type\": \"string\" },\n      \"description\": \"Tickers ranked 1, 2, 3, 4, in that order.\"\n    },\n    \"picks_rationale\": { \"type\": \"string\", \"maxLength\": 800, \"description\": \"At most about 100 words.\" },\n    \"sources\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"additionalProperties\": false,\n        \"required\": [\"id\", \"type\", \"title\"],\n        \"properties\": {\n          \"id\": { \"type\": \"string\", \"description\": \"PKG for the data package, W1, W2, ... for web sources.\" },\n          \"type\": { \"type\": \"string\", \"enum\": [\"data_package\", \"web\"] },\n          \"title\": { \"type\": \"string\" },\n          \"publisher\": { \"type\": \"string\" },\n          \"url\": { \"type\": \"string\" },\n          \"published_date\": { \"type\": \"string\" }\n        }\n      }\n    },\n    \"data_issues\": {\n      \"type\": \"array\",\n      \"items\": { \"type\": \"string\" },\n      \"description\": \"Anything in the data package that looked wrong, missing or inconsistent. Empty array if none.\"\n    }\n  }\n}\n"
+    }
+  ],
+  "thinking": {
+    "type": "adaptive",
+    "display": "summarized"
+  },
+  "output_config": {
+    "effort": "high",
+    "format": {
+      "type": "json_schema",
+      "schema": {
+        "type": "object",
+        "title": "Weekly agent assessment",
+        "properties": {
+          "run_date": {
+            "type": "string",
+            "description": "Copy from the prompt.",
+            "format": "date"
+          },
+          "as_of": {
+            "type": "string",
+            "description": "Copy from the prompt.",
+            "format": "date"
+          },
+          "macro_view": {
+            "type": "object",
+            "properties": {
+              "summary": {
+                "type": "string",
+                "description": "At most about 150 words.\n\n{maxLength: 1200}"
+              },
+              "main_themes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "fed_and_rates",
+                    "inflation",
+                    "labour_market",
+                    "growth",
+                    "earnings_season",
+                    "geopolitics",
+                    "fiscal_policy",
+                    "energy_and_commodities",
+                    "currency",
+                    "market_sentiment",
+                    "other"
+                  ]
+                },
+                "minItems": 1,
+                "description": "{maxItems: 3}"
+              },
+              "favoured_sectors": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "{maxItems: 4}"
+              },
+              "disfavoured_sectors": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "{maxItems: 4}"
+              },
+              "source_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "summary",
+              "main_themes",
+              "favoured_sectors",
+              "disfavoured_sectors",
+              "source_ids"
+            ]
+          },
+          "stocks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ticker": {
+                  "type": "string"
+                },
+                "score": {
+                  "type": "integer",
+                  "description": "{minimum: -5, maximum: 5}"
+                },
+                "rank": {
+                  "type": "integer",
+                  "description": "{minimum: 1, maximum: 30}"
+                },
+                "rationale": {
+                  "type": "string",
+                  "description": "At most 40 words.\n\n{maxLength: 320}"
+                },
+                "key_factors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "price_momentum",
+                      "valuation",
+                      "earnings_upcoming",
+                      "earnings_recent",
+                      "company_news",
+                      "macro_or_sector",
+                      "other"
+                    ]
+                  },
+                  "minItems": 1,
+                  "description": "{maxItems: 2}"
+                },
+                "source_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "ticker",
+                "score",
+                "rank",
+                "rationale",
+                "key_factors",
+                "source_ids"
+              ]
+            },
+            "description": "{maxItems: 30, minItems: 30}"
+          },
+          "picks": {
+            "type": "array",
+            "description": "Tickers ranked 1, 2, 3, 4, in that order.\n\n{maxItems: 4, minItems: 4}",
+            "items": {
+              "type": "string"
+            }
+          },
+          "picks_rationale": {
+            "type": "string",
+            "description": "At most about 100 words.\n\n{maxLength: 800}"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "PKG for the data package, W1, W2, ... for web sources."
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "data_package",
+                    "web"
+                  ]
+                },
+                "title": {
+                  "type": "string"
+                },
+                "publisher": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "published_date": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "type",
+                "title"
+              ]
+            }
+          },
+          "data_issues": {
+            "type": "array",
+            "description": "Anything in the data package that looked wrong, missing or inconsistent. Empty array if none.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "run_date",
+          "as_of",
+          "macro_view",
+          "stocks",
+          "picks",
+          "picks_rationale",
+          "sources",
+          "data_issues"
+        ],
+        "description": "{$schema: https://json-schema.org/draft/2020-12/schema, $id: agent_output_v0}"
+      }
+    }
+  }
+}

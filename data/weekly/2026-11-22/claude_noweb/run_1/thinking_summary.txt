@@ -1,0 +1,24 @@
+I can't search the web here, so I'll have to rely on what's in the package. The universe note looks off: it claims GOOGL replaced VZ on 2026-06-29, but what I know is that Amazon replaced Walgreens, NVDA replaced Intel, and SHW replaced Dow in November 2024, with VZ still in the index as far as I know. I can't verify the 2026 change, so I'll flag it as unverifiable.
+
+Now I'm checking the Dow constituent list against the expected 30 names, and the DIA returns look like a sharp selloff. I'm also running sanity checks on market caps, prices, and share counts for the big names, and flagging the MRK P/E as an outlier.
+
+I'm spot-checking the share counts implied by the market caps for the remaining large names, which mostly line up, and I'm noting the Honeywell spin-off timing as a coincidence with the GOOGL date. Now I'm looking at the macro figures: CPI is at 4.08% year over year, the 10-year is at 5.04%, the 2-year at 4.76%, and the Fed funds upper bound at 4.0, which puts the policy rate below the 2-year yield.
+
+I'm checking the earnings calendar against the trading window: CRM reports on 12-02, after the Nov 23–30 week, so nothing in the universe reports inside it. I'm also noting that the USD index is dated a week stale and that the biggest one-week losers in the Dow are NVDA, CRM, UNH, CAT, GS, and NKE, all well below DIA's -8%.
+
+I'm weighing a mix of short-term reversal picks in high-quality names that sold off hard against the defensives that held up, since the week is severe and rates are elevated. I'm leaning toward picking GOOGL as a cheap name among the oversold group.
+
+I'm settling on a final mix of picks: NVDA for its deep drop on a low P/E, GOOGL as a cheap name in the oversold group, and then GS and CAT as the remaining candidates. CAT's sharp quarterly fall may reflect something structural tied to the AI power theme, so I'm weighing whether to include it or MSFT instead. UNH's drop could be company-specific and may continue, so I'm leaving it aside.
+
+I'm weighing NVDA, GOOGL, GS, and AMZN as the core picks, since the AI-related selloff and rate shock make the oversold names look like contrarian candidates. Next I'll look at the defensives that held up through the week, which carry high valuations.
+
+I'm scoring the defensives that held up, with the weaker names like Walmart, P&G, and Coca-Cola leaning negative, and I'm placing the beaten-down names like Salesforce, UnitedHealth, and Nike near zero since their moves may hinge on news or earnings. Next I'm settling the scores and drafting the ranking.
+
+I'm going through the remaining scores, with the next group mostly near zero and the defensive names like Walmart, P&G, and McDonald's at the bottom. The total from these sums to 27.
+
+I'm running the scores to see where the total lands: the positives come to 23, and the negatives and zeros bring it near zero. I'm nudging a few names down to zero and adjusting HON to bring the sum to 0.
+
+I'm going through the score sums and ranking the remaining names, with the scores now coming out to roughly zero overall.
+
+I'm working through the rest of the ranking, with the remaining names going from Johnson & Johnson down to Walmart at the bottom. I'm also planning to cover the macro themes of rates, inflation, and market sentiment, using only the package data.
+

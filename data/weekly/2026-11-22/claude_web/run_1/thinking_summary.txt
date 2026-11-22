@@ -1,0 +1,50 @@
+I'm planning the searches now, with a cap of ten, and starting with a batch on the market week ending November 20, 2026. The figures look unusual, like a 40% one-month drop in NVDA and an 8% weekly fall in DIA, so the data may not be real and I'll keep that in mind as I search.
+
+
+
+---
+
+The results come back as JSON strings, so I need to parse them first. Then I'll look more closely at the key results.
+
+
+
+---
+
+Checking NVDA after-hours, it's showing $130.03, up about 3.58%. Next I'll read the rest of the Yahoo article, the Fed minutes piece, the UNH news, and the CAT EBC article.
+
+
+
+---
+
+I'm going over the macro backdrop: the Fed is in a hiking cycle, and Democrats swept Congress in the November 2026 midterms. Thanksgiving falls next week, with markets closed Thursday and a half day Friday. Next I want to check what's driving the AI selloff, including the Anthropic IPO and what knocked Nvidia down about 14% on Friday, along with earnings and news from Salesforce, Walmart, Goldman and the banks, and Nike.
+
+I've used six searches so far and have four left to spend.
+
+
+
+---
+
+Jensen Huang's resignation and an SEC probe into Nvidia's accounting make NVDA look like extreme risk right now. I want to pull the full CNBC article, along with the fxleaders wrap and Schaeffer's week-ahead piece. That's ten searches so far, but I can still dig further into what's already been retrieved.
+
+
+
+---
+
+I've run ten searches, so it's time to form a view. The backdrop is a sharp selloff: VIX near 36, the Fed hiking, the 10-year above 5%, and the AI trade unwinding. Thanksgiving week has a positive seasonal record, and after an eight percent down week a mean-reversion bounce is plausible, though momentum could still carry lower. Now I'm weighing which option to pick.
+
+I'm weighing a defensive quality pick with positive momentum against an oversold bounce, since the one-week reversal effect argues for the bounce but high-beta names can keep falling in a crash. NVDA carries SEC probe and CEO-departure risk, so I'm leaning toward scoring it negatively, while UNH's policy overhang also looks negative to me. CRM, down 17% on the week with AI disruption fears, could bounce.
+
+I'm weighing Walmart, which has a post-earnings raise and strong momentum but a P/E of 46 and Nasdaq listing that could hurt if rates rise. Goldman Sachs looks oversold at a P/E of 11 and would rebound hard. Caterpillar is down about 50% from its peak, but its AI power-generation exposure makes it risky. Amazon fell 7.4% this week at a P/E of 19.95, also with AI capex exposure.
+
+I'm going to settle on a mix: Walmart for its post-earnings momentum, Goldman for a cheap rebound, Microsoft as quality that's been beaten down, and McDonald's as a defensive name.
+
+I'm running down the rest of the list in rank order, scoring the remaining names on momentum, valuation, and AI exposure. Most of them land near zero, with the slightly positive ones being Procter & Gamble, Coca-Cola, Amazon, Salesforce, Alphabet, and Travelers, and the slightly negative ones being Amgen, IBM, Cisco, and Merck.
+
+I'm tallying the scores for the rest of the list, with the negatives pulling in Boeing, Nike, Caterpillar, UnitedHealth, and Nvidia, and the total coming out slightly positive. I'm also noting that the CPI observation date points to October data, which is fine for a monthly series.
+
+I'm checking the data quality now: a few dates and figures line up, like NVDA's -22.9% weekly move and the 10-year yield, while the MRK P/E of 135 looks anomalous and the dollar index series is a week stale.
+
+I'm listing the sources I'm drawing on: Yahoo Finance market news, CNBC on Nvidia, a Motley Fool piece on the SEC probe, AP's coverage of the Fed minutes, and an article on UnitedHealth that cites Barron's, which I'll keep in mind as a secondary source.
+
+I'm now pulling together the remaining sources, including the Walmart filing, GuruFocus on Salesforce, Schaeffer's week-ahead, and the FX Leaders VIX wrap, and planning a short macro summary before I write up the scores in compact form.
+

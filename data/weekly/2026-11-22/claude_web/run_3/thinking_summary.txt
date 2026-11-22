@@ -1,0 +1,40 @@
+I'm planning a batch of searches on the market week ending November 20, 2026, including Nvidia, with a budget of ten. The data package shows DIA down about 8% and NVDA down about 23% over the week, which stands out, so I'll search to understand why.
+
+
+
+---
+
+I've got the search results as JSON strings, so I'll parse them to get the full details. One item stands out: an SEC probe into Nvidia, and a claim that Jensen Huang has resigned as CEO, which I need to verify. Next I'll read the rest of the Nvidia coverage and the market articles.
+
+
+
+---
+
+I'm looking at UNH's November 20 close of 339.85, which is up from 330.48 the day before, so it bounced back. I'll run a few more searches on Salesforce, Alphabet, the bank selloff, Nike, Walmart's earnings, and Thanksgiving-week data like PCE, with four searches left in my budget.
+
+
+
+---
+
+Now I'm forming a view on the market: an AI-led selloff with the Panic index near its high, a 90% chance of a Fed hike on Dec 9, the 10-year around 5%, and CPI at 4.1%. The Democratic sweep of Congress and the Medicare for All push are weighing on insurers. Thanksgiving week is coming, with a holiday and a half-day, so volume should be light. Goldman's desk thinks the selloff still has room but also sees a possible entry point.
+
+I'm leaning toward a moderate contrarian tilt after the panic, since short-term reversals often show up after a week like this, though the uncertainty is real. I'm weighing defensive staples against oversold names, and NVDA's SEC probe makes it a risk I'd rather avoid. Goldman and Caterpillar look like the strongest candidates.
+
+I'm weighing a few names for the final picks: Google, Goldman and Caterpillar look like the best balance of value and diversification, with Salesforce and JPMorgan as possible alternates. Nvidia stays at neutral given the SEC probe.
+
+I'm going through a list of scores for the rest of the names: most get a neutral 0, while a few get a mild negative for rate sensitivity or policy risk. Home Depot and Procter & Gamble look weakest given the 5% yield and mortgage pressure, with Coca-Cola close behind.
+
+I'm wrapping up the scoring, with the positives summing to 17 and a run of zeros and mild negatives on the rest. NVDA I'm now putting at -1, since the SEC probe and CEO exit are still a risk even if a bounce is possible. Walmart at -3 is the heaviest negative, given its crowded defensive status and rich P/E.
+
+I'm checking the score tally: the zeros and negatives bring the total to -1, and the ticker list comes to 30 names. I'm moving on to ranking the top picks: Google, Goldman and Caterpillar at 3 each, then Salesforce and JPMorgan at 2.
+
+I'm working through the rest of the scores: AMZN, MSFT, IBM and AXP get a mild +1, most of the middle names sit at zero, and the rest get small negatives, with Walmart at -3 as the heaviest.
+
+Now I'm going through the source list: a series of sourced references covering the Nvidia SEC probe, the Fed rate odds, the 10-year yield, Caterpillar's 52-week low and after-hours move, the UnitedHealth news, Salesforce's recent moves, Alphabet's Anthropic angle, and Goldman's panic-index commentary.
+
+I'm noting the source references now: a Nike dividend story from Nov 18, an NKE target-cut item I'll skip since it isn't needed, and a Fed minutes headline I only saw by title. I'm also flagging a few data issues, including the draft universe version, missing market cap and P/E for HON, and an unverified Salesforce earnings date.
+
+I'm checking the data quality notes now: the price and yield timestamps differ across sources but are consistent enough, and the NVDA and Apple figures look plausible. I'm also noting that the Thanksgiving holiday shortens the trading window, though that is a scheduling point rather than a data problem.
+
+I'm checking the yield figures and the UnitedHealth dividend math, which works out to about 2.32 a quarter and 9.28 a year, so it holds up. Next I'll write the macro summary, keeping it under 1200 characters.
+

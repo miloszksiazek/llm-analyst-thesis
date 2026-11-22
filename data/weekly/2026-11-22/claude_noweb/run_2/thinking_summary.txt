@@ -1,0 +1,20 @@
+No web search is available, so I'll rely on the package alone. The Dow ETF (DIA) is down about 8% over the week and 8.9% over the month, a severe selloff, with the 10-year at 5.04%, CPI at 4.08% year over year, and the Fed at 4.0%. Walmart, Procter & Gamble, McDonald's, Coca-Cola, Disney, and Home Depot are the defensive names holding up better, and the weekly and monthly DIA figures look consistent. I still need to check the universe note on Dow constituents.
+
+I'm checking the universe note's constituent changes against what I know, and the 2026 replacements don't match my knowledge, so I'll flag them as unverifiable. I'm also running spot checks on the market caps against share counts and price-weighting, and those look plausible.
+
+I'm checking market caps against share counts for the large names, and most of the ones I've looked at come out plausible. The MRK P/E of 135 stands out, so I'm wondering whether a one-off charge is behind it.
+
+I'm weighing a short-term reversal play against the momentum regime, since the selloff is extreme and the weekly reversal effect is a known pattern among large caps. My leaning is to mix defensive low-beta names that held up with some oversold quality stocks, so the position does well if the market rebounds or keeps falling.
+
+I'm settling on a moderate reversal tilt, leaning toward GOOGL, NVDA, and JPM, with GS still in question. Since CRM reports after the window closes, there's no earnings risk from it in this period.
+
+I'm weighing a tilt toward GOOGL, JPM, NVDA, and GS, since the selloff looks oversold, though GS and JPM move together as financials. CAT and UNH have also dropped sharply, and I'm wondering if that's a cyclical slump or something company-specific.
+
+I'm ranking the candidates by score now: GOOGL leads with +4, then JPM and NVDA at +3, and GS, MSFT, and AMZN at +2. The lower scores go to IBM, AXP, CAT, and V at +1, with MRK at zero.
+
+I'm going through the remaining tickers in the list, giving each a score, with most of the defensive and consumer names landing at zero or slightly negative. WMT comes last at -3, and I'm starting to tally the scores to see whether the whole list balances out.
+
+I'm tallying the scores so the list comes out balanced, adjusting a couple of tickers to bring the total to zero, and then ordering the negatives by score.
+
+I'm checking the universe note's constituent changes, since GOOGL replacing VZ doesn't match what I remember, and I can't verify it either way. MRK's P/E of 135 still looks like an anomaly, and the universe version is just "draft," so I'm flagging that too.
+
