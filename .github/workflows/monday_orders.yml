@@ -1,0 +1,96 @@
+name: monday_orders
+
+# Monday-ish 15:00 UTC (NYSE opens 14:30 UTC in winter, 13:30 UTC in summer).
+# The script exits early when the Alpaca clock reports the market closed, so
+# the Mon–Fri schedule is a safety net: the first day the market is actually
+# open after a Sunday run is when the orders go out.
+#
+# Live submission is gated by `config/settings.yaml:broker_live`. Until that
+# flag is flipped to true, the job runs end-to-end but stays in dry-run mode
+# (orders computed, nothing sent to Alpaca).
+
+on:
+  schedule:
+    - cron: "0 15 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      run_date:
+        description: "Sunday run_date to execute (YYYY-MM-DD). Defaults to the latest."
+        required: false
+        type: string
+      dry_run:
+        description: "Force dry-run even if broker_live=true."
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monday_orders
+  cancel-in-progress: false
+
+jobs:
+  orders:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      # Three paper accounts, one per strategy.
+      ALPACA_KEY_CLAUDE_WEB:    ${{ secrets.ALPACA_KEY_CLAUDE_WEB }}
+      ALPACA_SECRET_CLAUDE_WEB: ${{ secrets.ALPACA_SECRET_CLAUDE_WEB }}
+      ALPACA_KEY_CLAUDE_NOWEB:    ${{ secrets.ALPACA_KEY_CLAUDE_NOWEB }}
+      ALPACA_SECRET_CLAUDE_NOWEB: ${{ secrets.ALPACA_SECRET_CLAUDE_NOWEB }}
+      ALPACA_KEY_XGB:    ${{ secrets.ALPACA_KEY_XGB }}
+      ALPACA_SECRET_XGB: ${{ secrets.ALPACA_SECRET_XGB }}
+      PYTHONPATH:        src
+      PYTHONUNBUFFERED:  "1"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version-file: ".python-version"
+          cache: "pip"
+          cache-dependency-path: "requirements.txt"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Resolve inputs
+        id: resolve
+        run: |
+          RD="${{ inputs.run_date }}"
+          DRY="${{ inputs.dry_run }}"
+          ARGS=""
+          [ -n "$RD" ] && ARGS="--run-date $RD"
+          [ "$DRY" = "true" ] && ARGS="$ARGS --dry-run"
+          echo "args=$ARGS" >> "$GITHUB_OUTPUT"
+
+      - name: Run broker rebalance
+        run: |
+          python -m broker.orders ${{ steps.resolve.outputs.args }}
+
+      - name: Commit and push order ledgers
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -d data/weekly ]; then
+            git add data/weekly
+          fi
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+            exit 0
+          fi
+          git commit -m "Monday orders $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main
+          git push

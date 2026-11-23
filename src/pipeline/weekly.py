@@ -59,6 +59,7 @@ sys.path.insert(0, str(_ROOT / "src"))
 from agent.run         import run_variant, VARIANTS
 from data.calendar     import is_past_next_open
 from data.package      import build_package, verify_package
+from portfolio         import load_test_start
 from xgb.features      import load_bundle
 from xgb.fetch_history import fetch as fetch_history
 from xgb.predict       import load_model, rank as xgb_rank
@@ -268,8 +269,14 @@ def run_week(
                            "traceback": traceback.format_exc()})
 
     # 4) Summary
+    try:
+        test_start = load_test_start()
+        phase = "test" if run_date >= test_start else "pilot"
+    except Exception:
+        phase = "unknown"
     summary: dict[str, Any] = {
         "run_date":      str(run_date),
+        "phase":         phase,
         "mode":          mode,
         "finished_at":   datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "git_commit":    _git_commit(),

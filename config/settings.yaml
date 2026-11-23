@@ -23,3 +23,15 @@ cost_guard_usd: 3.0            # abort a single run if estimated cost exceeds th
 # coming week; the week is recorded as "no ranking" and excluded from IC.
 # Logged as a pipeline error.
 fallback_rule: keep_prev_portfolio
+
+# First run_date that counts as the forward test. Earlier run_dates are the
+# pilot: they are kept on disk under data/weekly/ (immutable) but excluded by
+# default from the ledger and IC. Pass include_pilot=True to opt them in.
+test_start: 2026-12-06
+
+# Monday broker job (src/broker/orders.py). While `broker_live` is false, the
+# workflow computes the rebalance and writes the planned orders to the ledger
+# in --dry-run mode but never submits anything to Alpaca. Flip to true once
+# the forward test actually begins.
+broker_live: false
+

@@ -26,6 +26,8 @@ import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
 
+from portfolio import load_test_start
+
 
 @dataclass
 class ICSeries:
@@ -36,15 +38,21 @@ class ICSeries:
 def weekly_rank_ic(
     rankings: dict[pd.Timestamp, dict[str, float] | None],
     returns_table: pd.DataFrame,
+    include_pilot: bool = False,
 ) -> pd.Series:
     """
     Compute Spearman IC for each week present in both inputs.
 
     `rankings[entry_date]` must be a dict ticker->rank. Missing/None values
     yield a NaN for that week (excluded from the summary).
+    `include_pilot` : default False drops weeks whose entry_date is on-or-
+        before `config/settings.yaml:test_start` (the pilot weeks).
     """
+    cutoff = None if include_pilot else pd.Timestamp(load_test_start())
     ics = {}
     for entry, rnk in rankings.items():
+        if cutoff is not None and entry <= cutoff:
+            continue
         if rnk is None or entry not in returns_table.index:
             ics[entry] = float("nan")
             continue

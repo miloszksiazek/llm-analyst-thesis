@@ -38,6 +38,8 @@ from typing import Iterable
 import numpy as np
 import pandas as pd
 
+from portfolio import load_test_start
+
 
 @dataclass
 class LedgerWeek:
@@ -133,6 +135,7 @@ def run_strategy(
     start_value: float = 100_000.0,
     cost_bps: float = 0.0,
     weight_per_name: float | None = None,
+    include_pilot: bool = False,
 ) -> LedgerResult:
     """
     Compound weekly decisions through the schedule.
@@ -140,8 +143,13 @@ def run_strategy(
     `picks` : entry_date -> list of tickers to hold at target weight.
               Missing / None picks trigger the fallback (keep prev holdings).
     `weight_per_name` : override for equal weighting. None -> 1/len(picks).
+    `include_pilot` : default False excludes weeks whose entry_date is on-or-
+              before `config/settings.yaml:test_start` (the pilot weeks).
     """
     sched = weekly_returns.schedule
+    if not include_pilot:
+        cutoff = pd.Timestamp(load_test_start())
+        sched = sched.loc[sched.index > cutoff]
     table = weekly_returns.table
     result = LedgerResult(strategy=name, start_value=start_value)
 

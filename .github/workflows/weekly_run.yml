@@ -4,10 +4,16 @@ on:
   schedule:
     # 18:00 UTC every Sunday (19:00 Warsaw winter time, 20:00 summer).
     - cron: "0 18 * * 0"
+    # Backup: 04:00 UTC every Monday. Catches cases where the Sunday run
+    # was delayed or skipped by GitHub. For scheduled runs the resolve step
+    # derives run_date as the most recent Sunday (Monday -> yesterday), and
+    # the pipeline's own "already complete" shortcut exits 0 cleanly if the
+    # Sunday run already finished.
+    - cron: "0 4 * * 1"
   workflow_dispatch:
     inputs:
       run_date:
-        description: "Run date (YYYY-MM-DD). Defaults to today (UTC)."
+        description: "Run date (YYYY-MM-DD). Defaults to most-recent Sunday (UTC)."
         required: false
         type: string
       mode:
@@ -69,7 +75,11 @@ jobs:
         id: resolve
         run: |
           RD="${{ inputs.run_date }}"
-          [ -z "$RD" ] && RD="$(date -u +%Y-%m-%d)"
+          if [ -z "$RD" ]; then
+            # Default = most recent Sunday (today if today is Sunday).
+            # Monday-dayofweek: Mon=0, Sun=6; (wd+1) % 7 maps Mon->1, Sun->0.
+            RD="$(python3 -c 'import datetime as dt; d=dt.date.today(); print((d - dt.timedelta(days=(d.weekday()+1)%7)).isoformat())')"
+          fi
           MODE="${{ inputs.mode }}"
           [ -z "$MODE" ] && MODE="production"
           LATE="${{ inputs.allow_late }}"
