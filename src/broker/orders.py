@@ -11,8 +11,9 @@ Behaviour
 * Locates `data/weekly/<Sunday>/summary.json` (latest if `--run-date` omitted).
 * Refuses to run if the Alpaca market clock reports `is_open=False`.
 * For each strategy in {claude_web, claude_noweb, xgb}:
-    - skip if `data/weekly/<Sunday>/orders/<strategy>.json` already exists
-      (idempotent);
+    - skip if a LIVE ledger already exists at
+      `data/weekly/<Sunday>/orders/<strategy>.json` with `live=true`
+      (idempotent — dry-run ledgers never block a later live submission);
     - skip if the strategy status is `fallback` (keep last week's positions)
       or `failed` (no decision) — write a short note either way;
     - otherwise rebalance the account so each of the 4 picks sits at exactly
@@ -23,6 +24,13 @@ Behaviour
 * After submitting, polls each order briefly for the fill, then writes
   `data/weekly/<Sunday>/orders/<strategy>.json` with the plan, the submitted
   orders, and whatever fill status came back.
+
+Dry-run
+-------
+Dry-run writes to `data/scratch/orders_dryrun/<run_date>/<strategy>.json`
+(gitignored under `data/scratch/`). It never touches `data/weekly/` so an
+experimental dry-run can't be mistaken for a submitted ledger and can't
+block a later live rebalance.
 
 Safety flag
 -----------
@@ -208,6 +216,29 @@ def _write_json(path: Path, obj) -> None:
     path.write_text(json.dumps(obj, indent=2, default=str), encoding="utf-8")
 
 
+def _live_ledger_path(run_dir: Path, strategy: str) -> Path:
+    return run_dir / "orders" / f"{strategy}.json"
+
+
+def _dryrun_ledger_path(run_date: str, strategy: str) -> Path:
+    return _ROOT / "data" / "scratch" / "orders_dryrun" / run_date / f"{strategy}.json"
+
+
+def _has_live_ledger(run_dir: Path, strategy: str) -> bool:
+    """True iff a LIVE ledger already exists for this strategy.
+
+    Only ledgers with `live=true` block a later submission. Dry-run ledgers
+    (if they ever end up here) and corrupt files are treated as absent.
+    """
+    p = _live_ledger_path(run_dir, strategy)
+    if not p.exists():
+        return False
+    try:
+        return bool(json.loads(p.read_text(encoding="utf-8")).get("live", False))
+    except (json.JSONDecodeError, OSError):
+        return False
+
+
 def process_strategy(
     strategy: str,
     picks: list[str] | None,
@@ -216,13 +247,15 @@ def process_strategy(
     live: bool,
 ) -> dict:
     """Rebalance one paper account. Returns the ledger record written to disk."""
-    orders_dir = run_dir / "orders"
-    out_path = orders_dir / f"{strategy}.json"
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
-    if out_path.exists():
-        return {"strategy": strategy, "skipped": "orders file already exists",
-                "path": str(out_path.relative_to(_ROOT))}
+    if live:
+        out_path = _live_ledger_path(run_dir, strategy)
+        if _has_live_ledger(run_dir, strategy):
+            return {"strategy": strategy, "skipped": "live orders file already exists",
+                    "path": str(out_path.relative_to(_ROOT))}
+    else:
+        out_path = _dryrun_ledger_path(run_dir.name, strategy)
 
     record: dict = {
         "strategy":     strategy,
@@ -290,10 +323,17 @@ def _find_run_dir(run_date: str | None) -> Path:
 
 
 def _needs_work(run_dir: Path, summary: dict) -> bool:
+    """True iff at least one strategy still has no LIVE ledger.
+
+    Dry-run ledgers live in `data/scratch/` and never count here. A live
+    ledger is one whose JSON contains `"live": true`; anything else
+    (including a leftover dry-run file accidentally in `data/weekly/orders/`)
+    is treated as absent so a later submission can run.
+    """
     for name in STRATEGIES:
         if name not in summary.get("strategies", {}):
             continue
-        if not (run_dir / "orders" / f"{name}.json").exists():
+        if not _has_live_ledger(run_dir, name):
             return True
     return False
 

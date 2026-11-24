@@ -1,12 +1,15 @@
 name: watchdog
 
-# Monday 07:00 UTC: verify the previous Sunday's run landed in data/weekly/
-# with every strategy in status "ok". If not, this job fails so GitHub emails
-# the repository owner before NYSE opens (US winter: 14:30 UTC; summer 13:30 UTC).
-
+# Three Monday checks, all before NYSE opens (US winter 14:30 UTC, summer
+# 13:30 UTC). Each fails if data/weekly/<previous Sunday>/summary.json is
+# missing or has any non-ok strategy, so a delayed Sunday run surfaces as a
+# failed-job email before the broker workflow would try to act on it.
+# Off-the-hour slots because GitHub delays top-of-hour crons by 5–12 h.
 on:
   schedule:
-    - cron: "0 7 * * 1"
+    - cron: "41 5 * * 1"
+    - cron: "13 9 * * 1"
+    - cron: "47 12 * * 1"
   workflow_dispatch:
     inputs:
       run_date:

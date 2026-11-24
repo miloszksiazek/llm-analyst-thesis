@@ -1,12 +1,19 @@
-"""Unit tests for `broker.orders.compute_rebalance`.
+"""Unit tests for `broker.orders`.
 
 The rebalance math is pure — no Alpaca client involved — so these tests
 cover the only logic that needs to be correct before we ever go live.
+Also covers the dry-run routing and the live-only idempotency gate.
 """
 
 from __future__ import annotations
 
-from broker.orders import compute_rebalance, PlannedOrder, TARGET_WEIGHT
+import json
+from pathlib import Path
+
+from broker.orders import (
+    compute_rebalance, PlannedOrder, TARGET_WEIGHT,
+    _dryrun_ledger_path, _has_live_ledger, _needs_work, _live_ledger_path,
+)
 
 
 PICKS = ["AAPL", "MSFT", "JPM", "GOOGL"]
@@ -108,3 +115,65 @@ def test_small_non_pick_leftover_is_ignored():
     # Only tiny underweight top-ups allowed (0.50 per pick = below min),
     # STALE below min => no order expected.
     assert plan == []
+
+
+# ── Dry-run routing + live-only idempotency ─────────────────────────────────
+
+def _write(path: Path, obj: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(obj), encoding="utf-8")
+
+
+def test_dryrun_path_lives_under_scratch(tmp_path, monkeypatch):
+    # The path helper is deterministic — just assert the layout.
+    p = _dryrun_ledger_path("2026-11-22", "claude_web")
+    assert p.parent.parent.name == "orders_dryrun"
+    assert p.parent.name == "2026-11-22"
+    assert p.name == "claude_web.json"
+    assert "data/scratch" in str(p)
+
+
+def test_live_ledger_blocks_rerun(tmp_path):
+    run_dir = tmp_path / "2026-11-22"
+    live_path = _live_ledger_path(run_dir, "claude_web")
+    _write(live_path, {"strategy": "claude_web", "live": True, "picks": []})
+    assert _has_live_ledger(run_dir, "claude_web") is True
+
+
+def test_dryrun_file_in_weekly_does_not_block_rerun(tmp_path):
+    # A leftover dry-run ledger (live=false) mistakenly stored in
+    # data/weekly/<run>/orders/ must not be treated as a submitted ledger.
+    run_dir = tmp_path / "2026-11-22"
+    _write(_live_ledger_path(run_dir, "claude_web"),
+           {"strategy": "claude_web", "live": False, "picks": []})
+    assert _has_live_ledger(run_dir, "claude_web") is False
+
+
+def test_needs_work_true_when_no_live_ledgers(tmp_path):
+    run_dir = tmp_path / "2026-11-22"
+    run_dir.mkdir()
+    summary = {"strategies": {"claude_web": {"status": "ok"},
+                               "claude_noweb": {"status": "ok"},
+                               "xgb": {"status": "ok"}}}
+    assert _needs_work(run_dir, summary) is True
+
+
+def test_needs_work_false_when_all_live_ledgers_present(tmp_path):
+    run_dir = tmp_path / "2026-11-22"
+    for s in ("claude_web", "claude_noweb", "xgb"):
+        _write(_live_ledger_path(run_dir, s),
+               {"strategy": s, "live": True, "picks": []})
+    summary = {"strategies": {"claude_web": {}, "claude_noweb": {}, "xgb": {}}}
+    assert _needs_work(run_dir, summary) is False
+
+
+def test_needs_work_ignores_dryrun_file_at_live_path(tmp_path):
+    # A stray live=false file at the live path still counts as missing.
+    run_dir = tmp_path / "2026-11-22"
+    for s in ("claude_web", "claude_noweb"):
+        _write(_live_ledger_path(run_dir, s),
+               {"strategy": s, "live": True, "picks": []})
+    _write(_live_ledger_path(run_dir, "xgb"),
+           {"strategy": "xgb", "live": False, "picks": []})
+    summary = {"strategies": {"claude_web": {}, "claude_noweb": {}, "xgb": {}}}
+    assert _needs_work(run_dir, summary) is True

@@ -1,17 +1,22 @@
 name: monday_orders
 
-# Monday-ish 15:00 UTC (NYSE opens 14:30 UTC in winter, 13:30 UTC in summer).
-# The script exits early when the Alpaca clock reports the market closed, so
-# the Mon–Fri schedule is a safety net: the first day the market is actually
-# open after a Sunday run is when the orders go out.
+# Three Mon–Fri attempts straddling the NYSE open (14:30 UTC winter,
+# 13:30 UTC summer). Off-the-hour slots because GitHub delays top-of-hour
+# crons by 5–12 h. The broker script exits early when the clock says
+# closed and when a live orders file already exists; the concurrency group
+# below guarantees two runs can never submit orders at the same time, so
+# whichever attempt first lands inside market hours places the orders and
+# the rest no-op.
 #
 # Live submission is gated by `config/settings.yaml:broker_live`. Until that
-# flag is flipped to true, the job runs end-to-end but stays in dry-run mode
-# (orders computed, nothing sent to Alpaca).
+# flag is flipped to true, the job stays in dry-run mode (orders computed,
+# nothing sent to Alpaca; the dry-run ledger lands in data/scratch/).
 
 on:
   schedule:
-    - cron: "0 15 * * 1-5"
+    - cron: "52 14 * * 1-5"
+    - cron: "37 16 * * 1-5"
+    - cron: "41 18 * * 1-5"
   workflow_dispatch:
     inputs:
       run_date:

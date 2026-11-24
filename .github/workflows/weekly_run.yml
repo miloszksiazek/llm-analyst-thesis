@@ -2,14 +2,15 @@ name: weekly_run
 
 on:
   schedule:
-    # 18:00 UTC every Sunday (19:00 Warsaw winter time, 20:00 summer).
-    - cron: "0 18 * * 0"
-    # Backup: 04:00 UTC every Monday. Catches cases where the Sunday run
-    # was delayed or skipped by GitHub. For scheduled runs the resolve step
+    # Sunday 17:37 UTC (off-the-hour: GitHub delays top-of-hour crons by
+    # 5–12 h; mid-hour slots start much more promptly).
+    - cron: "37 17 * * 0"
+    # Backup: Monday 03:23 UTC. Catches the case where the Sunday run was
+    # delayed or skipped by GitHub. For scheduled runs the resolve step
     # derives run_date as the most recent Sunday (Monday -> yesterday), and
     # the pipeline's own "already complete" shortcut exits 0 cleanly if the
     # Sunday run already finished.
-    - cron: "0 4 * * 1"
+    - cron: "23 3 * * 1"
   workflow_dispatch:
     inputs:
       run_date:
