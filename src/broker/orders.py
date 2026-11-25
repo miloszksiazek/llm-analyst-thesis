@@ -310,11 +310,45 @@ def process_strategy(
 
 # ── Entry point ────────────────────────────────────────────────────────────
 
+def _latest_incomplete_run_dir() -> Path | None:
+    """Return the latest `data/weekly/<Sunday>/` whose summary.json still has
+    at least one strategy without a live orders file. Returns None if every
+    dated run dir is either fully submitted, missing summary.json, or
+    unreadable.
+    """
+    if not _WEEKLY.exists():
+        return None
+    candidates = sorted(p for p in _WEEKLY.iterdir() if p.is_dir())
+    for p in reversed(candidates):
+        try:
+            date.fromisoformat(p.name)
+        except ValueError:
+            continue
+        summary_path = p / "summary.json"
+        if not summary_path.exists():
+            continue
+        try:
+            summary = json.loads(summary_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        if _needs_work(p, summary):
+            return p
+    return None
+
+
 def _find_run_dir(run_date: str | None) -> Path:
     if run_date:
         p = _WEEKLY / run_date
         if not p.exists():
             raise FileNotFoundError(f"No weekly dir for {run_date}: {p}")
+        return p
+    # External scheduler fires repeatedly; pick the latest Sunday still
+    # missing a live orders file so retries after a partial submission land
+    # on the same dir. Fall back to the latest dir overall only when every
+    # recent run is already fully submitted – the caller then exits cleanly
+    # via the _needs_work shortcut.
+    p = _latest_incomplete_run_dir()
+    if p is not None:
         return p
     p = _latest_run_dir()
     if p is None:

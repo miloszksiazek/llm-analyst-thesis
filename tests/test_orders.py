@@ -13,7 +13,9 @@ from pathlib import Path
 from broker.orders import (
     compute_rebalance, PlannedOrder, TARGET_WEIGHT,
     _dryrun_ledger_path, _has_live_ledger, _needs_work, _live_ledger_path,
+    _latest_incomplete_run_dir, _find_run_dir,
 )
+import broker.orders as orders_module
 
 
 PICKS = ["AAPL", "MSFT", "JPM", "GOOGL"]
@@ -177,3 +179,80 @@ def test_needs_work_ignores_dryrun_file_at_live_path(tmp_path):
            {"strategy": "xgb", "live": False, "picks": []})
     summary = {"strategies": {"claude_web": {}, "claude_noweb": {}, "xgb": {}}}
     assert _needs_work(run_dir, summary) is True
+
+
+# ── Default run_date resolution (external-scheduler path) ───────────────────
+
+def _mk_weekly(tmp_path: Path, run_date: str, strategies: dict[str, bool]) -> Path:
+    """Create data/weekly/<run_date>/summary.json and, for each strategy whose
+    value is True, a live orders file under orders/<strategy>.json.
+    """
+    run_dir = tmp_path / run_date
+    run_dir.mkdir(parents=True, exist_ok=True)
+    _write(run_dir / "summary.json",
+           {"strategies": {s: {"status": "ok"} for s in strategies}})
+    for s, live in strategies.items():
+        if live:
+            _write(_live_ledger_path(run_dir, s),
+                   {"strategy": s, "live": True, "picks": []})
+    return run_dir
+
+
+def test_latest_incomplete_run_dir_picks_newest_with_missing_live(tmp_path, monkeypatch):
+    monkeypatch.setattr(orders_module, "_WEEKLY", tmp_path)
+    older = _mk_weekly(tmp_path, "2026-11-15",
+                       {"claude_web": True, "claude_noweb": True, "xgb": True})
+    newer = _mk_weekly(tmp_path, "2026-11-22",
+                       {"claude_web": True, "claude_noweb": False, "xgb": True})
+    assert _latest_incomplete_run_dir() == newer
+    assert _find_run_dir(None) == newer
+    _ = older  # keep for clarity: older is fully submitted, must not be chosen
+
+
+def test_latest_incomplete_skips_newest_when_fully_submitted(tmp_path, monkeypatch):
+    # If the newest dir is fully submitted but an older one is incomplete,
+    # pick the older. In practice we would not go live for an old week, but
+    # the caller gets to decide – the selector must be truthful.
+    monkeypatch.setattr(orders_module, "_WEEKLY", tmp_path)
+    incomplete_old = _mk_weekly(tmp_path, "2026-11-15",
+                                {"claude_web": False, "claude_noweb": True, "xgb": True})
+    _mk_weekly(tmp_path, "2026-11-22",
+               {"claude_web": True, "claude_noweb": True, "xgb": True})
+    assert _latest_incomplete_run_dir() == incomplete_old
+
+
+def test_latest_incomplete_returns_none_when_all_submitted(tmp_path, monkeypatch):
+    monkeypatch.setattr(orders_module, "_WEEKLY", tmp_path)
+    _mk_weekly(tmp_path, "2026-11-22",
+               {"claude_web": True, "claude_noweb": True, "xgb": True})
+    assert _latest_incomplete_run_dir() is None
+
+
+def test_find_run_dir_falls_back_to_latest_when_nothing_incomplete(tmp_path, monkeypatch):
+    # When every recent dir is fully submitted, _find_run_dir(None) still
+    # returns the latest so the caller can log the clean "nothing to do" exit.
+    monkeypatch.setattr(orders_module, "_WEEKLY", tmp_path)
+    _mk_weekly(tmp_path, "2026-11-15",
+               {"claude_web": True, "claude_noweb": True, "xgb": True})
+    newest = _mk_weekly(tmp_path, "2026-11-22",
+                        {"claude_web": True, "claude_noweb": True, "xgb": True})
+    assert _find_run_dir(None) == newest
+
+
+def test_latest_incomplete_ignores_non_date_dirs(tmp_path, monkeypatch):
+    monkeypatch.setattr(orders_module, "_WEEKLY", tmp_path)
+    (tmp_path / "notes").mkdir()  # stray non-date folder must be skipped
+    run_dir = _mk_weekly(tmp_path, "2026-11-22",
+                        {"claude_web": False, "claude_noweb": True, "xgb": True})
+    assert _latest_incomplete_run_dir() == run_dir
+
+
+def test_latest_incomplete_skips_dirs_without_summary(tmp_path, monkeypatch):
+    # A half-baked data/weekly/<date>/ with no summary.json must not be
+    # picked – there's nothing to submit against.
+    monkeypatch.setattr(orders_module, "_WEEKLY", tmp_path)
+    half_baked = tmp_path / "2026-11-22"
+    half_baked.mkdir()
+    older = _mk_weekly(tmp_path, "2026-11-15",
+                      {"claude_web": False, "claude_noweb": False, "xgb": False})
+    assert _latest_incomplete_run_dir() == older
