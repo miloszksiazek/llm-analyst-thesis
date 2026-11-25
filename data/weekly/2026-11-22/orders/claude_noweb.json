@@ -1,0 +1,105 @@
+{
+  "strategy": "claude_noweb",
+  "run_dir": "2026-11-22",
+  "submitted_at": "2026-11-25T16:04:11+00:00",
+  "picks": [
+    "GOOGL",
+    "MSFT",
+    "JPM",
+    "NVDA"
+  ],
+  "status": "ok",
+  "live": true,
+  "equity_before": 100000.0,
+  "positions_before": {},
+  "orders_planned": [
+    {
+      "symbol": "GOOGL",
+      "side": "buy",
+      "notional": 25000.0,
+      "reason": "new"
+    },
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "notional": 25000.0,
+      "reason": "new"
+    },
+    {
+      "symbol": "JPM",
+      "side": "buy",
+      "notional": 25000.0,
+      "reason": "new"
+    },
+    {
+      "symbol": "NVDA",
+      "side": "buy",
+      "notional": 25000.0,
+      "reason": "new"
+    }
+  ],
+  "orders_submitted": [
+    {
+      "symbol": "GOOGL",
+      "side": "buy",
+      "notional": 25000.0,
+      "reason": "new",
+      "id": "778f5fc1-67f2-4f5c-a365-c39fae2c3a37",
+      "status": "OrderStatus.PENDING_NEW"
+    },
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "notional": 25000.0,
+      "reason": "new",
+      "id": "422e2f3f-4bdc-4639-86df-239edeb787ec",
+      "status": "OrderStatus.PENDING_NEW"
+    },
+    {
+      "symbol": "JPM",
+      "side": "buy",
+      "notional": 25000.0,
+      "reason": "new",
+      "id": "7a1775c8-6f41-4f85-8425-c3aa1c46c9ab",
+      "status": "OrderStatus.PENDING_NEW"
+    },
+    {
+      "symbol": "NVDA",
+      "side": "buy",
+      "notional": 25000.0,
+      "reason": "new",
+      "id": "eb776dbb-ebd4-4a4c-a140-928fe54b2390",
+      "status": "OrderStatus.PENDING_NEW"
+    }
+  ],
+  "fills": [
+    {
+      "id": "778f5fc1-67f2-4f5c-a365-c39fae2c3a37",
+      "status": "OrderStatus.FILLED",
+      "filled_qty": 94.593423641,
+      "filled_avg_price": 264.28888,
+      "filled_at": "2026-11-25T16:04:13.329586+00:00"
+    },
+    {
+      "id": "422e2f3f-4bdc-4639-86df-239edeb787ec",
+      "status": "OrderStatus.FILLED",
+      "filled_qty": 52.221175536,
+      "filled_avg_price": 478.732808,
+      "filled_at": "2026-11-25T16:04:14.711032+00:00"
+    },
+    {
+      "id": "7a1775c8-6f41-4f85-8425-c3aa1c46c9ab",
+      "status": "OrderStatus.FILLED",
+      "filled_qty": 80.246485202,
+      "filled_avg_price": 311.54,
+      "filled_at": "2026-11-25T16:04:12.727508+00:00"
+    },
+    {
+      "id": "eb776dbb-ebd4-4a4c-a140-928fe54b2390",
+      "status": "OrderStatus.FILLED",
+      "filled_qty": 175.471042471,
+      "filled_avg_price": 142.473594,
+      "filled_at": "2026-11-25T16:04:13.857898+00:00"
+    }
+  ]
+}
