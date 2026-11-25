@@ -33,5 +33,5 @@ test_start: 2026-12-06
 # workflow computes the rebalance and writes the planned orders to the ledger
 # in --dry-run mode but never submits anything to Alpaca. Flip to true once
 # the forward test actually begins.
-broker_live: false
+broker_live: true
 

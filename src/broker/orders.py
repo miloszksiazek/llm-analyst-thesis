@@ -373,6 +373,14 @@ def _needs_work(run_dir: Path, summary: dict) -> bool:
 
 
 def run(run_date: str | None, dry_run: bool) -> int:
+    settings = _load_settings()
+    live = bool(settings.get("broker_live", False)) and not dry_run
+    # Very first log line names the mode so operators never have to guess
+    # whether a given run submitted real orders.
+    mode_banner = "LIVE" if live else "DRY-RUN"
+    logger.info("=== %s === broker_live=%s --dry-run=%s",
+                mode_banner, settings.get("broker_live"), dry_run)
+
     run_dir = _find_run_dir(run_date)
     summary_path = run_dir / "summary.json"
     if not summary_path.exists():
@@ -384,12 +392,6 @@ def run(run_date: str | None, dry_run: bool) -> int:
         logger.info("All orders files already present under %s – nothing to do",
                     run_dir.relative_to(_ROOT))
         return 0
-
-    settings = _load_settings()
-    live = bool(settings.get("broker_live", False)) and not dry_run
-    if not live:
-        logger.info("Running in DRY-RUN mode (broker_live=%s, --dry-run=%s)",
-                    settings.get("broker_live"), dry_run)
 
     # Market-open gate. Use any one account's client — paper clocks are shared.
     try:

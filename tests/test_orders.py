@@ -256,3 +256,45 @@ def test_latest_incomplete_skips_dirs_without_summary(tmp_path, monkeypatch):
     older = _mk_weekly(tmp_path, "2026-11-15",
                       {"claude_web": False, "claude_noweb": False, "xgb": False})
     assert _latest_incomplete_run_dir() == older
+
+
+# ── Mode banner (first log line is LIVE or DRY-RUN) ─────────────────────────
+
+def test_run_logs_live_banner_first(tmp_path, monkeypatch, caplog):
+    monkeypatch.setattr(orders_module, "_WEEKLY", tmp_path)
+    monkeypatch.setattr(orders_module, "_ROOT", tmp_path)
+    monkeypatch.setattr(orders_module, "_load_settings",
+                        lambda: {"broker_live": True})
+    _mk_weekly(tmp_path, "2026-11-22",
+               {"claude_web": True, "claude_noweb": True, "xgb": True})
+    with caplog.at_level("INFO", logger="broker.orders"):
+        rc = orders_module.run(run_date=None, dry_run=False)
+    assert rc == 0
+    assert caplog.records, "expected at least one log record"
+    first = caplog.records[0].getMessage()
+    assert "LIVE" in first and "DRY-RUN" not in first
+
+
+def test_run_logs_dryrun_banner_when_flag_off(tmp_path, monkeypatch, caplog):
+    monkeypatch.setattr(orders_module, "_WEEKLY", tmp_path)
+    monkeypatch.setattr(orders_module, "_ROOT", tmp_path)
+    monkeypatch.setattr(orders_module, "_load_settings",
+                        lambda: {"broker_live": False})
+    _mk_weekly(tmp_path, "2026-11-22",
+               {"claude_web": True, "claude_noweb": True, "xgb": True})
+    with caplog.at_level("INFO", logger="broker.orders"):
+        orders_module.run(run_date=None, dry_run=False)
+    assert "DRY-RUN" in caplog.records[0].getMessage()
+
+
+def test_run_logs_dryrun_banner_when_cli_override(tmp_path, monkeypatch, caplog):
+    # broker_live=true but --dry-run forces DRY-RUN; banner must reflect that.
+    monkeypatch.setattr(orders_module, "_WEEKLY", tmp_path)
+    monkeypatch.setattr(orders_module, "_ROOT", tmp_path)
+    monkeypatch.setattr(orders_module, "_load_settings",
+                        lambda: {"broker_live": True})
+    _mk_weekly(tmp_path, "2026-11-22",
+               {"claude_web": True, "claude_noweb": True, "xgb": True})
+    with caplog.at_level("INFO", logger="broker.orders"):
+        orders_module.run(run_date=None, dry_run=True)
+    assert "DRY-RUN" in caplog.records[0].getMessage()
